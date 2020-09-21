@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="WPFEmpresaEPM.UserControls.ReturnMonyUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:WPFEmpresaEPM.UserControls"             
+             xmlns:gif="http://wpfanimatedgif.codeplex.com"
+             gif:ImageBehavior.AnimateInDesignMode="True"
+             mc:Ignorable="d"
+            Height="1920" 
+             Width="1080">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="600" />
+            <RowDefinition Height="600" />
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBlock 
+                Text="Transacción en Progreso" 
+                FontFamily="pack://application:,,,/fonts/#Ubuntu"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                TextWrapping="Wrap"
+                TextAlignment="Center"
+                FontWeight="Bold" 
+                FontSize="60"
+                Foreground="#606060"
+            />
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label 
+                x:Name="lblTitle"
+                Content="Valor a Retirar" 
+                FontFamily="pack://application:,,,/fonts/#Ubuntu"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontWeight="Bold" 
+                FontSize="50" 
+            />
+            <TextBlock 
+                x:Name="txtValueReturn"
+                Text="$ 200.000"
+                FontFamily="pack://application:,,,/fonts/#Ubuntu"
+                Foreground="Gray"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontWeight="Bold" 
+                FontSize="70"
+                Margin="0,0,0,100"
+            />
+        </Grid>
+        <Grid Grid.Row="2">
+            <TextBlock 
+                Text="Por favor espere, estamos contando su dinero" 
+                FontFamily="pack://application:,,,/fonts/#Ubuntu"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontWeight="Bold" 
+                FontSize="45" 
+                TextWrapping="Wrap"
+                TextAlignment="Center"
+                Foreground="#606060"
+            />
+        </Grid>
+    </Grid>
+</UserControl>
