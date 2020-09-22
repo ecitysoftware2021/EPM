@@ -33,7 +33,7 @@ namespace WPFEmpresaEPM.UserControls
         {
             try
             {
-                string option = (sender as TextBlock).Tag.ToString();
+                string option = (sender as Image).Tag.ToString();
 
                 switch (option)
                 {

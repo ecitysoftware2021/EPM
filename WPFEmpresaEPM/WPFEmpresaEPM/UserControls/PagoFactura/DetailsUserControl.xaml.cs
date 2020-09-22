@@ -37,6 +37,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             try
             {
                 transaction = ts;
+                DataContext = transaction.detailsPagoFactura;
                 ActivateTimer();
             }
             catch (Exception ex)
@@ -59,6 +60,11 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             SetCallBacksNull();
             timer.CallBackStop?.Invoke(1);
             Utilities.navigator.Navigate(UserControlView.Main);
+        }
+
+        private void BtnPagar_TouchDown(object sender, TouchEventArgs e)
+        {
+
         }
         #endregion
 
@@ -94,10 +100,5 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             GC.Collect();
         }
         #endregion
-
-        private void BtnPagar_TouchDown(object sender, TouchEventArgs e)
-        {
-
-        }
     }
 }

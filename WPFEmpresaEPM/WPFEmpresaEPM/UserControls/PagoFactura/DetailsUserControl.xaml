@@ -75,7 +75,7 @@
                 <TextBlock 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Margin="0,0,0,200"
+                   Margin="0,0,0,250"
                    TextAlignment="Center"
                    TextWrapping="Wrap"
                    Text="Número de Contrato"
@@ -85,7 +85,7 @@
                 <TextBlock 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center" 
-                   Margin="0,0,0,70" 
+                   Margin="0,0,0,100" 
                    FontSize="40"
                    TextAlignment="Center"
                    Text="{Binding NumeroCuenta}"
@@ -93,7 +93,7 @@
                 <TextBlock 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Margin="0,100,0,0"
+                   Margin="0,200,0,0"
                    TextAlignment="Center"
                    TextWrapping="Wrap"
                    Text="Fecha límite de pago"
@@ -103,7 +103,7 @@
                 <TextBlock Name="txtDate"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Margin="0,250,0,0" 
+                   Margin="0,350,0,0" 
                    FontSize="40"
                    TextAlignment="Center"
                    Text="{Binding FechaLimite}"

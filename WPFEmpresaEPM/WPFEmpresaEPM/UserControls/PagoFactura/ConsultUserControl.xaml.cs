@@ -169,22 +169,23 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 Task.Run(async () =>
                 {
-                    string data = string.Format("?tipoConsulta={0}&referencia={1}", transaction.typeSearch.ToString(), transaction.Document);
+                    string data = string.Format("?tipoConsulta={0}&referencia={1}", (int)transaction.typeSearch, transaction.Document);
 
                     string url = string.Concat(Utilities.GetConfiguration("PagoDeFactura"), data);
 
-                    var authen = await ApiIntegration.SearchPagoFactura(url);
+                    var response = await ApiIntegration.SearchPagoFactura(url);
 
                     Utilities.CloseModal();
 
-                    if (authen == null)
+                    if (response == null)
                     {
                         Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error);
                         ActivateTimer();
                     }
                     else
                     {
-
+                        transaction.detailsPagoFactura = response;
+                        Utilities.navigator.Navigate(UserControlView.DetailsPagoFactura, transaction);
                     }
                 });
 

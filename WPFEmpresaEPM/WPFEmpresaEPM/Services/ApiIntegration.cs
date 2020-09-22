@@ -27,7 +27,7 @@ namespace WPFEmpresaEPM.Services
             {
                 HttpClient client = new HttpClient
                 {
-                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddressConsulta"))
+                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
 
                 var response = await client.GetAsync(url);
