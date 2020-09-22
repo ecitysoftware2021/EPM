@@ -57,14 +57,13 @@
                            FontSize="30" 
                            Width="500"
                            FontFamily="Myriad Pro"
-                           Foreground="white"
                            TextWrapping="WrapWithOverflow"
                            VerticalAlignment="Bottom"
                            TextAlignment="Center" />
             </Grid>
 
             <Grid Grid.Row ="2">
-                <Image gif:ImageBehavior.AnimatedSource="/Images/Gif/load.gif" 
+                <Image gif:ImageBehavior.AnimatedSource="/Images/Gif/loading.gif" 
                        gif:ImageBehavior.AnimateInDesignMode="True"
                        gif:ImageBehavior.AutoStart="True" 
                        x:Name="GifLoadder"  
@@ -81,7 +80,7 @@
                         Height="120"
                         Margin="0,80,0,0"
                         TouchDown="BtnOk_TouchDown"
-                        Source="/Images/Buttons/aceptar.png" 
+                        Source="/Images/Buttons/b-aceptar.png" 
                         Stretch="Uniform" />
 
                 <Image x:Name="BtnNo" 
@@ -90,7 +89,7 @@
                         Height="100"
                         Margin="180,55,0,0"
                         TouchDown="BtnNo_TouchDown"
-                        Source="/Images/Buttons/salir.png"
+                        Source="/Images/Buttons/b-cancelar.png"
                         Stretch="Uniform" />
 
                 <Image x:Name="BtnYes" 
@@ -99,7 +98,7 @@
                         Height="100"
                         Margin="0,55,180,0"
                         TouchDown="BtnYes_TouchDown"
-                        Source="/Images/Buttons/aceptar.png" 
+                        Source="/Images/Buttons/b-aceptar.png" 
                         Stretch="Uniform" />
             </Grid>
         </Grid>
