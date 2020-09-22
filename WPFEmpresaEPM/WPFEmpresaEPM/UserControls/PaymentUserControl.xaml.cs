@@ -237,7 +237,34 @@ namespace WPFEmpresaEPM.UserControls
 
                     Task.Run(async () =>
                     {
-                        
+                        string controller = string.Empty;
+                        string url = string.Empty;
+
+                        switch (transaction.typeTransaction)
+                        {
+                            case ETypeTransaction.PagoFactura:
+                                url = string.Format("{0}?Contrato={1}&IdCliente={2}&idTransaccion={3}&valorPagado={4}",
+                                                   Utilities.GetConfiguration("ReportPagoDeFactura"), 
+                                                   transaction.NumeroContrato, transaction.Document, 
+                                                   transaction.IdTransactionAPi, transaction.Amount.ToString());
+                                break;
+                            case ETypeTransaction.FacturaPrepago:
+                                break;
+                            case ETypeTransaction.PagoMedida:
+                                break;
+                        }
+
+                        bool response = await ApiIntegration.ReportPay(transaction.typeTransaction,url);
+
+                        if (response)
+                        {
+                            this.transaction.statePaySuccess = true;
+                            transaction.State = ETransactionState.Success;
+                        }
+                        else
+                        {
+                            CancelTransaction();
+                        }
                     });
                 }
             }
@@ -252,7 +279,8 @@ namespace WPFEmpresaEPM.UserControls
         {
             try
             {
-               //(string.Format("Estimado {0}, no se pudo notificar el pago. Se le hará la devolución del dinero ingresado.", transaction.DataPerson.FirstName));
+                string ms = "Estimado usuario, no se pudo notificar el pago. Se le hará la devolución del dinero ingresado.";
+                Utilities.ShowModal(ms, EModalType.Error);
                 Utilities.navigator.Navigate(UserControlView.ReturnMony, transaction);
             }
             catch (Exception ex)

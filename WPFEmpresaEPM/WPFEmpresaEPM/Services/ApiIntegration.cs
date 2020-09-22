@@ -149,19 +149,34 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        public static async Task<ResponsePayFactura> ReportPayPagoFactura(string controller, string value)
+        public static async Task<bool> ReportPay(ETypeTransaction type, string url)
+        {
+            switch (type)
+            {
+                case ETypeTransaction.PagoFactura:
+                    return await ReportPayPagoFacturaAsync(url);
+                case ETypeTransaction.FacturaPrepago:
+                    break;
+                case ETypeTransaction.PagoMedida:
+                    break;
+            }
+            return false;
+        }
+
+        private static async Task<bool> ReportPayPagoFacturaAsync(string url)
         {
             try
             {
                 HttpClient client = new HttpClient
                 {
-                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddressConsulta"))
+                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
-                var url = string.Format("{0}{1}", controller, value);
+
                 var response = await client.GetAsync(url);
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return false;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
@@ -169,27 +184,23 @@ namespace WPFEmpresaEPM.Services
 
                 if (json.PaySvcRs.PmtAddRs.Status.StatusCode == "0" && json != null)
                 {
-                    payFactura = new ResponsePayFactura
-                    {
-                        Code = "Ok"
-                    };
-                    return payFactura;
+                    return true;
                 }
-                return null;
+                return false;
             }
             catch (Exception ex)
             {
-                return null;
+                return false;
             }
         }
 
-        public static async Task<ResponsePayMedida> ReportPayMedida(string controller, string value)
+        private static async Task<ResponsePayMedida> ReportPayMedida(string controller, string value)
         {
             try
             {
                 HttpClient client = new HttpClient
                 {
-                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddressConsulta"))
+                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
                 var url = string.Format("{0}{1}", controller, value);
                 var response = await client.GetAsync(url);
@@ -237,13 +248,13 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        public static async Task<ResponsePayFacturaPrepago> ReportPayFacturaPrepago(string controller, string value)
+        private static async Task<ResponsePayFacturaPrepago> ReportPayFacturaPrepago(string controller, string value)
         {
             try
             {
                 HttpClient client = new HttpClient
                 {
-                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddressConsulta"))
+                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
                 var url = string.Format("{0}{1}", controller, value);
                 var response = await client.GetAsync(url);
