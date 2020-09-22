@@ -12,41 +12,29 @@ namespace WPFEmpresaEPM.Services
     public class ApiIntegration
     {
         #region "Referencias"
-        private DetailsPagoFactura details;
-        private ResponseConsultMedida medida;
-        private ResponseConsultFacturaPrepago prepago;
-        private ResponsePayFacturaPrepago payFacturaPrepago;
-        private ResponsePayMedida payMedida;
-        private ResponsePayFactura payFactura;
-        #endregion
-
-        #region "Constructor"
-        public ApiIntegration()
-        {
-          
-        }
+        private static DetailsPagoFactura details;
+        private static ResponseConsultMedida medida;
+        private static ResponseConsultFacturaPrepago prepago;
+        private static ResponsePayFacturaPrepago payFacturaPrepago;
+        private static ResponsePayMedida payMedida;
+        private static ResponsePayFactura payFactura;
         #endregion
 
         #region "Métodos"
-        public async Task<DetailsPagoFactura> SearchPagoFactura(string controller, string value)
+        public static async Task<DetailsPagoFactura> SearchPagoFactura(string url)
         {
             try
             {
-
                 HttpClient client = new HttpClient
                 {
                     BaseAddress = new Uri(Utilities.GetConfiguration("basseAddressConsulta"))
                 };
-                var url = string.Format("{0}{1}", controller, value);
+
                 var response = await client.GetAsync(url);
+
                 if (!response.IsSuccessStatusCode)
                 {
-
-                    details = new DetailsPagoFactura
-                    {
-                        MensajeError = "No se pudo realizar la consulta, intente de nuevo mas tarde, Gracias."
-                    };
-                    return details;
+                    return null;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
@@ -63,33 +51,15 @@ namespace WPFEmpresaEPM.Services
                     };
                     return details;
                 }
-                else
-                if (string.IsNullOrEmpty(json.PaySvcRs.PmtAddRs.Status.StatusCode))
-                {
-                    details = new DetailsPagoFactura
-                    {
-                        MensajeError = "No se encontrarón facturas asociadas a esta referencia"
-                    };
-                    return details;
-                }
-                else if (json.PaySvcRs.PmtAddRs.Status.StatusCode != "0" && json != null)
-                {
-                    details = new DetailsPagoFactura
-                    {
-                        MensajeError = json.PaySvcRs.PmtAddRs.Status.StatusDesc
-                    };
-                    return details;
-                }
-
-                return null;
             }
             catch (Exception ex)
             {
-                return null;
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "SearchPagoFactura", ex, ex.ToString());
             }
+            return null;
         }
 
-        public async Task<ResponseConsultMedida> SearchPagoMedida(string controller, string value)
+        public static async Task<ResponseConsultMedida> SearchPagoMedida(string controller, string value)
         {
             try
             {
@@ -148,7 +118,7 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        public async Task<ResponseConsultFacturaPrepago> SearchFacturaPrepago(string controller, string value)
+        public static async Task<ResponseConsultFacturaPrepago> SearchFacturaPrepago(string controller, string value)
         {
             try
             {
@@ -201,7 +171,7 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        public async Task<ResponsePayFactura> ReportPayPagoFactura(string controller, string value)
+        public static async Task<ResponsePayFactura> ReportPayPagoFactura(string controller, string value)
         {
             try
             {
@@ -235,7 +205,7 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        public async Task<ResponsePayMedida> ReportPayMedida(string controller, string value)
+        public static async Task<ResponsePayMedida> ReportPayMedida(string controller, string value)
         {
             try
             {
@@ -289,7 +259,7 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        public async Task<ResponsePayFacturaPrepago> ReportPayFacturaPrepago(string controller, string value)
+        public static async Task<ResponsePayFacturaPrepago> ReportPayFacturaPrepago(string controller, string value)
         {
             try
             {

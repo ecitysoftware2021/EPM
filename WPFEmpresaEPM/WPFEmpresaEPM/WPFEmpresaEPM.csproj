@@ -140,6 +140,7 @@
     <Compile Include="DataModel\TRANSACTION_DESCRIPTIONs.cs" />
     <Compile Include="DataModel\TRANSACTION_DETAILs.cs" />
     <Compile Include="DataModel\TRANSACTION_ERROR_SERVICE.cs" />
+    <Compile Include="Models\CheckTypeSerch.cs" />
     <Compile Include="Models\DenominationMoney.cs" />
     <Compile Include="Models\ModalModel.cs" />
     <Compile Include="Models\Navigation.cs" />
@@ -161,11 +162,14 @@
     <Compile Include="UserControls\Administrator\ConfigurateUserControl.xaml.cs">
       <DependentUpon>ConfigurateUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\ConsultUserControl.xaml.cs">
-      <DependentUpon>ConsultUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\MenuUserControl.xaml.cs">
       <DependentUpon>MenuUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PagoFactura\ConsultUserControl.xaml.cs">
+      <DependentUpon>ConsultUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PagoFactura\DetailsUserControl.xaml.cs">
+      <DependentUpon>DetailsUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\ReturnMonyUserControl.xaml.cs">
       <DependentUpon>ReturnMonyUserControl.xaml</DependentUpon>
@@ -275,11 +279,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\ConsultUserControl.xaml">
+    <Page Include="UserControls\MenuUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UserControls\MenuUserControl.xaml">
+    <Page Include="UserControls\PagoFactura\ConsultUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PagoFactura\DetailsUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

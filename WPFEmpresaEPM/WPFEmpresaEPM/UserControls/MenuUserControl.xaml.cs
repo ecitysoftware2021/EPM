@@ -34,6 +34,21 @@ namespace WPFEmpresaEPM.UserControls
             try
             {
                 string option = (sender as TextBlock).Tag.ToString();
+
+                switch (option)
+                {
+                    case "1":
+                        transaction.typeTransaction = ETypeTransaction.PagoFactura;
+                        break;
+                    case "2":
+                        transaction.typeTransaction = ETypeTransaction.PagoMedida;
+                        break;
+                    case "3":
+                        transaction.typeTransaction = ETypeTransaction.FacturaPrepago;
+                        break;
+                }
+
+                Utilities.navigator.Navigate(UserControlView.ConsultPagoFactura,transaction);
             }
             catch (Exception ex)
             {

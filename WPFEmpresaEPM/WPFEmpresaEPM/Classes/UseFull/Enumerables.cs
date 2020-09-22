@@ -13,6 +13,19 @@ namespace WPFEmpresaEPM.Classes
         Device = 2
     }
 
+    public enum ETypeTransaction
+    {
+        PagoFactura = 1,
+        FacturaPrepago = 2,
+        PagoMedida = 3
+    }
+
+    public enum ETypeSearch
+    {
+        ReferenteDePago = 1,
+        NumeroDeContrato = 0
+    }
+
     public enum EBackground
     {
         Identificate = 0,
@@ -58,7 +71,7 @@ namespace WPFEmpresaEPM.Classes
         Admin,
         Main,
         Menu,
-        Consult,
+        ConsultPagoFactura,
         Details,
         PaySuccess,
         Pay,

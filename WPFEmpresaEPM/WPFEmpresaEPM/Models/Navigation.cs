@@ -48,8 +48,8 @@ namespace WPFEmpresaEPM.Models
                     case UserControlView.Menu:
                         View = new MenuUserControl();
                         break;
-                    case UserControlView.Consult:
-                        View = new MenuUserControl();
+                    case UserControlView.ConsultPagoFactura:
+                        View = new UserControls.PagoFactura.ConsultUserControl((Transaction)data);
                         break;
                     case UserControlView.Details:
                         //View = new MenuUserControl((Transaction)data);

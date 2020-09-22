@@ -42,6 +42,7 @@
             Stretch="Uniform"
             Grid.Row="2"
             Tag="2"
+            Visibility="Hidden"
             TouchDown="btnOption_TouchDown" 
         />
         <Image 
@@ -54,6 +55,7 @@
             Stretch="Uniform"
             Grid.Row="3"
             Tag="3"
+            Visibility="Hidden"
             TouchDown="btnOption_TouchDown" 
         />
     </Grid>

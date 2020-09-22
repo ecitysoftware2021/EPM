@@ -17,6 +17,10 @@ namespace WPFEmpresaEPM.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
 
+        public ETypeTransaction typeTransaction { get; set; }
+
+        public ETypeSearch typeSearch { get; set; }
+
         public string Document { get; set; }
 
         public int Codigo { get; set; }
