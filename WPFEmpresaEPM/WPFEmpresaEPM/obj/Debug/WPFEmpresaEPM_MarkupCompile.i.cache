@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\App.xaml
-10-581103886
+14-1604917218
 
-60-106174120
+64-265725903
 33-1129018957
-UserControls\Administrator\ConfigurateUserControl.xaml;UserControls\MenuUserControl.xaml;UserControls\PagoFactura\ConsultUserControl.xaml;UserControls\PagoFactura\DetailsUserControl.xaml;UserControls\ReturnMonyUserControl.xaml;UserControls\MainUserControl.xaml;UserControls\PaymentUserControl.xaml;UserControls\SussesUserControl.xaml;Windows\MasterWindow.xaml;Windows\Alerts\ModalWindow.xaml;
+UserControls\Administrator\ConfigurateUserControl.xaml;UserControls\MenuUserControl.xaml;UserControls\PagoFactura\ConsultUserControl.xaml;UserControls\PagoFactura\DetailsUserControl.xaml;UserControls\PagoMedida\ConsultUserControl.xaml;UserControls\PagoMedida\DetailsUserControl.xaml;UserControls\PagoPrepago\ConsultUserControl.xaml;UserControls\PagoPrepago\DetailsUserControl.xaml;UserControls\ReturnMonyUserControl.xaml;UserControls\MainUserControl.xaml;UserControls\PaymentUserControl.xaml;UserControls\SussesUserControl.xaml;Windows\MasterWindow.xaml;Windows\Alerts\ModalWindow.xaml;
 
 True
 

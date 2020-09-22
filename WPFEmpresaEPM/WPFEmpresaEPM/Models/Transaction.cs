@@ -22,8 +22,14 @@ namespace WPFEmpresaEPM.Models
         public ETypeSearch typeSearch { get; set; }
 
         public DetailsPagoFactura detailsPagoFactura { get; set; }
+        public ResponseConsultMedida detailsPagoMedida { get; set; }
+        public ResponseConsultFacturaPrepago detailsPrepago { get; set; }
 
         public string Document { get; set; }
+
+        public string NumeroContrato { get; set; }
+
+        public string NumeroMedidor { get; set; }
 
         public int Codigo { get; set; }
 

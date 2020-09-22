@@ -171,6 +171,18 @@
     <Compile Include="UserControls\PagoFactura\DetailsUserControl.xaml.cs">
       <DependentUpon>DetailsUserControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PagoMedida\ConsultUserControl.xaml.cs">
+      <DependentUpon>ConsultUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PagoMedida\DetailsUserControl.xaml.cs">
+      <DependentUpon>DetailsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PagoPrepago\ConsultUserControl.xaml.cs">
+      <DependentUpon>ConsultUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PagoPrepago\DetailsUserControl.xaml.cs">
+      <DependentUpon>DetailsUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ReturnMonyUserControl.xaml.cs">
       <DependentUpon>ReturnMonyUserControl.xaml</DependentUpon>
     </Compile>
@@ -291,6 +303,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UserControls\PagoMedida\ConsultUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PagoMedida\DetailsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PagoPrepago\ConsultUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PagoPrepago\DetailsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\ReturnMonyUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -396,6 +424,7 @@
     <Resource Include="Images\Keyboard\borrar.png" />
     <Resource Include="Images\Keyboard\x.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

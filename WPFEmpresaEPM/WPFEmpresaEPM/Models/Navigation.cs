@@ -54,6 +54,18 @@ namespace WPFEmpresaEPM.Models
                     case UserControlView.DetailsPagoFactura:
                         View = new UserControls.PagoFactura.DetailsUserControl((Transaction)data);
                         break;
+                    case UserControlView.ConsultPagoMedida:
+                        View = new UserControls.PagoMedida.ConsultUserControl((Transaction)data);
+                        break;
+                    case UserControlView.DetailsPagoMedida:
+                        View = new UserControls.PagoMedida.DetailsUserControl((Transaction)data);
+                        break;
+                    case UserControlView.ConsultPagoPrepago:
+                        View = new UserControls.PagoPrepago.ConsultUserControl((Transaction)data);
+                        break;
+                    case UserControlView.DetailsPagoPrepago:
+                        View = new UserControls.PagoPrepago.DetailsUserControl((Transaction)data);
+                        break;
                     case UserControlView.PaySuccess:
                         View = new SussesUserControl((Transaction)data);
                         break;

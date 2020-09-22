@@ -72,10 +72,14 @@ namespace WPFEmpresaEPM.Classes
         Main,
         Menu,
         ConsultPagoFactura,
+        ConsultPagoMedida,
         PaySuccess,
         Pay,
         ReturnMony,
         DetailsPagoFactura,
+        DetailsPagoMedida,
+        ConsultPagoPrepago,
+        DetailsPagoPrepago,
     }
 
     public enum ETransactionState

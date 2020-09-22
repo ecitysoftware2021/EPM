@@ -59,23 +59,20 @@ namespace WPFEmpresaEPM.Services
             return null;
         }
 
-        public static async Task<ResponseConsultMedida> SearchPagoMedida(string controller, string value)
+        public static async Task<ResponseConsultMedida> SearchPagoMedida(string url)
         {
             try
             {
 
                 HttpClient client = new HttpClient
                 {
-                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddressConsulta"))
+                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
-                var url = string.Format("{0}{1}", controller, value);
+
                 var response = await client.GetAsync(url);
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    medida = new ResponseConsultMedida
-                    {
-                        MensajeError = "No se pudo realizar la consulta, intente de nuevo mas tarde, Gracias."
-                    };
                     return medida;
                 }
 
@@ -102,14 +99,6 @@ namespace WPFEmpresaEPM.Services
                     };
                     return medida;
                 }
-                else if (json.CdError != 0 && json != null)
-                {
-                    medida = new ResponseConsultMedida
-                    {
-                        MensajeError = json.MensajeError
-                    };
-                    return medida;
-                }
                 return null;
             }
             catch (Exception ex)
@@ -118,22 +107,19 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        public static async Task<ResponseConsultFacturaPrepago> SearchFacturaPrepago(string controller, string value)
+        public static async Task<ResponseConsultFacturaPrepago> SearchFacturaPrepago(string url)
         {
             try
             {
                 HttpClient client = new HttpClient
                 {
-                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddressConsulta"))
+                    BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
-                var url = string.Format("{0}{1}", controller, value);
+
                 var response = await client.GetAsync(url);
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    prepago = new ResponseConsultFacturaPrepago
-                    {
-                        MensajeError = "No se pudo realizar la consulta, intente de nuevo mas tarde, Gracias."
-                    };
                     return prepago;
                 }
 
@@ -152,14 +138,6 @@ namespace WPFEmpresaEPM.Services
                         Nombre = json.Nombre,
                         Dni = json.Dni,
                         ElementoMedicion = json.ElementoMedicion
-                    };
-                    return prepago;
-                }
-                else if (json.CdError != 0 && json != null)
-                {
-                    prepago = new ResponseConsultFacturaPrepago
-                    {
-                        MensajeError = json.MensajeError
                     };
                     return prepago;
                 }
