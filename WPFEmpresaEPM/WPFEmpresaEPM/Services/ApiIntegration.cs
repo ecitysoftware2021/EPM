@@ -30,15 +30,20 @@ namespace WPFEmpresaEPM.Services
                     BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
 
+                AdminPayPlus.SaveErrorControl("DATA ENVIADA: " + url, "", EError.Api, ELevelError.Mild);
+
                 var response = await client.GetAsync(url);
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    AdminPayPlus.SaveErrorControl("ERROR: " + response.ReasonPhrase, "", EError.Api, ELevelError.Mild);
                     return null;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
                 var json = JsonConvert.DeserializeObject<ResponseConsultPayFactura>(result);
+
+                AdminPayPlus.SaveErrorControl("DATA RECIBIDA: " + json, "", EError.Api, ELevelError.Mild);
 
                 if (json.PaySvcRs.PmtAddRs.Status.StatusCode == "0" && json != null)
                 {
@@ -63,21 +68,25 @@ namespace WPFEmpresaEPM.Services
         {
             try
             {
-
                 HttpClient client = new HttpClient
                 {
                     BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
 
+                AdminPayPlus.SaveErrorControl("DATA ENVIADA: " + url, "", EError.Api, ELevelError.Mild);
+
                 var response = await client.GetAsync(url);
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return medida;
+                    AdminPayPlus.SaveErrorControl("ERROR: " + response.ReasonPhrase, "", EError.Api, ELevelError.Mild);
+                    return null;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
                 var json = JsonConvert.DeserializeObject<ResponseConsultMedida>(result);
+
+                AdminPayPlus.SaveErrorControl("DATA RECIBIDA: " + json, "", EError.Api, ELevelError.Mild);
 
                 if (json.CdError == 0 && json != null)
                 {
@@ -103,6 +112,7 @@ namespace WPFEmpresaEPM.Services
             }
             catch (Exception ex)
             {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "SearchPagoMedida", ex, ex.ToString());
                 return null;
             }
         }
@@ -116,15 +126,20 @@ namespace WPFEmpresaEPM.Services
                     BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
 
+                AdminPayPlus.SaveErrorControl("DATA ENVIADA: " + url, "", EError.Api, ELevelError.Mild);
+
                 var response = await client.GetAsync(url);
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return prepago;
+                    AdminPayPlus.SaveErrorControl("ERROR: " + response.ReasonPhrase, "", EError.Api, ELevelError.Mild);
+                    return null;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
                 var json = JsonConvert.DeserializeObject<ResponseConsultFacturaPrepago>(result);
+
+                AdminPayPlus.SaveErrorControl("DATA RECIBIDA: " + json, "", EError.Api, ELevelError.Mild);
 
                 if (json.CdError == 0 && json != null)
                 {
@@ -145,12 +160,15 @@ namespace WPFEmpresaEPM.Services
             }
             catch (Exception ex)
             {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "SearchFacturaPrepago", ex, ex.ToString());
                 return null;
             }
         }
 
         public static async Task<bool> ReportPay(ETypeTransaction type, string url)
         {
+            AdminPayPlus.SaveErrorControl("DATA ENVIADA: " + url, "", EError.Api, ELevelError.Mild);
+
             switch (type)
             {
                 case ETypeTransaction.PagoFactura:
@@ -176,11 +194,14 @@ namespace WPFEmpresaEPM.Services
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    AdminPayPlus.SaveErrorControl("ERROR: " + response.ReasonPhrase, "", EError.Api, ELevelError.Mild);
                     return false;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
                 var json = JsonConvert.DeserializeObject<ResponsePayFactura.RootObject>(result);
+
+                AdminPayPlus.SaveErrorControl("DATA RECIBIDA: " + json, "", EError.Api, ELevelError.Mild);
 
                 if (json.PaySvcRs.PmtAddRs.Status.StatusCode == "0" && json != null)
                 {
@@ -190,6 +211,7 @@ namespace WPFEmpresaEPM.Services
             }
             catch (Exception ex)
             {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "ReportPayPagoFacturaAsync", ex, ex.ToString());
                 return false;
             }
         }
@@ -207,11 +229,14 @@ namespace WPFEmpresaEPM.Services
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    AdminPayPlus.SaveErrorControl("ERROR: " + response.ReasonPhrase, "", EError.Api, ELevelError.Mild);
                     return false;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
                 var json = JsonConvert.DeserializeObject<ResponsePayMedida>(result);
+
+                AdminPayPlus.SaveErrorControl("DATA RECIBIDA: " + json, "", EError.Api, ELevelError.Mild);
 
                 if (json.CdError == 0 && json != null)
                 {
@@ -245,6 +270,7 @@ namespace WPFEmpresaEPM.Services
             }
             catch (Exception ex)
             {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "ReportPayMedida", ex, ex.ToString());
                 return false;
             }
         }
@@ -262,11 +288,14 @@ namespace WPFEmpresaEPM.Services
 
                 if (!response.IsSuccessStatusCode)
                 {
+                    AdminPayPlus.SaveErrorControl("ERROR: " + response.ReasonPhrase, "", EError.Api, ELevelError.Mild);
                     return false;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
                 var json = JsonConvert.DeserializeObject<ResponsePayFacturaPrepago>(result);
+
+                AdminPayPlus.SaveErrorControl("DATA RECIBIDA: " + json, "", EError.Api, ELevelError.Mild);
 
                 if (json.CdError == 0 && json != null)
                 {
@@ -305,6 +334,7 @@ namespace WPFEmpresaEPM.Services
             }
             catch (Exception ex)
             {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "ReportPayFacturaPrepago", ex, ex.ToString());
                 return false;
             }
         }

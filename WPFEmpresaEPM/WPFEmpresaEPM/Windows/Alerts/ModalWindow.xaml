@@ -17,7 +17,7 @@
         >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="{Binding ImageModal}" Stretch="Fill"/>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <Grid>
             <Grid.RowDefinitions>
@@ -42,7 +42,7 @@
                 <TextBlock x:Name="LblMessage" 
                            Text="{Binding Messaje}"
                            HorizontalAlignment="Center"
-                           Margin="0,0,0,100" 
+                           Margin="0,0,0,200" 
                            FontSize="48" 
                            Width="500"
                            FontFamily="Myriad Pro"
@@ -77,7 +77,7 @@
                 <Image x:Name="BtnOk" 
                         VerticalAlignment="Top"
                         HorizontalAlignment="Center"
-                        Height="120"
+                        Height="100"
                         Margin="0,80,0,0"
                         TouchDown="BtnOk_TouchDown"
                         Source="/Images/Buttons/b-aceptar.png" 

@@ -21,10 +21,7 @@ namespace WPFEmpresaEPM.Classes
                     TYPE = 1,
                 }, ELogType.Error);
             }
-            catch (Exception)
-            {
-                //Utilities.ShowModal(MessageResource.Error, EModalType.Error);
-            }
+            catch {}
         }
 
         /// <summary>

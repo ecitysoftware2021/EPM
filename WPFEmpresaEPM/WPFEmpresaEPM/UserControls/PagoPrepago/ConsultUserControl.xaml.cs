@@ -94,9 +94,9 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
             {
                 txtErrorValor.Visibility = Visibility.Hidden;
 
-                if (txtValor.Text.Length > 15)
+                if (txtValor.Text.Length > 8)
                 {
-                    txtValor.Text = txtValor.Text.Remove(15, 1);
+                    txtValor.Text = txtValor.Text.Remove(8, 1);
                     return;
                 }
             }
@@ -126,14 +126,14 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     return false;
                 }
 
-                if (string.IsNullOrEmpty(txtValor.Text) || Convert.ToDecimal(txtValor.Text) == 0)
+                if (string.IsNullOrEmpty(txtValor.Text) || valueModel.Val <= 0)
                 {
                     txtErrorValor.Text = "Debe ingresar el valor a pagar";
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
 
-                if (Convert.ToDecimal(txtValor.Text) % 50 == 0)
+                if (valueModel.Val % 100 != 0)
                 {
                     txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
                     Environment.NewLine, "Ejemplo: $ 100, $ 200, $ 500, etc."); 
@@ -141,7 +141,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     return false;
                 }
 
-                transaction.Amount = Convert.ToDecimal(txtValor.Text);
+                transaction.Amount = valueModel.Val;
                 transaction.NumeroMedidor = txtNumeroMedidor.Text;
                 return true;
             }
