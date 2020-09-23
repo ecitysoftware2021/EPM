@@ -141,10 +141,10 @@ namespace WPFEmpresaEPM.UserControls
 
                             Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, null, MessageResource.PrinterNoPapper);
 
-                            if (Utilities.ShowModal(MessageResource.ErrorNoPaper, EModalType.Information))
-                            {
-                                Redirect(true);
-                            }
+                            //if (Utilities.ShowModal(MessageResource.ErrorNoPaper, EModalType.Information))
+                            //{
+                            Redirect(true);
+                            //}
                         }
                         else
                         {

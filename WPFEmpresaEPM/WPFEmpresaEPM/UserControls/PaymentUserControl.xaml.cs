@@ -245,7 +245,7 @@ namespace WPFEmpresaEPM.UserControls
                                 break;
                         }
 
-                        bool response = await ApiIntegration.ReportPay(transaction.typeTransaction, url);
+                        bool response = await ApiIntegration.ReportPay(transaction, url);
 
                         if (response)
                         {

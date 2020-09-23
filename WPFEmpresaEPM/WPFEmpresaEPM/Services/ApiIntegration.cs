@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using WPFEmpresaEPM.Classes;
+using WPFEmpresaEPM.Models;
 using WPFEmpresaEPM.Services.ObjectIntegration;
 
 namespace WPFEmpresaEPM.Services
@@ -16,7 +17,7 @@ namespace WPFEmpresaEPM.Services
         private static ResponseConsultMedida medida;
         private static ResponseConsultFacturaPrepago prepago;
         private static ResponsePayFacturaPrepago payFacturaPrepago;
-        private static ResponsePayMedida payMedida;
+        private static ResponsePaymedida payMedida;
         private static ResponsePayFactura payFactura;
         #endregion
 
@@ -165,20 +166,38 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        public static async Task<bool> ReportPay(ETypeTransaction type, string url)
+        public static async Task<bool> ReportPay(Transaction ts, string url)
         {
-            AdminPayPlus.SaveErrorControl("DATA ENVIADA: " + url, "", EError.Api, ELevelError.Mild);
-
-            switch (type)
+            try
             {
-                case ETypeTransaction.PagoFactura:
-                    return await ReportPayPagoFacturaAsync(url);
-                case ETypeTransaction.FacturaPrepago:
-                    return await ReportPayFacturaPrepago(url);
-                case ETypeTransaction.PagoMedida:
-                    return await ReportPayMedida(url);
+                bool state = false;
+
+                AdminPayPlus.SaveErrorControl("DATA ENVIADA: " + url, "", EError.Api, ELevelError.Mild);
+
+                switch (ts.typeTransaction)
+                {
+                    case ETypeTransaction.PagoFactura:
+                        state =  await ReportPayPagoFacturaAsync(url);
+                        break;
+                    case ETypeTransaction.FacturaPrepago:
+                        state =  await ReportPayFacturaPrepago(url);
+                        break;
+                    case ETypeTransaction.PagoMedida:
+                        state = await ReportPayMedida(url);
+                        break;
+                }
+
+
+                ts.Payprepago = payFacturaPrepago;
+                ts.Paymedida = payMedida;
+
+                return state;
             }
-            return false;
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "ReportPay", ex, ex.ToString());
+                return false;
+            }
         }
 
         private static async Task<bool> ReportPayPagoFacturaAsync(string url)
@@ -234,13 +253,13 @@ namespace WPFEmpresaEPM.Services
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
-                var json = JsonConvert.DeserializeObject<ResponsePayMedida>(result);
+                var json = JsonConvert.DeserializeObject<ResponsePaymedida>(result);
 
                 AdminPayPlus.SaveErrorControl("DATA RECIBIDA: " + json, "", EError.Api, ELevelError.Mild);
 
                 if (json.CdError == 0 && json != null)
                 {
-                    payMedida = new ResponsePayMedida
+                    payMedida = new ResponsePaymedida
                     {
                         CdError = json.CdError,
                         Cupon = json.Cupon,

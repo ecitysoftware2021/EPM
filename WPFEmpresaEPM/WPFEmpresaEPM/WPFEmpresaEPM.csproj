@@ -119,6 +119,7 @@
     <Compile Include="Classes\AdminPayPlus.cs" />
     <Compile Include="Classes\DB\SqliteDataAccess.cs" />
     <Compile Include="Classes\Peripherals\ControlPeripherals.cs" />
+    <Compile Include="Classes\Printer\CLSPrint.cs" />
     <Compile Include="Classes\UseFull\ReaderBarCode.cs" />
     <Compile Include="Classes\UseFull\Encryptor.cs" />
     <Compile Include="Classes\UseFull\Enumerables.cs" />
@@ -436,6 +437,9 @@
     <Resource Include="Images\Keyboard\Style2\ButtonColor.png" />
     <Resource Include="Images\Keyboard\Style2\DELETE.png" />
     <Resource Include="Images\Keyboard\Style2\OK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Others\logoEPM1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.112.0\build\net46\System.Data.SQLite.Core.targets')" />

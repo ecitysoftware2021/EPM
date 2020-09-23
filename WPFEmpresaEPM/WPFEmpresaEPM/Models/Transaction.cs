@@ -109,5 +109,35 @@ namespace WPFEmpresaEPM.Models
                 OnPropertyRaised("IdTransactionAPi");
             }
         }
+
+        private ResponsePayFacturaPrepago payPrepago { get; set; }
+
+        public ResponsePayFacturaPrepago Payprepago
+        {
+            get
+            {
+                return payPrepago;
+            }
+            set
+            {
+                payPrepago = value;
+                OnPropertyRaised("Payprepago");
+            }
+        }
+
+        private ResponsePaymedida paymedida { get; set; }
+
+        public ResponsePaymedida Paymedida
+        {
+            get
+            {
+                return paymedida;
+            }
+            set
+            {
+                paymedida = value;
+                OnPropertyRaised("Paymedida");
+            }
+        }
     }
 }

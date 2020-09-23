@@ -64,7 +64,9 @@ namespace WPFEmpresaEPM.UserControls
 
                     AdminPayPlus.UpdateTransaction(this.transaction);
 
-                    Utilities.PrintVoucher(this.transaction);
+                    transaction.StatePay = "Aprobado";
+
+                    Utilities.PrintVoucherSuccess(this.transaction);
 
                     Thread.Sleep(5000);
 

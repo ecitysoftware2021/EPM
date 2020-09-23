@@ -91,7 +91,7 @@ namespace WPFEmpresaEPM.Services.ObjectIntegration
         public double ValorPrepagoNeto { get; set; }
     }
 
-    public class ResponsePayMedida
+    public class ResponsePaymedida
     {
         public int CdError { get; set; }
         public int Contrato { get; set; }
