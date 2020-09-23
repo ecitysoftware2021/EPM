@@ -96,6 +96,7 @@
                    FontWeight="Bold"
                    Foreground="#606060"/>
             <TextBox  
+                    Text="{Binding Val, StringFormat={}{0:C0}, UpdateSourceTrigger=PropertyChanged}"
                     TextAlignment="Center"
                     Height="70" 
                     Margin="0,0,0,600" 

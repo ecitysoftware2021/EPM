@@ -20,6 +20,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
         #region "Referencias"
         private Transaction transaction;
         private TimerGeneric timer;
+        private ValueModel valueModel;
         #endregion
 
         #region "Constructor"
@@ -30,6 +31,11 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
             try
             {
                 transaction = ts;
+                valueModel = new ValueModel
+                {
+                    Val = 0
+                };
+                this.DataContext = valueModel;
                 ActivateTimer();
             }
             catch (Exception ex)
@@ -120,27 +126,30 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     return false;
                 }
 
-                if (string.IsNullOrEmpty(txtValor.Text))
+                if (string.IsNullOrEmpty(txtValor.Text) || Convert.ToDecimal(txtValor.Text) == 0)
                 {
+                    txtErrorValor.Text = "Debe ingresar el valor a pagar";
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
 
-                if (Convert.ToDecimal(txtValor.Text) <= 0)
+                if (Convert.ToDecimal(txtValor.Text) % 50 == 0)
                 {
+                    txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
+                    Environment.NewLine, "Ejemplo: $ 100, $ 200, $ 500, etc."); 
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
+
+                transaction.Amount = Convert.ToDecimal(txtValor.Text);
+                transaction.NumeroMedidor = txtNumeroMedidor.Text;
+                return true;
             }
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+                return false;
             }
-
-            transaction.Amount = Convert.ToDecimal(txtValor.Text);
-            transaction.NumeroMedidor = txtNumeroMedidor.Text;
-
-            return true;
         }
 
         private void Consult()

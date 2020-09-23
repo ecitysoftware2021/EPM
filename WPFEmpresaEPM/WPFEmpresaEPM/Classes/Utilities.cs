@@ -246,7 +246,7 @@ namespace WPFEmpresaEPM.Classes
             }
             catch (Exception ex)
             {
-                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex);
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex, ex.ToString());
                 return Total;
             }
         }

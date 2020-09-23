@@ -17,14 +17,19 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="400"/>
         </Grid.RowDefinitions>
-        <Image 
-            Source="/Images/Others/gracias.jpg"
-            Height="1000"
-            HorizontalAlignment="Center"
+        <TextBlock
+            FontSize="85"
             VerticalAlignment="Center"
+            HorizontalAlignment="Center"
             Margin="0,0,0,0"
+            Foreground="#606060" 
+            TextAlignment="Center"
+            TextWrapping="Wrap"
+            Width="800"
             Grid.Row="1"
-            Stretch="Uniform"
+            FontFamily="Arial" 
+            Text="¡Gracias por usar nuestros servicios! Recuerda retirar su recibo."
+            FontWeight="Bold" 
         />
     </Grid>
 </UserControl>
