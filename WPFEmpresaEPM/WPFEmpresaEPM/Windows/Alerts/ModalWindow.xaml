@@ -87,7 +87,7 @@
                         VerticalAlignment="Top"
                         HorizontalAlignment="Left"
                         Height="100"
-                        Margin="180,55,0,0"
+                        Margin="100,55,0,0"
                         TouchDown="BtnNo_TouchDown"
                         Source="/Images/Buttons/b-cancelar.png"
                         Stretch="Uniform" />
@@ -96,7 +96,7 @@
                         VerticalAlignment="Top"
                         HorizontalAlignment="Right"
                         Height="100"
-                        Margin="0,55,180,0"
+                        Margin="0,55,100,0"
                         TouchDown="BtnYes_TouchDown"
                         Source="/Images/Buttons/b-aceptar.png" 
                         Stretch="Uniform" />

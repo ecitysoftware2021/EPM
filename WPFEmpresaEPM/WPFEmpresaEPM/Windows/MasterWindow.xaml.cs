@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Reflection;
 using System.Windows;
-using System.Windows.Input;
 using WPFEmpresaEPM.Classes;
 using WPFEmpresaEPM.Models;
-using WPFEmpresaEPM.Resources;
 
 namespace WPFEmpresaEPM.Windows
 {
@@ -37,6 +35,8 @@ namespace WPFEmpresaEPM.Windows
                 string c = Encryptor.Encrypt("Ecity.Software");
                 string d = Encryptor.Encrypt("Ecitysoftware2019#");
                 string e = Encryptor.Encrypt("http://181.143.126.126:41400/");
+                //USERNAME: Pay + EPM Ed.Inteligente 1
+                //PASSWORD: EmpresasPublicasdeMedellin2020 /
 
                 WPKeyboard.Keyboard.ConsttrucKeyyboard(WPKeyboard.Keyboard.EStyle.style_2);
 
