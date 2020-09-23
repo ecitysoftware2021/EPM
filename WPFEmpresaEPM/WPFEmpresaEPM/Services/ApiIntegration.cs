@@ -156,9 +156,9 @@ namespace WPFEmpresaEPM.Services
                 case ETypeTransaction.PagoFactura:
                     return await ReportPayPagoFacturaAsync(url);
                 case ETypeTransaction.FacturaPrepago:
-                    break;
+                    return await ReportPayFacturaPrepago(url);
                 case ETypeTransaction.PagoMedida:
-                    break;
+                    return await ReportPayMedida(url);
             }
             return false;
         }
@@ -194,7 +194,7 @@ namespace WPFEmpresaEPM.Services
             }
         }
 
-        private static async Task<ResponsePayMedida> ReportPayMedida(string controller, string value)
+        private static async Task<bool> ReportPayMedida(string url)
         {
             try
             {
@@ -202,11 +202,12 @@ namespace WPFEmpresaEPM.Services
                 {
                     BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
-                var url = string.Format("{0}{1}", controller, value);
+
                 var response = await client.GetAsync(url);
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return false;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
@@ -238,17 +239,17 @@ namespace WPFEmpresaEPM.Services
                         SaldoAnteriorVigente = json.SaldoAnteriorVigente,
                         ValorTotalFactura = json.ValorTotalFactura
                     };
-                    return payMedida;
+                    return true;
                 }
-                return null;
+                return false;
             }
             catch (Exception ex)
             {
-                return null;
+                return false;
             }
         }
 
-        private static async Task<ResponsePayFacturaPrepago> ReportPayFacturaPrepago(string controller, string value)
+        private static async Task<bool> ReportPayFacturaPrepago(string url)
         {
             try
             {
@@ -256,11 +257,12 @@ namespace WPFEmpresaEPM.Services
                 {
                     BaseAddress = new Uri(Utilities.GetConfiguration("basseAddresEPM"))
                 };
-                var url = string.Format("{0}{1}", controller, value);
+
                 var response = await client.GetAsync(url);
+
                 if (!response.IsSuccessStatusCode)
                 {
-                    return null;
+                    return false;
                 }
 
                 var result = await response.Content.ReadAsStringAsync();
@@ -297,13 +299,13 @@ namespace WPFEmpresaEPM.Services
                         ValPaTAseo = json.ValPaTAseo,
                         ValSaldoPenTAseo = json.ValSaldoPenTAseo
                     };
-                    return payFacturaPrepago;
+                    return true;
                 }
-                return null;
+                return false;
             }
             catch (Exception ex)
             {
-                return null;
+                return false;
             }
         }
         #endregion

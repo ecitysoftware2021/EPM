@@ -185,6 +185,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                     else
                     {
                         transaction.detailsPagoFactura = response;
+                        transaction.NumeroContrato = ((int)transaction.typeSearch).ToString();
                         Utilities.navigator.Navigate(UserControlView.DetailsPagoFactura, transaction);
                     }
                 });

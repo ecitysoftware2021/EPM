@@ -54,8 +54,8 @@ namespace WPFEmpresaEPM.UserControls
             {
                 this.paymentViewModel = new PaymentViewModel
                 {
-                    PayValue = transaction.Amount,
-                    ValorFaltante = transaction.Amount,
+                    PayValue = 100,
+                    ValorFaltante = 100,
                     ImgContinue = Visibility.Hidden,
                     ImgCancel = Visibility.Visible,
                     ImgCambio = Visibility.Hidden,
@@ -223,7 +223,7 @@ namespace WPFEmpresaEPM.UserControls
             }
         }
 
-        private async void SavePay(ETransactionState statePay = ETransactionState.Initial)
+        private void SavePay(ETransactionState statePay = ETransactionState.Initial)
         {
             try
             {
@@ -243,18 +243,25 @@ namespace WPFEmpresaEPM.UserControls
                         switch (transaction.typeTransaction)
                         {
                             case ETypeTransaction.PagoFactura:
-                                url = string.Format("{0}?Contrato={1}&IdCliente={2}&idTransaccion={3}&valorPagado={4}",
-                                                   Utilities.GetConfiguration("ReportPagoDeFactura"), 
-                                                   transaction.NumeroContrato, transaction.Document, 
-                                                   transaction.IdTransactionAPi, transaction.Amount.ToString());
+                                url = string.Format("{0}?referencia={1}&valor={2}",
+                                      Utilities.GetConfiguration("ReportPagoDeFactura"),
+                                      transaction.detailsPagoFactura.Referencia, transaction.Amount);
                                 break;
                             case ETypeTransaction.FacturaPrepago:
+                                url = string.Format("{0}?medidor={1}&valorCompra={2}&idTransaccion={3}", 
+                                      Utilities.GetConfiguration("ReportFacturaPrepago"), 
+                                      transaction.NumeroMedidor, transaction.Amount, 
+                                      transaction.IdTransactionAPi);
                                 break;
                             case ETypeTransaction.PagoMedida:
+                                url = string.Format("{0}?Contrato={1}&IdCliente={2}&idTransaccion={3}&valorPagado={4}", 
+                                      Utilities.GetConfiguration("ReportPagoMedida"),
+                                      transaction.NumeroContrato, transaction.Document,
+                                      transaction.IdTransactionAPi,transaction.Amount);
                                 break;
                         }
 
-                        bool response = await ApiIntegration.ReportPay(transaction.typeTransaction,url);
+                        bool response = await ApiIntegration.ReportPay(transaction.typeTransaction, url);
 
                         if (response)
                         {

@@ -66,7 +66,7 @@ namespace WPFEmpresaEPM.UserControls
 
                     //Utilities.PrintVoucher(this.transaction);
 
-                    Thread.Sleep(6000);
+                    Thread.Sleep(5000);
 
                     Dispatcher.BeginInvoke((Action)delegate
                     {

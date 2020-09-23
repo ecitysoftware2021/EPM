@@ -183,3 +183,11 @@ D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.CoreCom
 D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.CopyComplete
 D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.exe
 D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.pdb
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoMedida\ConsultUserControl.g.cs
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoMedida\DetailsUserControl.g.cs
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoPrepago\ConsultUserControl.g.cs
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoPrepago\DetailsUserControl.g.cs
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoMedida\ConsultUserControl.baml
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoMedida\DetailsUserControl.baml
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoPrepago\ConsultUserControl.baml
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoPrepago\DetailsUserControl.baml

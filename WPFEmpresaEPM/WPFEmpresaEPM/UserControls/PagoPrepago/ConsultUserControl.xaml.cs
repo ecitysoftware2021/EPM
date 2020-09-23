@@ -125,6 +125,12 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
+
+                if (Convert.ToDecimal(txtValor.Text) <= 0)
+                {
+                    txtErrorValor.Visibility = Visibility.Visible;
+                    return false;
+                }
             }
             catch (Exception ex)
             {
