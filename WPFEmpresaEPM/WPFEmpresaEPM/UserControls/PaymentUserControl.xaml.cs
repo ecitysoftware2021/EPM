@@ -129,21 +129,6 @@ namespace WPFEmpresaEPM.UserControls
                             Level = ELevelError.Medium,
                             TransactionId = transaction.IdTransactionAPi
                         }, ELogType.Device);
-
-                        //if (error.Item2.Contains("FATAL"))
-                        //{
-                        //    Utilities.ShowModal(MessageResource.ErrorPayment, EModalType.Error);
-
-                        //    this.paymentViewModel.PayValue = this.paymentViewModel.ValorIngresado;
-
-                        //    AdminPayPlus.ControlPeripherals.StopAceptance();
-
-                        //    transaction.Observation += MessageResource.NoContinue;
-                        //    if (!this.paymentViewModel.StatePay)
-                        //    {
-                        //        SavePay(ETransactionState.Error);
-                        //    }
-                        //}
                     };
 
                     AdminPayPlus.ControlPeripherals.StartAceptance(paymentViewModel.PayValue);
@@ -237,7 +222,6 @@ namespace WPFEmpresaEPM.UserControls
 
                     Task.Run(async () =>
                     {
-                        string controller = string.Empty;
                         string url = string.Empty;
 
                         switch (transaction.typeTransaction)
@@ -267,6 +251,7 @@ namespace WPFEmpresaEPM.UserControls
                         {
                             this.transaction.statePaySuccess = true;
                             transaction.State = ETransactionState.Success;
+                            Utilities.navigator.Navigate(UserControlView.PaySuccess, transaction);
                         }
                         else
                         {

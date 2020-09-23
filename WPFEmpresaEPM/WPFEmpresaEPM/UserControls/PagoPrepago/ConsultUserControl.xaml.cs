@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -158,6 +159,8 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
             {
                 Task.Run(async () =>
                 {
+                    Thread.Sleep(500);
+
                     string data = string.Format("?medidor={0}&valorCompra={1}", transaction.NumeroMedidor, transaction.Amount.ToString());
 
                     string url = string.Concat(Utilities.GetConfiguration("FacturaPrepago"), data);

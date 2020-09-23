@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -66,6 +67,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             {
                 Task.Run(async () =>
                 {
+                    Thread.Sleep(500);
+
                     transaction.Type = ETransactionType.Payment;
                     transaction.State = ETransactionState.Initial;
                     transaction.payer = null;
@@ -90,6 +93,18 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                 SetCallBacksNull();
                 timer.CallBackStop?.Invoke(1);
                 Utilities.ShowModal(MessageResource.LoadInformation, EModalType.Preload);
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
+        }
+
+        private void Validar()
+        {
+            try
+            {
+
             }
             catch (Exception ex)
             {

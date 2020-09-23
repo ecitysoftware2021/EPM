@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,7 +54,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         {
             SetCallBacksNull();
             timer.CallBackStop?.Invoke(1);
-            Utilities.navigator.Navigate(UserControlView.ConsultPagoFactura,transaction);
+            Utilities.navigator.Navigate(UserControlView.ConsultPagoFactura, transaction);
         }
 
         private void BtnExit_TouchDown(object sender, TouchEventArgs e)
@@ -76,6 +77,8 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 Task.Run(async () =>
                 {
+                    Thread.Sleep(500);
+
                     transaction.Type = ETransactionType.Payment;
                     transaction.State = ETransactionState.Initial;
                     transaction.payer = null;

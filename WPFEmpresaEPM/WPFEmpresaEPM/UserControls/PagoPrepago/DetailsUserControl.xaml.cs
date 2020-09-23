@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -66,6 +67,8 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
             {
                 Task.Run(async () =>
                 {
+                    Thread.Sleep(500);
+
                     transaction.Type = ETransactionType.Payment;
                     transaction.State = ETransactionState.Initial;
                     transaction.payer = null;

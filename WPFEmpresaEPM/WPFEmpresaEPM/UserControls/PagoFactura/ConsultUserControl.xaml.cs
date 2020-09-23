@@ -9,6 +9,7 @@ using WPFEmpresaEPM.Resources;
 using System.Threading.Tasks;
 using WPFEmpresaEPM.Services;
 using WPFEmpresaEPM.Classes.UseFull;
+using System.Threading;
 
 namespace WPFEmpresaEPM.UserControls.PagoFactura
 {
@@ -169,6 +170,8 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 Task.Run(async () =>
                 {
+                    Thread.Sleep(500);
+
                     string data = string.Format("?tipoConsulta={0}&referencia={1}", (int)transaction.typeSearch, transaction.Document);
 
                     string url = string.Concat(Utilities.GetConfiguration("PagoDeFactura"), data);

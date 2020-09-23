@@ -176,58 +176,58 @@ namespace WPFEmpresaEPM.Classes
                     int x = 150;
                     int xKey = 15;
 
-                    var data = new List<DataPrinter>()
-                    {
-                        new DataPrinter{ image = GetConfiguration("ImageBoucher"),  x = 80, y = 2 },
+                    //var data = new List<DataPrinter>()
+                    //{
+                    //    new DataPrinter{ image = GetConfiguration("ImageBoucher"),  x = 80, y = 2 },
 
-                        new DataPrinter{ brush = color, font = fontKey,   value = "Comprobante de pago", x = 80, y = y+=120 },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "Comprobante de pago", x = 80, y = y+=120 },
 
-                        new DataPrinter { brush = color, font = fontValue, value = "CAMARA DE COMERCIO SANTA MARTA PARA EL", x = xKey, y = y += sum+10 },
-                        new DataPrinter { brush = color, font = fontValue, value = "MAGDALENA", x = 100, y = y += sum },
-                        new DataPrinter { brush = color, font = fontValue, value = "CLL 24 No 2-66", x = 100, y = y += 30 },
-                        new DataPrinter { brush = color, font = fontValue, value = "TEL. 4209909", x = 100, y = y += 30 },
+                    //    new DataPrinter { brush = color, font = fontValue, value = "CAMARA DE COMERCIO SANTA MARTA PARA EL", x = xKey, y = y += sum+10 },
+                    //    new DataPrinter { brush = color, font = fontValue, value = "MAGDALENA", x = 100, y = y += sum },
+                    //    new DataPrinter { brush = color, font = fontValue, value = "CLL 24 No 2-66", x = 100, y = y += 30 },
+                    //    new DataPrinter { brush = color, font = fontValue, value = "TEL. 4209909", x = 100, y = y += 30 },
 
-                        new DataPrinter{ brush = color, font = fontKey,   value = "NIT:", x = xKey, y = y+=sum+10 },
-                        new DataPrinter{ brush = color, font = fontValue, value = "891 780 160-9" ?? string.Empty, x = x, y = y },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "NIT:", x = xKey, y = y+=sum+10 },
+                    //    new DataPrinter{ brush = color, font = fontValue, value = "891 780 160-9" ?? string.Empty, x = x, y = y },
 
-                        new DataPrinter{ brush = color, font = fontKey,   value = "========================================", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "========================================", x = xKey, y = y+=sum },
 
-                        new DataPrinter{ brush = color, font = fontKey,   value = "", x = xKey, y = y+=sum },
-                        new DataPrinter{ brush = color, font = fontValue, value = transaction.IdTransactionAPi.ToString(), x = x, y = y },
-                        new DataPrinter{ brush = color, font = fontKey,   value = "", x = xKey, y = y+=sum },
-                        new DataPrinter{ brush = color, font = fontValue, value = DateTime.Now.ToString("yyyy/MM/dd"), x = x, y = y },
-                        new DataPrinter{ brush = color, font = fontKey,   value = "", x = xKey, y = y+=sum },
-                        new DataPrinter{ brush = color, font = fontValue, value = DateTime.Now.ToString("hh:mm:ss"), x = x, y = y },
-                        new DataPrinter{ brush = color, font = fontKey,   value = "", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontValue, value = transaction.IdTransactionAPi.ToString(), x = x, y = y },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontValue, value = DateTime.Now.ToString("yyyy/MM/dd"), x = x, y = y },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontValue, value = DateTime.Now.ToString("hh:mm:ss"), x = x, y = y },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "", x = xKey, y = y+=sum },
 
-                        new DataPrinter{ brush = color, font = fontKey,   value = "========================================", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "========================================", x = xKey, y = y+=sum },
 
-                        new DataPrinter{ brush = color, font = fontKey,   value =  "", x = xKey, y = y+=sum },
-                        new DataPrinter{ brush = color, font = fontValue, value =  String.Format("{0:C0}", transaction.Amount), x = x, y = y },
-                        new DataPrinter{ brush = color, font = fontKey,   value =  "", x = xKey, y = y+=sum },
-                        new DataPrinter{ brush = color, font = fontValue, value =  String.Format("{0:C0}", transaction.Payment.ValorIngresado), x = x, y = y },
-                        new DataPrinter{ brush = color, font = fontKey,   value =  "", x = xKey, y = y+=sum },
-                        new DataPrinter{ brush = color, font = fontValue, value =  String.Format("{0:C0}", transaction.Payment.ValorDispensado), x = x, y = y },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value =  "", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontValue, value =  String.Format("{0:C0}", transaction.Amount), x = x, y = y },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value =  "", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontValue, value =  String.Format("{0:C0}", transaction.Payment.ValorIngresado), x = x, y = y },
+                    //    new DataPrinter{ brush = color, font = fontKey,   value =  "", x = xKey, y = y+=sum },
+                    //    new DataPrinter{ brush = color, font = fontValue, value =  String.Format("{0:C0}", transaction.Payment.ValorDispensado), x = x, y = y },
 
-                        new DataPrinter{ brush = color, font = fontKey,   value = "========================================", x = xKey, y = y+=sum },
-                    };
+                    //    new DataPrinter{ brush = color, font = fontKey,   value = "========================================", x = xKey, y = y+=sum },
+                    //};
 
-                    if (!transaction.StateReturnMoney)
-                    {
-                        data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.ReturnMoneyMs1, x = xKey, y = y += sum });
-                        data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.ReturnMoneyMs2, x = xKey, y = y += 20 });
-                    }
+                    //if (!transaction.StateReturnMoney)
+                    //{
+                    //    data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.ReturnMoneyMs1, x = xKey, y = y += sum });
+                    //    data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.ReturnMoneyMs2, x = xKey, y = y += 20 });
+                    //}
 
-                    data.Add(new DataPrinter { brush = color, font = fontValue, value = "EL IMPUESTO DE REGISTRO RECAUDADO POR ", x = xKey, y = y += sum });
-                    data.Add(new DataPrinter { brush = color, font = fontValue, value = "LA CAMARA DE COMERCIO SE TRANSFIERE ", x = xKey, y = y += sum });
-                    data.Add(new DataPrinter { brush = color, font = fontValue, value = "EN SU TOTALIDAD A LA GOBERNACIÓN DE ", x = xKey, y = y += sum });
-                    data.Add(new DataPrinter { brush = color, font = fontValue, value = "ACUERDO CON LAS NORMAS VIGENTES. ", x = xKey, y = y += 20 });
+                    //data.Add(new DataPrinter { brush = color, font = fontValue, value = "EL IMPUESTO DE REGISTRO RECAUDADO POR ", x = xKey, y = y += sum });
+                    //data.Add(new DataPrinter { brush = color, font = fontValue, value = "LA CAMARA DE COMERCIO SE TRANSFIERE ", x = xKey, y = y += sum });
+                    //data.Add(new DataPrinter { brush = color, font = fontValue, value = "EN SU TOTALIDAD A LA GOBERNACIÓN DE ", x = xKey, y = y += sum });
+                    //data.Add(new DataPrinter { brush = color, font = fontValue, value = "ACUERDO CON LAS NORMAS VIGENTES. ", x = xKey, y = y += 20 });
 
-                    data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.PrintMs1, x = xKey, y = y += sum });
-                    data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.PrintMs2, x = xKey, y = y += 20 });
-                    data.Add(new DataPrinter { brush = color, font = fontValue, value = "E-city Software", x = 100, y = y += sum });
+                    //data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.PrintMs1, x = xKey, y = y += sum });
+                    //data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.PrintMs2, x = xKey, y = y += 20 });
+                    //data.Add(new DataPrinter { brush = color, font = fontValue, value = "E-city Software", x = 100, y = y += sum });
 
-                    AdminPayPlus.PrintService.Start(data);
+                    //AdminPayPlus.PrintService.Start(data);
                 }
             }
             catch (Exception ex)

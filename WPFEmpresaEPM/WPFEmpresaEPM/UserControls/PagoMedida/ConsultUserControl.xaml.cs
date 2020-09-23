@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -125,16 +126,17 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     txtErrorContrato.Visibility = Visibility.Visible;
                     return false;
                 }
+
+                transaction.Document = TxtNumDocument.Text;
+                transaction.NumeroContrato = TxtNumContrato.Text;
+
+                return true;
             }
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+                return false;
             }
-
-            transaction.Document = TxtNumDocument.Text;
-            transaction.NumeroContrato = TxtNumContrato.Text;
-
-            return true;
         }
 
         private void Consult()
@@ -143,6 +145,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             {
                 Task.Run(async () =>
                 {
+                    Thread.Sleep(500);
+
                     string data = string.Format("?Contrato={0}&IdCliente={1}", transaction.NumeroContrato, transaction.Document);
 
                     string url = string.Concat(Utilities.GetConfiguration("PagoMedida"), data);

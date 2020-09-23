@@ -64,7 +64,7 @@ namespace WPFEmpresaEPM.UserControls
 
                     AdminPayPlus.UpdateTransaction(this.transaction);
 
-                    //Utilities.PrintVoucher(this.transaction);
+                    Utilities.PrintVoucher(this.transaction);
 
                     Thread.Sleep(5000);
 

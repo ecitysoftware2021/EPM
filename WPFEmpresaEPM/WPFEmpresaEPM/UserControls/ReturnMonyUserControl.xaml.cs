@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using WPFEmpresaEPM.Models;
 using WPFEmpresaEPM.Classes;
 using WPFEmpresaEPM.Models;
 using WPFEmpresaEPM.Resources;
 using WPFEmpresaEPM.Services.Object;
-using WPFEmpresaEPM.ViewModel;
 
 namespace WPFEmpresaEPM.UserControls
 {
@@ -119,7 +115,7 @@ namespace WPFEmpresaEPM.UserControls
 
                 AdminPayPlus.UpdateTransaction(transaction);
 
-                //Utilities.PrintVoucher(transaction);
+                Utilities.PrintVoucher(transaction);
 
                 Thread.Sleep(5000);
 
