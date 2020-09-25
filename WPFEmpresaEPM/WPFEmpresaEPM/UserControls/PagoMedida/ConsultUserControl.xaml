@@ -42,7 +42,7 @@
                    TouchDown="BtnBack_TouchDown"
                    />
         </Grid>
-        <Grid Name="GrvPagoMedida" Grid.RowSpan="3">
+        <Grid Name="GrvPagoMedida" Grid.Row="1">
             <TextBlock Text="Pago A Tu Medida"
                        TextWrapping="Wrap"
                        TextAlignment="Justify"
@@ -51,22 +51,63 @@
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
                        Foreground="#FF68B549" 
-                       Margin="0,400,0,0"/>
+                       Margin="0,40,0,0"/>
+            <TextBlock
+                Text="Seleccione el medio de busqueda" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                FontWeight="Bold" 
+                FontSize="40" 
+                Foreground="Gray" 
+                Margin="0,220,0,0"/>
+            <Image x:Name="btnDocumento"
+                   Source="{Binding Referencia}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" 
+                   Height="60"  
+                   Margin="100,400,0,0" 
+                   Stretch="Uniform"
+                   TouchDown="BtnDocumento_TouchDown"
+                   />
+            <TextBlock
+                Text="Número de Documento" 
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                FontSize="35" 
+                Foreground="Gray" 
+                Margin="180,410,0,0"/>
+            <Image x:Name="btnContrato"
+                   Source="{Binding Numero}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top" 
+                   Height="60"  
+                   Margin="100,400,0,0" 
+                   Stretch="Uniform"
+                   TouchDown="BtnContrato_TouchDown"
+                   />
+            <TextBlock
+                Text="Número de contrato" 
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                FontSize="35" 
+                Foreground="Gray" 
+                Margin="0,410,100,0"/>
+
             <TextBlock 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Margin="0,0,0,400"
+                   Margin="0,0,0,0"
                    TextAlignment="Center"
                    TextWrapping="Wrap"
-                   Text="Ingresa el número de documento"
-                   FontSize="50"
+                   Text="Ingresa el número"
+                   FontSize="40"
                    FontWeight="Bold"
                    Foreground="#606060"/>
             <TextBox 
                     x:Name="TxtNumDocument" 
                     TextAlignment="Center"
                     Height="70" 
-                    Margin="0,0,0,100" 
+                    Margin="0,200,0,0" 
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Width="415" 
@@ -78,48 +119,13 @@
             />
             <TextBlock
                 Name="txtErrorDocumento"
-                Text="Debe ingresar un número de documento" 
+                Text="Debe ingresar un número " 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 FontSize="35" 
                 Foreground="Red" 
                 Visibility="Hidden"
-                Margin="0,50,0,0"/>
-            <TextBlock 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Margin="0,400,0,0"
-                   TextAlignment="Center"
-                   TextWrapping="Wrap"
-                   Text="Ingresa el número de contrato"
-                   FontSize="50"
-                   FontWeight="Bold"
-                   Foreground="#606060"/>
-            <TextBox  
-                    TextAlignment="Center"
-                    Height="70" 
-                    Margin="0,0,0,600" 
-                    TextWrapping="Wrap"
-                    TabIndex="1"
-                    VerticalAlignment="Bottom"
-                    HorizontalAlignment="Center"
-                    Width="415"
-                    x:Name="TxtNumContrato" 
-                    FontSize="50"
-                    FontFamily="Arial" 
-                    CaretBrush="#FFB2B0B8"
-                    TouchDown="TxtNumContrato_TouchDown"
-                    TextChanged="TxtNumContrato_TextChanged"
-            />
-            <TextBlock
-                Name="txtErrorContrato"
-                Text="Debe ingresar un número de contrato" 
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="35" 
-                Foreground="Red" 
-                Visibility="Hidden"
-                Margin="0,800,0,0"/>
+                Margin="0,350,0,0"/>
         </Grid>
         <Grid Grid.Row="2">
             <Image 

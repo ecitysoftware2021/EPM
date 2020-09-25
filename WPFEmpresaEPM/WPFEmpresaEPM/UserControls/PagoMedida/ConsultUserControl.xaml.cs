@@ -21,6 +21,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
         #region "Referencias"
         private Transaction transaction;
         private TimerGeneric timer;
+        private CheckTypeSerch check;
+        private bool document;
         #endregion
 
         #region "Constructor"
@@ -31,6 +33,11 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             try
             {
                 transaction = ts;
+                check = new CheckTypeSerch();
+                check.Numero = GetImage(false);
+                check.Referencia = GetImage(true);
+                document = true;
+                this.DataContext = check;
                 ActivateTimer();
             }
             catch (Exception ex)
@@ -78,27 +85,18 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             }
         }
 
-        private void TxtNumContrato_TouchDown(object sender, TouchEventArgs e)
+        private void BtnDocumento_TouchDown(object sender, TouchEventArgs e)
         {
-            Utilities.OpenKeyboard(true, sender as TextBox, this);
+            check.Numero = GetImage(false);
+            check.Referencia = GetImage(true);
+            document = true;
         }
 
-        private void TxtNumContrato_TextChanged(object sender, TextChangedEventArgs e)
+        private void BtnContrato_TouchDown(object sender, TouchEventArgs e)
         {
-            try
-            {
-                txtErrorContrato.Visibility = Visibility.Hidden;
-
-                if (TxtNumContrato.Text.Length > 15)
-                {
-                    TxtNumContrato.Text = TxtNumContrato.Text.Remove(15, 1);
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
-            }
+            check.Numero = GetImage(true);
+            check.Referencia = GetImage(false);
+            document = false;
         }
 
         private void btnConsult_TouchDown(object sender, TouchEventArgs e)
@@ -111,6 +109,25 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
         #endregion
 
         #region "Métodos"
+
+        private string GetImage(bool flag)
+        {
+            try
+            {
+                if (!flag)
+                {
+                    return "/Images/Others/circle.png";
+                }
+
+                return "/Images/Others/ok.png";
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
+            return string.Empty;
+        }
+
         private bool Validar()
         {
             try
@@ -121,14 +138,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     return false;
                 }
 
-                if (string.IsNullOrEmpty(TxtNumContrato.Text))
-                {
-                    txtErrorContrato.Visibility = Visibility.Visible;
-                    return false;
-                }
-
-                transaction.Document = TxtNumDocument.Text;
-                transaction.NumeroContrato = TxtNumContrato.Text;
+                transaction.Document = document ? TxtNumDocument.Text:null;
+                transaction.NumeroContrato = document ? null:TxtNumDocument.Text;
 
                 return true;
             }

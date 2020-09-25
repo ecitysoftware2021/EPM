@@ -42,5 +42,207 @@
                    TouchDown="BtnBack_TouchDown"
                    />
         </Grid>
+        <Border Grid.Row="1" x:Name="GrvPagoPrepago" Grid.Column="0" Grid.ColumnSpan="2" Visibility="Visible" BorderThickness="10,10,10,10" BorderBrush="#FF68B549"  CornerRadius="30,30,30,30" Margin="50,0,50,200" Background="White">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="130" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Factura Prepago"
+                       TextWrapping="Wrap"
+                       TextAlignment="Justify"
+                       FontSize="60"
+                       FontWeight="Bold"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Foreground="#FF68B549" 
+                       Margin="0,0,0,0"/>
+                <TextBlock 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="50,0,0,0"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="Nombre"
+                   Grid.Row="1"
+                   FontSize="40"
+                   FontWeight="Bold"
+                   Foreground="#606060"/>
+                <TextBlock 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Grid.Row="2"
+                   Margin="50,0,0,0" 
+                   FontSize="35"
+                   TextAlignment="Left"
+                   Text="{Binding Nombre}"
+                   TextWrapping="Wrap"
+                    />
+                <TextBlock 
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Margin="0,0,50,0"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="DNI"
+                   FontSize="40"
+                   Grid.Row="1"
+                   Grid.Column="1"
+                   FontWeight="Bold"                   
+                   Foreground="#606060"/>
+                <TextBlock 
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top" 
+                   Margin="0,0,50,0" 
+                   FontSize="35"
+                   Grid.Row="2"
+                   Grid.Column="1"
+                   TextAlignment="Center"
+                   Text="{Binding Dni}"
+                    />
+                <TextBlock 
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Margin="0,0,50,0"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="Dirección"
+                   FontSize="40"
+                   Grid.Row="5"
+                   Grid.Column="1"
+                   FontWeight="Bold"                   
+                   Foreground="#606060"/>
+                <TextBlock Name="txDate"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   Margin="0,0,50,0" 
+                   FontSize="35"
+                   Grid.Row="6"
+                   Grid.Column="1"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="{Binding Direccion}"
+                    />
+                <TextBlock 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="50,0,0,0"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="Localidad"
+                   FontSize="40"
+                   Grid.Row="3"
+                   FontWeight="Bold"                   
+                   Foreground="#606060"/>
+                <TextBlock 
+                   Name="txtalor"
+                   Grid.Row="4"
+                   Text="{Binding Localidad}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="50,0,0,0" 
+                   FontSize="35"
+                   TextAlignment="Center"
+                    />
+                <TextBlock 
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Margin="0,0,50,0"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="Departamento"
+                   FontSize="40"
+                   Grid.Column="1"
+                   Grid.Row="3"
+                   FontWeight="Bold"                   
+                   Foreground="#606060"/>
+                <TextBlock 
+                   Name="xlor"
+                   Grid.Column="1"
+                   Grid.Row="4"
+                   Text="{Binding Departamento}"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   Margin="0,0,50,0" 
+                   FontSize="40"
+                   TextAlignment="Center"
+                    />
+                <TextBlock 
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Margin="50,0,0,0"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="Elemento medición"
+                   FontSize="40"
+                   Grid.Row="5"
+                   FontWeight="Bold"                   
+                   Foreground="#606060"/>
+                <TextBlock 
+                   Name="txlor"
+                   Grid.Row="6"
+                   Text="{Binding ElementoMedicion}"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"
+                   Margin="50,0,0,0" 
+                   FontSize="40"
+                   TextAlignment="Center"
+                    />
+                <TextBlock 
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="0,0,0,0"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   Text="Valor"
+                   FontSize="40"
+                   Grid.Row="7"
+                   Grid.ColumnSpan="2"
+                   FontWeight="Bold"                   
+                   Foreground="#606060"/>
+                <TextBlock 
+                   HorizontalAlignment="Center"
+                   Name="txtValorPrepago"
+                   VerticalAlignment="Top"
+                   Margin="0,0,0,0"
+                   TextAlignment="Center"
+                   TextWrapping="Wrap"
+                   FontSize="45"
+                   Grid.Row="8"
+                   Grid.ColumnSpan="2"
+                   />
+            </Grid>
+            <Border.Effect>
+                <DropShadowEffect
+                        ShadowDepth="20"
+                        Direction="225"
+                        Color="Gray"
+                        Opacity="0.6"
+                        BlurRadius="30.0"/>
+            </Border.Effect>
+        </Border>
+        <Grid Grid.Row="2">
+            <Image 
+                x:Name="BtnPagar"
+                Source="/Images/Buttons/b-pagar-en-efectivo.png"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top" 
+                Height="100"  
+                Stretch="Uniform"
+                TouchDown="BtnPagar_TouchDown"
+                />
+        </Grid>
     </Grid>
 </UserControl>
