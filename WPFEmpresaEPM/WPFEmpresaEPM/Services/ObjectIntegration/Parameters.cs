@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using WPFEmpresaEPM.Classes;
 
 namespace WPFEmpresaEPM.Services.ObjectIntegration
 {
@@ -238,6 +239,13 @@ namespace WPFEmpresaEPM.Services.ObjectIntegration
         {
             public PaySvcRs PaySvcRs { get; set; }
         }
+    }
+
+    public class Response
+    {
+        public ResponseCode ResponseCode { get; set; }
+        public string ResponseMessage { get; set; }
+        public object ResponseData { get; set; }
     }
 }
 

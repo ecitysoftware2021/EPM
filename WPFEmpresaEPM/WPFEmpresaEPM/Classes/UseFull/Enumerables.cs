@@ -121,4 +121,11 @@ namespace WPFEmpresaEPM.Classes
         ChangeDivisa = 26
 
     }
+
+    public enum ResponseCode
+    {
+        Error = 300,
+        NotFound = 404,
+        OK = 200
+    }
 }
