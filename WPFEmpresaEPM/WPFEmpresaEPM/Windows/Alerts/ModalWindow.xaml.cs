@@ -100,12 +100,11 @@ namespace WPFEmpresaEPM.Windows
 
         private void BtnOk_TouchDown(object sender, TouchEventArgs e)
         {
-            try
+            if (modal.Timer)
             {
                 SetCallBacksNull();
                 timer.CallBackStop?.Invoke(1);
             }
-            catch { }
 
             this.DialogResult = true;
         }

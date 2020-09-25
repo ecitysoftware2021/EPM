@@ -114,9 +114,9 @@ namespace WPFEmpresaEPM.Classes
 
                     DescriptionStatusPayPlus = MessageResource.ValidatePeripherals;
 
-                    ValidatePeripherals();
+                    //ValidatePeripherals();
 
-                    //callbackResult?.Invoke(true);
+                    callbackResult?.Invoke(true);
                 }
                 else
                 {

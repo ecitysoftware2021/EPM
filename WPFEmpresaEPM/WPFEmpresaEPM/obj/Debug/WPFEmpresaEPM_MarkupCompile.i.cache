@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\dcordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\
 WPFEmpresaEPM
 none
 false
 DEBUG;TRACE
-C:\Users\dcordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\App.xaml
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\App.xaml
 14-1604917218
 
-69899285647
-33-2091936511
+66-1512752939
+331209349201
 UserControls\Administrator\ConfigurateUserControl.xaml;UserControls\MenuUserControl.xaml;UserControls\PagoFactura\ConsultUserControl.xaml;UserControls\PagoFactura\DetailsUserControl.xaml;UserControls\PagoMedida\ConsultUserControl.xaml;UserControls\PagoMedida\DetailsUserControl.xaml;UserControls\PagoPrepago\ConsultUserControl.xaml;UserControls\PagoPrepago\DetailsUserControl.xaml;UserControls\ReturnMonyUserControl.xaml;UserControls\MainUserControl.xaml;UserControls\PaymentUserControl.xaml;UserControls\SussesUserControl.xaml;Windows\MasterWindow.xaml;Windows\Alerts\ModalWindow.xaml;
 
 True

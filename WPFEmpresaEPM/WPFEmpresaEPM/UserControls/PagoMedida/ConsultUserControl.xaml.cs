@@ -147,7 +147,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                 {
                     Thread.Sleep(500);
 
-                    string data = string.Format("?Contrato={0}&IdCliente={1}", transaction.NumeroContrato, transaction.Document);
+                    string data = string.Format("?Contrato={0}&IdCliente={1}", transaction.NumeroContrato, null);
+                    //string data = string.Format("?Contrato={0}&IdCliente={1}", transaction.NumeroContrato, transaction.Document);
 
                     string url = string.Concat(Utilities.GetConfiguration("PagoMedida"), data);
 
