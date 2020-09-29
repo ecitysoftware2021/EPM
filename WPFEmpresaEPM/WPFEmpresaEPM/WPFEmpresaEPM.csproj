@@ -155,6 +155,7 @@
       <DependentUpon>ConstantsResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Services\ApiIntegration.cs" />
+    <Compile Include="Services\ApiIntegration2.cs" />
     <Compile Include="Services\ObjectIntegration\Parameters.cs" />
     <Compile Include="Services\Object\DataPayPlus.cs" />
     <Compile Include="Services\Object\Log.cs" />
