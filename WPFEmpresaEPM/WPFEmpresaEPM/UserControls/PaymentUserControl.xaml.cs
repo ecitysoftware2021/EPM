@@ -223,29 +223,37 @@ namespace WPFEmpresaEPM.UserControls
                     Task.Run(async () =>
                     {
                         string url = string.Empty;
+                        object dataTransaction = null;
 
                         switch (transaction.typeTransaction)
                         {
                             case ETypeTransaction.PagoFactura:
-                                url = string.Format("{0}?referencia={1}&valor={2}",
-                                      Utilities.GetConfiguration("ReportPagoDeFactura"),
-                                      transaction.detailsPagoFactura.Referencia, transaction.Amount);
+                                dataTransaction = new InvoicePayRequest
+                                {
+                                    payValue = transaction.Amount,
+                                    reference = transaction.detailsPagoFactura.Referencia
+                                };
                                 break;
                             case ETypeTransaction.FacturaPrepago:
-                                url = string.Format("{0}?medidor={1}&valorCompra={2}&idTransaccion={3}", 
-                                      Utilities.GetConfiguration("ReportFacturaPrepago"), 
-                                      transaction.NumeroMedidor, transaction.Amount, 
-                                      transaction.IdTransactionAPi);
+                                dataTransaction = new PrepaidPayRequest
+                                {
+                                    payValue = transaction.Amount,
+                                    reference = transaction.NumeroMedidor,
+                                    transactionID = transaction.IdTransactionAPi
+                                };
                                 break;
                             case ETypeTransaction.PagoMedida:
-                                url = string.Format("{0}?Contrato={1}&IdCliente={2}&idTransaccion={3}&valorPagado={4}", 
-                                      Utilities.GetConfiguration("ReportPagoMedida"),
-                                      transaction.NumeroContrato, transaction.Document,
-                                      transaction.IdTransactionAPi,transaction.Amount);
+                                dataTransaction = new PayRequest
+                                {
+                                    contract = transaction.NumeroContrato,
+                                    document = transaction.Document,
+                                    transactionID = transaction.IdTransactionAPi,
+                                    payValue = transaction.Amount
+                                };
                                 break;
                         }
 
-                        bool response = await ApiIntegration.ReportPay(transaction, url);
+                        bool response = await ApiIntegration.ReportPay(transaction, dataTransaction);
 
                         if (response)
                         {

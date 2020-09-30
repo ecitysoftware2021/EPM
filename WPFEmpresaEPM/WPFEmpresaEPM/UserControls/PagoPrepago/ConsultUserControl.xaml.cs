@@ -161,11 +161,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                 {
                     Thread.Sleep(500);
 
-                    string data = string.Format("?medidor={0}&valorCompra={1}", transaction.NumeroMedidor, transaction.Amount.ToString());
-
-                    string url = string.Concat(Utilities.GetConfiguration("FacturaPrepago"), data);
-
-                    var response = await ApiIntegration.SearchFacturaPrepago(url);
+                    var response = await ApiIntegration.SearchFacturaPrepago(transaction.Amount, transaction.NumeroMedidor);
 
                     Utilities.CloseModal();
 

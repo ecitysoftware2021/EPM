@@ -27,7 +27,7 @@ namespace WPFEmpresaEPM.Models
 
         public string Document { get; set; }
 
-        public string NumeroContrato { get; set; }
+        public int NumeroContrato { get; set; }
 
         public string NumeroMedidor { get; set; }
 

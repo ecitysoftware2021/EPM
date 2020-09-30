@@ -258,3 +258,5 @@ C:\Users\dcordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPF
 C:\Users\dcordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.CopyComplete
 C:\Users\dcordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.exe
 C:\Users\dcordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.pdb
+D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\RestSharp.dll
+D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\RestSharp.xml

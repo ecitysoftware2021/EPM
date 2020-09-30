@@ -172,11 +172,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                 {
                     Thread.Sleep(500);
 
-                    string data = string.Format("?tipoConsulta={0}&referencia={1}", (int)transaction.typeSearch, transaction.Document);
-
-                    string url = string.Concat(Utilities.GetConfiguration("PagoDeFactura"), data);
-
-                    var response = await ApiIntegration.SearchPagoFactura(url);
+                    var response = await ApiIntegration.SearchPagoFactura(transaction.Document);
 
                     Utilities.CloseModal();
 
@@ -188,7 +184,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                     else
                     {
                         transaction.detailsPagoFactura = response;
-                        transaction.NumeroContrato = ((int)transaction.typeSearch).ToString();
+                        transaction.NumeroContrato = (int)transaction.typeSearch;
                         Utilities.navigator.Navigate(UserControlView.DetailsPagoFactura, transaction);
                     }
                 });
