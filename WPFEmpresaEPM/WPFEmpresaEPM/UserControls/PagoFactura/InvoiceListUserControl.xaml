@@ -5,8 +5,243 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFEmpresaEPM.UserControls.PagoFactura"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             Height="1920" 
+             Width="1080" >
     <Grid>
-            
+        <Grid.Background>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300" />
+            <RowDefinition Height="400" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="400" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Image x:Name="BtnExit"
+                   Source="/Images/Buttons/b-salir.png"
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Top" 
+                   Height="60" 
+                   Margin="0,20,25,0"
+                   Stretch="Uniform"
+                   TouchDown="BtnExit_TouchDown"/>
+            <TextBlock x:Name="tbTimer"
+                    FontSize="45"
+                    Grid.Column="4"
+                    Foreground="#fff"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,100,20,0"/>
+            <Image x:Name="BtnBack"
+                   Source="/Images/Buttons/b-atras.png"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top" 
+                   Height="60"  
+                   Margin="25,20,0,0" 
+                   Stretch="Uniform"
+                   TouchDown="BtnBack_TouchDown"
+                   />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <TextBlock 
+                Text="Pago De Factura"
+                TextWrapping="Wrap"
+                TextAlignment="Justify"
+                FontSize="70"
+                FontWeight="Bold"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Foreground="#FF68B549" 
+                Margin="0,0,0,0"/>
+            <TextBlock
+                Text="seleccione la factura a pagar" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontWeight="Bold" 
+                FontSize="40" 
+                Foreground="Gray" 
+                Margin="0,80,0,0"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,0,0,0"
+                Grid.Column="0"
+                TextAlignment="Center"
+                TextWrapping="Wrap"
+                Text="Referencia"
+                FontSize="30"
+                FontFamily="Arial" 
+                FontWeight="Bold"
+            />
+            <TextBlock 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Column="1"
+                Margin="0,0,0,0"
+                TextAlignment="Center"
+                TextWrapping="Wrap"
+                Text="Fecha límite"
+                FontSize="30"
+                FontFamily="Arial" 
+                FontWeight="Bold"
+            />
+            <TextBlock 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Column="2"
+                Margin="0,0,0,0"
+                TextAlignment="Center"
+                TextWrapping="Wrap"
+                Text="Valor"
+                FontSize="30"
+                FontFamily="Arial" 
+                FontWeight="Bold"
+            />
+            <TextBlock 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Grid.Column="3"
+                Margin="0,0,0,0"
+                TextAlignment="Center"
+                TextWrapping="Wrap"
+                Text="Seleccione"
+                FontSize="30"
+                FontFamily="Arial" 
+                FontWeight="Bold"
+           />
+            <ListView 
+                x:Name="lv_Products"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top"
+                ItemsSource="{Binding}"
+                Margin="0,0,0,0"
+                Grid.Row="1"
+                Grid.ColumnSpan="7"
+                Background="Transparent"
+                BorderBrush="Transparent"
+                AutomationProperties.AutomationId="ItemGridView"
+                AutomationProperties.Name="Grouped Items"
+                >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="{x:Type ListViewItem}"
+                        >
+                        <EventSetter Event="PreviewMouseDown"
+                         Handler="ListViewItem_PreviewMouseDown" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ListViewItem">
+                                    <ContentPresenter>
+                                    </ContentPresenter>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="1"
+                                 HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel 
+                            Orientation="Vertical" 
+                            VerticalAlignment="Stretch" 
+                            HorizontalAlignment="Stretch">
+                            <Grid 
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                Margin="0,20,0,0"
+                                Width="680"
+                                >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock 
+                                    Text="{Binding Referencia}"
+                                    FontSize="20"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap"
+                                    Margin="0,0,0,0"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Grid.Column="0"
+                                />
+                                <TextBlock 
+                                    Text="{Binding FechaLimite}"
+                                    FontSize="20"
+                                    TextAlignment="Center"
+                                    TextWrapping="Wrap"
+                                    Margin="0,0,0,0"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Grid.Column="1"
+                                />
+                                <TextBlock 
+                                    Text="{Binding ValorPagar, StringFormat={}{0:C0}}"
+                                    FontSize="35"
+                                    TextAlignment="Center"
+                                    Margin="0,0,0,0"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
+                                    Grid.Column="2"
+                                />
+                                <Image  
+                                    Source="{Binding img}"
+                                    Width="45"
+                                    Height="45"
+                                    Grid.Column="3"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                />
+
+                            </Grid>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Image 
+                Name="btnPagar"
+                Source="/Images/Buttons/b-continuar.png"
+                Height="90"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Margin="0,50,30,0"
+                Stretch="Uniform"
+                MouseDown="btnPagar_MouseDown"
+            />
+            <Image 
+                Name="btnCancelar"
+                Source="/Images/Buttons/b-cancelar.png"
+                Height="90"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="30,50,0,0"
+                Stretch="Uniform"
+                MouseDown="btnCancelar_MouseDown"
+            />
+        </Grid>
     </Grid>
 </UserControl>

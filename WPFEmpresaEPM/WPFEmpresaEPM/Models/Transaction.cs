@@ -24,6 +24,7 @@ namespace WPFEmpresaEPM.Models
         public DetailsPagoFactura detailsPagoFactura { get; set; }
         public ResponseConsultMedida detailsPagoMedida { get; set; }
         public ResponseConsultFacturaPrepago detailsPrepago { get; set; }
+        public ResponseDataInvoice listFacturas { get; set; }
 
         public string Document { get; set; }
 

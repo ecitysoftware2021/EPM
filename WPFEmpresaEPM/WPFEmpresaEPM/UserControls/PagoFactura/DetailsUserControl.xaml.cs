@@ -54,7 +54,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         {
             SetCallBacksNull();
             timer.CallBackStop?.Invoke(1);
-            Utilities.navigator.Navigate(UserControlView.ConsultPagoFactura, transaction);
+            Utilities.navigator.Navigate(UserControlView.InvoiceListPagoFactura, transaction);
         }
 
         private void BtnExit_TouchDown(object sender, TouchEventArgs e)

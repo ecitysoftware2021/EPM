@@ -80,6 +80,7 @@ namespace WPFEmpresaEPM.Classes
         DetailsPagoMedida,
         ConsultPagoPrepago,
         DetailsPagoPrepago,
+        InvoiceListPagoFactura,
     }
 
     public enum ETransactionState
