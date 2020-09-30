@@ -16,6 +16,7 @@ namespace WPFEmpresaEPM.Services.ObjectIntegration
         public string Localidad { get; set; }
         public string MensajeError { get; set; }
         public string Nombre { get; set; }
+        public decimal Valor { get; set; }
     }
 
     public class ResponsePayFacturaPrepago

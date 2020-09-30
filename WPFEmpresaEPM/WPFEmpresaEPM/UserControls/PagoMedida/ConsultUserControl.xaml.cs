@@ -73,9 +73,9 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             {
                 txtErrorDocumento.Visibility = Visibility.Hidden;
 
-                if (TxtNumDocument.Text.Length > 15)
+                if (TxtNumDocument.Text.Length > 7)
                 {
-                    TxtNumDocument.Text = TxtNumDocument.Text.Remove(15, 1);
+                    TxtNumDocument.Text = TxtNumDocument.Text.Remove(7, 1);
                     return;
                 }
             }

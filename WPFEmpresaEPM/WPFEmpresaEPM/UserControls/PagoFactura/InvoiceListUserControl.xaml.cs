@@ -25,16 +25,17 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         private TimerGeneric timer;
         #endregion
 
-        public InvoiceListUserControl(Transaction transaction)
+        public InvoiceListUserControl(Transaction ts)
         {
             InitializeComponent();
 
             try
             {
-                this.transaction = transaction;
+                transaction = ts;
                 view = new CollectionViewSource();
                 lstPager = new ObservableCollection<DetailsPagoFactura>();
                 ProductsSelected = new DetailsPagoFactura();
+                transaction.Amount = 0;
                 ActivateTimer();
                 InitView();
             }

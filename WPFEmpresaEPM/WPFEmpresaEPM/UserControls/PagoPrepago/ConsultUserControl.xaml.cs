@@ -22,6 +22,8 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
         private Transaction transaction;
         private TimerGeneric timer;
         private ValueModel valueModel;
+        private decimal ValorMin;
+        private decimal ValorMax;
         #endregion
 
         #region "Constructor"
@@ -37,6 +39,8 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     Val = 0
                 };
                 this.DataContext = valueModel;
+                ValorMax = Convert.ToDecimal(Utilities.GetConfiguration("ValorMaxPrepago"));
+                ValorMin = Convert.ToDecimal(Utilities.GetConfiguration("ValorMinPrepago"));
                 ActivateTimer();
             }
             catch (Exception ex)
@@ -142,6 +146,14 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     return false;
                 }
 
+                if (valueModel.Val < ValorMin || valueModel.Val > ValorMax)
+                {
+                    txtErrorValor.Text = string.Concat("Debe ingresar un valor supeior o igual a",
+                    Environment.NewLine, string.Format("${0} o inferior o igual a ${1}",ValorMin,ValorMax));
+                    txtErrorValor.Visibility = Visibility.Visible;
+                    return false;
+                }
+
                 transaction.Amount = valueModel.Val;
                 transaction.NumeroMedidor = txtNumeroMedidor.Text;
                 return true;
@@ -173,6 +185,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     else
                     {
                         transaction.detailsPrepago = response;
+                        transaction.detailsPrepago.Valor = valueModel.Val;
                         Utilities.navigator.Navigate(UserControlView.DetailsPagoPrepago, transaction);
                     }
                 });

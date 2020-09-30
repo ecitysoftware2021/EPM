@@ -169,7 +169,7 @@
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"
                                 Margin="0,20,0,0"
-                                Width="680"
+                                Width="1070"
                                 >
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />

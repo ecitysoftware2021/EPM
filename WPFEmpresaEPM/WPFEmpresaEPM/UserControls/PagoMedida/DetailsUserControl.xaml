@@ -8,7 +8,7 @@
              gif:ImageBehavior.AnimateInDesignMode="True"
              mc:Ignorable="d" 
              Height="1920" 
-             Width="1080" >
+             Width="1080">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>

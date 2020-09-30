@@ -215,6 +215,7 @@
                 <TextBlock 
                    HorizontalAlignment="Center"
                    Name="txtValorPrepago"
+                   Text="{Binding Valor, StringFormat={}{0:C0}}"
                    VerticalAlignment="Top"
                    Margin="0,0,0,0"
                    TextAlignment="Center"

@@ -333,3 +333,7 @@ C:\Users\jhon.zapata\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\
 C:\Users\jhon.zapata\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.GenerateResource.cache
 C:\Users\jhon.zapata\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.CoreCompileInputs.cache
 C:\Users\jhon.zapata\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.CopyComplete
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\RestSharp.dll
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\RestSharp.xml
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoFactura\InvoiceListUserControl.g.cs
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoFactura\InvoiceListUserControl.baml
