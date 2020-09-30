@@ -160,6 +160,9 @@
     </Compile>
     <Compile Include="Services\ApiIntegration.cs" />
     <Compile Include="Services\ObjectIntegration\Parameters.cs" />
+    <Compile Include="Services\ObjectIntegration\ParametersFactura.cs" />
+    <Compile Include="Services\ObjectIntegration\ParametersMedida.cs" />
+    <Compile Include="Services\ObjectIntegration\ParametersPrepago.cs" />
     <Compile Include="Services\Object\DataPayPlus.cs" />
     <Compile Include="Services\Object\Log.cs" />
     <Compile Include="Services\Object\Response.cs" />
@@ -176,6 +179,9 @@
     </Compile>
     <Compile Include="UserControls\PagoFactura\DetailsUserControl.xaml.cs">
       <DependentUpon>DetailsUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\PagoFactura\InvoiceListUserControl.xaml.cs">
+      <DependentUpon>InvoiceListUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PagoMedida\ConsultUserControl.xaml.cs">
       <DependentUpon>ConsultUserControl.xaml</DependentUpon>
@@ -306,6 +312,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\PagoFactura\DetailsUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\PagoFactura\InvoiceListUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using RestSharp;
 using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
@@ -14,7 +15,7 @@ namespace WPFEmpresaEPM.Services
     public class ApiIntegration
     {
         #region "Referencias"
-        private static DetailsPagoFactura details;
+        private static ResponseDataInvoice details;
         private static ResponseConsultMedida medida;
         private static ResponseConsultFacturaPrepago prepago;
         private static ResponsePayFacturaPrepago payFacturaPrepago;
@@ -26,7 +27,7 @@ namespace WPFEmpresaEPM.Services
         }
 
         #region "Métodos"
-        public static async Task<DetailsPagoFactura> SearchPagoFactura(string reference)
+        public static async Task<ResponseDataInvoice> SearchPagoFactura(string reference)
         {
             try
             {
@@ -50,18 +51,15 @@ namespace WPFEmpresaEPM.Services
                     return null;
                 }
 
-                var json = JsonConvert.DeserializeObject<ResponseConsultPayFactura>(responseClient.ResponseData.ToString());
+                var json = JsonConvert.DeserializeObject<ResponseDataInvoice>(responseClient.ResponseData.ToString());
 
                 AdminPayPlus.SaveErrorControl("Response Consulta Factura: " + json, "", EError.Api, ELevelError.Mild);
 
-                if (json != null && json.PaySvcRs.PmtAddRs.Status.StatusCode == "0")
+                if (json != null && json.IFX.Count > 0 && json.IFX[0].PaySvcRs.PmtAddRs.Status.StatusCode == "0")
                 {
-                    details = new DetailsPagoFactura
+                    details = new ResponseDataInvoice
                     {
-                        FechaLimite = json.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillDt,
-                        NumeroCuenta = json.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillingAcct,
-                        Referencia = json.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillId,
-                        ValorPagar = Convert.ToDecimal(json.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.CurAmt.Amt)
+                        IFX = json.IFX
                     };
                     return details;
                 }

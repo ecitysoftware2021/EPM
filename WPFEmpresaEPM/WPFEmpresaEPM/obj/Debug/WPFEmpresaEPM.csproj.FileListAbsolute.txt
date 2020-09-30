@@ -260,3 +260,5 @@ C:\Users\dcordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPF
 C:\Users\dcordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.pdb
 D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\RestSharp.dll
 D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\RestSharp.xml
+D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoFactura\InvoiceListUserControl.g.cs
+D:\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\PagoFactura\InvoiceListUserControl.baml

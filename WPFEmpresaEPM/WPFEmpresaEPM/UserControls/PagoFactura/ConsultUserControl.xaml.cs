@@ -33,10 +33,10 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 transaction = ts;
                 check = new CheckTypeSerch();
-                transaction.typeSearch = ETypeSearch.ReferenteDePago;
-                check.Numero = GetImage(false);
-                check.Referencia = GetImage(true);
-                this.DataContext = check;
+                //check.Numero = GetImage(false);
+                //check.Referencia = GetImage(true);
+                //this.DataContext = check;
+                transaction.typeSearch = ETypeSearch.NumeroDeContrato;
                 ActivateTimer();
             }
             catch (Exception ex)
@@ -183,7 +183,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                     }
                     else
                     {
-                        transaction.detailsPagoFactura = response;
+                        //transaction.detailsPagoFactura = response;
                         transaction.NumeroContrato = (int)transaction.typeSearch;
                         Utilities.navigator.Navigate(UserControlView.DetailsPagoFactura, transaction);
                     }

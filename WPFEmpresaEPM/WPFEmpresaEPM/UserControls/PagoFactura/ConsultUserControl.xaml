@@ -47,21 +47,21 @@
                 Text="Pago De Factura"
                 TextWrapping="Wrap"
                 TextAlignment="Justify"
-                FontSize="60"
+                FontSize="80"
                 FontWeight="Bold"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Foreground="#FF68B549" 
-                Margin="0,10,0,0"/>
-            <TextBlock
+                Margin="0,80,0,0"/>
+            <!--<TextBlock
                 Text="Seleccione el medio de pago" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 FontWeight="Bold" 
                 FontSize="40" 
                 Foreground="Gray" 
-                Margin="0,120,0,0"/>
-            <Image x:Name="btnReferente"
+                Margin="0,120,0,0"/>-->
+            <!--<Image x:Name="btnReferente"
                    Source="{Binding Referencia}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top" 
@@ -92,15 +92,15 @@
                 VerticalAlignment="Top"
                 FontSize="35" 
                 Foreground="Gray" 
-                Margin="0,210,100,0"/>
+                Margin="0,210,100,0"/>-->
             <TextBlock
-                Text="Ingrese el número de factura" 
+                Text="Ingrese el número de contrato" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 FontWeight="Bold" 
                 FontSize="40" 
                 Foreground="Gray" 
-                Margin="0,320,0,0"/>
+                Margin="0,300,0,0"/>
             <TextBox x:Name="TxtIdentification"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
