@@ -79,7 +79,6 @@ C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\Newtons
 C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\System.Data.SQLite.xml
 C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\System.Data.SQLite.dll.config
 C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\WpfAnimatedGif.xml
-C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\WPKeyboard.pdb
 C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csprojAssemblyReference.cache
 C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\ConfigurateUserControl.g.cs
 C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\MenuUserControl.g.cs
