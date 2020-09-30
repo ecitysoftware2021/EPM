@@ -242,6 +242,8 @@
                    FontSize="45"
                    Margin="0,0,0,0"
                    TabIndex="0"
+                   TouchDown="txtvalorminimomedida_TouchDown"
+                   TextChanged="txtvalorminimomedida_TextChanged"
                          />
                 <Image x:Name="gif"
                    gif:ImageBehavior.AnimatedSource="/Images/Gif/click.gif"
@@ -276,6 +278,16 @@
                 Stretch="Uniform"
                 TouchDown="BtnPagar_TouchDown"
                 />
+            <TextBlock
+                Name="txtErrorValor"
+                Text="Debe ingresar el valor a pagar" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="35"      Grid.Row="8"
+                   Grid.Column="1"
+                Foreground="Red" 
+                Visibility="Hidden"
+                Margin="0,0,0,60"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using WPFEmpresaEPM.Classes;
@@ -18,7 +19,9 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
     {
         #region "Referencias"
         private Transaction transaction;
-        private TimerGeneric timer;
+        private TimerGeneric timer; 
+        private decimal ValorMin;
+        private decimal ValorMax;
         #endregion
 
         #region "Constructor"
@@ -30,6 +33,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             {
                 transaction = ts;
                 DataContext = transaction.detailsPagoMedida;
+                ValorMin = (decimal)transaction.detailsPagoMedida.ValorMin;
+                ValorMax = (decimal)transaction.detailsPagoMedida.ValorTotalFactura;
                 ActivateTimer();
             }
             catch (Exception ex)
@@ -56,7 +61,10 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
 
         private void BtnPagar_TouchDown(object sender, TouchEventArgs e)
         {
-            SaveTransaction();
+            if (Validar())
+            {
+                SaveTransaction();
+            }
         }
         #endregion
 
@@ -100,15 +108,33 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             }
         }
 
-        private void Validar()
+        private bool Validar()
         {
             try
             {
+                if ((decimal)transaction.detailsPagoMedida.ValorMinimoPago % 100 != 0)
+                {
+                    txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
+                    Environment.NewLine, "Ejemplo: $ 100, $ 200, $ 500, etc.");
+                    txtErrorValor.Visibility = Visibility.Visible;
+                    return false;
+                }
 
+                if ((decimal)transaction.detailsPagoMedida.ValorMinimoPago < ValorMin || (decimal)transaction.detailsPagoMedida.ValorMinimoPago > ValorMax)
+                {
+                    txtErrorValor.Text = string.Concat("Debe ingresar un valor supeior o igual a",
+                    Environment.NewLine, string.Format("${0} o inferior o igual a ${1}", ValorMin, ValorMax));
+                    txtErrorValor.Visibility = Visibility.Visible;
+                    return false;
+                }
+
+                transaction.Amount = (decimal)transaction.detailsPagoMedida.ValorMinimoPago;
+                return true;
             }
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+                return false;
             }
         }
         #endregion
@@ -145,5 +171,28 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             GC.Collect();
         }
         #endregion
+
+        private void txtvalorminimomedida_TouchDown(object sender, TouchEventArgs e)
+        {
+            Utilities.OpenKeyboard(true, sender as TextBox, this);
+        }
+
+        private void txtvalorminimomedida_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                txtErrorValor.Visibility = Visibility.Hidden;
+
+                if (txtvalorminimomedida.Text.Length > 8)
+                {
+                    txtvalorminimomedida.Text = txtvalorminimomedida.Text.Remove(8, 1);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
+        }
     }
 }
