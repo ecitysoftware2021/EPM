@@ -15,9 +15,9 @@ namespace WPFEmpresaEPM.Classes
 
     public enum ETypeTransaction
     {
-        PagoFactura = 1,
-        FacturaPrepago = 2,
-        PagoMedida = 3
+        PagoFactura = 29,
+        FacturaPrepago = 27,
+        PagoMedida = 28
     }
 
     public enum ETypeSearch
@@ -113,14 +113,6 @@ namespace WPFEmpresaEPM.Classes
     {
         Compra = 1,
         Venta = 2,
-    }
-
-    public enum ETypeProduct
-    {
-        Existence = 11,
-        commercialRegister = 12,
-        ChangeDivisa = 26
-
     }
 
     public enum ResponseCode

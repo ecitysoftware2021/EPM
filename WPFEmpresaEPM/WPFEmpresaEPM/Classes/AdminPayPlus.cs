@@ -475,7 +475,7 @@ namespace WPFEmpresaEPM.Classes
                         {
                             AMOUNT = transaction.Amount,
                             TRANSACTION_ID = data.ID,
-                            TRANSACTION_PRODUCT_ID = (int)ETypeProduct.Existence,
+                            TRANSACTION_PRODUCT_ID = (int)transaction.typeTransaction,
                             DESCRIPTION = "",
                             EXTRA_DATA = "",
                             TRANSACTION_DESCRIPTION_ID = 0,
