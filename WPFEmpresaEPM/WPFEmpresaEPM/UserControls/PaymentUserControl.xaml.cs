@@ -54,8 +54,8 @@ namespace WPFEmpresaEPM.UserControls
             {
                 this.paymentViewModel = new PaymentViewModel
                 {
-                    PayValue = 100,
-                    ValorFaltante = 100,
+                    PayValue = 200,
+                    ValorFaltante = 200,
                     ImgContinue = Visibility.Hidden,
                     ImgCancel = Visibility.Visible,
                     ImgCambio = Visibility.Hidden,
@@ -69,6 +69,7 @@ namespace WPFEmpresaEPM.UserControls
                 this.DataContext = this.paymentViewModel;
 
                 ActivateWallet();
+                //SavePay();
             }
             catch (Exception ex)
             {

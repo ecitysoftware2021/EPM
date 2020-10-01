@@ -113,8 +113,8 @@ namespace WPFEmpresaEPM.Classes.Printer
                 int sum = 30;
                 int x = 150;
 
-                string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
-                g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
+                //string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
+                //g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
 
                 g.DrawString("COMPROBANTE DE VENTA", fGIBTitles, sb, 25, y += sum);
                 g.DrawString("Nit 890.904.996-1", fContent, sb, 95, y += sum);
@@ -153,8 +153,8 @@ namespace WPFEmpresaEPM.Classes.Printer
                 int sum = 30;
                 int x = 150;
 
-                string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
-                g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
+                //string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
+                //g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
 
                 g.DrawString("COMPROBANTE DE VENTA", fGIBTitles, sb, 25, y += sum);
                 g.DrawString("Nit 890.904.996-1", fTitles, sb, 95, y += sum);
@@ -212,8 +212,8 @@ namespace WPFEmpresaEPM.Classes.Printer
                 int sum = 30;
                 int x = 150;
 
-                string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
-                g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
+                //string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
+                //g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
 
                 g.DrawString("COMPROBANTE DE VENTA", fGIBTitles, sb, 25, y += sum);
                 g.DrawString("Nit 890.904.996-1", fTitles, sb, 95, y += sum);

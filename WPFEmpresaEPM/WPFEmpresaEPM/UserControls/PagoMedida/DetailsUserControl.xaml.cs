@@ -80,7 +80,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     transaction.Type = ETransactionType.Payment;
                     transaction.State = ETransactionState.Initial;
                     transaction.payer = null;
-                    transaction.Amount = Convert.ToDecimal(transaction.detailsPagoMedida.ValorTotalFactura);
+                    //transaction.Amount = Convert.ToDecimal(transaction.detailsPagoMedida.ValorTotalFactura);
 
                     await AdminPayPlus.SaveTransaction(this.transaction);
 
