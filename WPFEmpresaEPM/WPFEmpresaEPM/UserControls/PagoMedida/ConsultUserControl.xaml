@@ -81,7 +81,7 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top" 
                    Height="60"  
-                   Margin="100,400,0,0" 
+                   Margin="140,400,0,0" 
                    Stretch="Uniform"
                    TouchDown="BtnContrato_TouchDown"
                    />

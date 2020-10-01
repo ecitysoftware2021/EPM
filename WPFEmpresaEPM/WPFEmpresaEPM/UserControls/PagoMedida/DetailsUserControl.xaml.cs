@@ -115,15 +115,15 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                 if ((decimal)transaction.detailsPagoMedida.ValorMinimoPago % 100 != 0)
                 {
                     txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
-                    Environment.NewLine, "Ejemplo: $ 100, $ 200, $ 500, etc.");
+                    Environment.NewLine, "Ejemplo: $100, $1.000, $10.000... etc.");
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
 
                 if ((decimal)transaction.detailsPagoMedida.ValorMinimoPago < ValorMin || (decimal)transaction.detailsPagoMedida.ValorMinimoPago > ValorMax)
                 {
-                    txtErrorValor.Text = string.Concat("Debe ingresar un valor supeior o igual a",
-                    Environment.NewLine, string.Format("${0} o inferior o igual a ${1}", ValorMin, ValorMax));
+                    txtErrorValor.Text = string.Concat("Debe ingresar un valor entre",
+                    Environment.NewLine, string.Format("{0} y {1}", ValorMin.ToString("C"), ValorMax.ToString("C")));
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }

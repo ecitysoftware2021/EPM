@@ -25,6 +25,7 @@ namespace WPFEmpresaEPM.UserControls
         #region "Referencias"
         private Transaction transaction;
         private PaymentViewModel paymentViewModel;
+        private int Intentos = 1;
         #endregion
 
         #region "Constructor"
@@ -68,8 +69,8 @@ namespace WPFEmpresaEPM.UserControls
 
                 this.DataContext = this.paymentViewModel;
 
-                ActivateWallet();
-                //SavePay();
+                //ActivateWallet();
+                SavePay();
             }
             catch (Exception ex)
             {
@@ -213,17 +214,16 @@ namespace WPFEmpresaEPM.UserControls
         {
             try
             {
-                if (!this.paymentViewModel.StatePay)
-                {
-                    this.paymentViewModel.StatePay = true;
-                    transaction.Payment = paymentViewModel;
-                    transaction.State = statePay;
+                //if (!this.paymentViewModel.StatePay)
+                //{
+                //    this.paymentViewModel.StatePay = true;
+                //    transaction.Payment = paymentViewModel;
+                //    transaction.State = statePay;
 
-                    AdminPayPlus.ControlPeripherals.ClearValues();
+                //    AdminPayPlus.ControlPeripherals.ClearValues();
 
                     Task.Run(async () =>
                     {
-                        string url = string.Empty;
                         object dataTransaction = null;
 
                         switch (transaction.typeTransaction)
@@ -240,7 +240,7 @@ namespace WPFEmpresaEPM.UserControls
                                 {
                                     payValue = transaction.Amount,
                                     reference = transaction.NumeroMedidor,
-                                    transactionID = transaction.IdTransactionAPi
+                                    transactionID = transaction.ConsecutivoId
                                 };
                                 break;
                             case ETypeTransaction.PagoMedida:
@@ -248,13 +248,21 @@ namespace WPFEmpresaEPM.UserControls
                                 {
                                     contract = transaction.NumeroContrato,
                                     document = transaction.Document,
-                                    transactionID = transaction.IdTransactionAPi,
+                                    transactionID = transaction.ConsecutivoId,
                                     payValue = transaction.Amount
                                 };
                                 break;
                         }
 
                         bool response = await ApiIntegration.ReportPay(transaction, dataTransaction);
+
+                        if (!response && Intentos < 3)
+                        {
+                            Intentos++;
+                            //this.paymentViewModel.StatePay = false;
+                            SavePay();
+                            return;
+                        }
 
                         if (response)
                         {
@@ -267,7 +275,7 @@ namespace WPFEmpresaEPM.UserControls
                             CancelTransaction();
                         }
                     });
-                }
+                //}
             }
             catch (Exception ex)
             {

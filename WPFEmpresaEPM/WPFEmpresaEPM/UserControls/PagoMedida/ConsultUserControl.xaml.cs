@@ -73,9 +73,9 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             {
                 txtErrorDocumento.Visibility = Visibility.Hidden;
 
-                if (TxtNumDocument.Text.Length > 8)
+                if (TxtNumDocument.Text.Length > 10)
                 {
-                    TxtNumDocument.Text = TxtNumDocument.Text.Remove(8, 1);
+                    TxtNumDocument.Text = TxtNumDocument.Text.Remove(10, 1);
                     return;
                 }
             }
@@ -164,8 +164,13 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
 
                     if (response == null)
                     {
-                        Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error);
+                        Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error,true);
                         ActivateTimer();
+                        Dispatcher.BeginInvoke((Action)delegate
+                        {
+                            btnConsult.Visibility = Visibility.Visible;
+                        });
+                        GC.Collect();
                     }
                     else
                     {
@@ -174,6 +179,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     }
                 });
 
+                btnConsult.Visibility = Visibility.Hidden;
                 SetCallBacksNull();
                 timer.CallBackStop?.Invoke(1);
                 Utilities.ShowModal(MessageResource.LoadInformation, EModalType.Preload);

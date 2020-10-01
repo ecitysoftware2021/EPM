@@ -76,9 +76,9 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
             {
                 txtErrorMedidor.Visibility = Visibility.Hidden;
 
-                if (txtNumeroMedidor.Text.Length > 15)
+                if (txtNumeroMedidor.Text.Length > 12)
                 {
-                    txtNumeroMedidor.Text = txtNumeroMedidor.Text.Remove(15, 1);
+                    txtNumeroMedidor.Text = txtNumeroMedidor.Text.Remove(12, 1);
                     return;
                 }
             }
@@ -133,7 +133,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
 
                 if (string.IsNullOrEmpty(txtValor.Text) || valueModel.Val <= 0)
                 {
-                    txtErrorValor.Text = "Debe ingresar el valor a pagar";
+                    txtErrorValor.Text = "Debe ingresar el valor a recargar";
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
@@ -141,15 +141,15 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                 if (valueModel.Val % 100 != 0)
                 {
                     txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
-                    Environment.NewLine, "Ejemplo: $ 100, $ 200, $ 500, etc."); 
+                    Environment.NewLine, "Ejemplo: $100, $1.000, $10.000... etc."); 
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
 
                 if (valueModel.Val < ValorMin || valueModel.Val > ValorMax)
                 {
-                    txtErrorValor.Text = string.Concat("Debe ingresar un valor supeior o igual a",
-                    Environment.NewLine, string.Format("${0} o inferior o igual a ${1}",ValorMin,ValorMax));
+                    txtErrorValor.Text = string.Concat("Debe ingresar un valor entre",
+                    Environment.NewLine, string.Format("{0} y {1}",ValorMin.ToString("C"),ValorMax.ToString("C")));
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
@@ -179,7 +179,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
 
                     if (response == null)
                     {
-                        Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error);
+                        Utilities.ShowModal("No se encontraron resultados. Por favor vuelve a intentarlo.", EModalType.Error,true);
                         ActivateTimer();
                     }
                     else

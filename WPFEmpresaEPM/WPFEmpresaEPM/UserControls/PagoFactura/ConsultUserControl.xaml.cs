@@ -115,9 +115,9 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 txtError.Visibility = Visibility.Hidden;
 
-                if (TxtIdentification.Text.Length > 15)
+                if (TxtIdentification.Text.Length > 10)
                 {
-                    TxtIdentification.Text = TxtIdentification.Text.Remove(15, 1);
+                    TxtIdentification.Text = TxtIdentification.Text.Remove(10, 1);
                     return;
                 }
             }
@@ -178,7 +178,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
 
                     if (response == null)
                     {
-                        Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error);
+                        Utilities.ShowModal("No se encontraron resultados. Por favor vuelve a intentarlo.", EModalType.Error);
                         ActivateTimer();
                     }
                     else

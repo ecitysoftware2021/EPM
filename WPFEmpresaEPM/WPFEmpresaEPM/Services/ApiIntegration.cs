@@ -199,7 +199,6 @@ namespace WPFEmpresaEPM.Services
                         break;
                 }
 
-
                 ts.Payprepago = payFacturaPrepago;
                 ts.Paymedida = payMedida;
 

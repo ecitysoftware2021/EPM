@@ -114,9 +114,9 @@ namespace WPFEmpresaEPM.Classes
 
                     DescriptionStatusPayPlus = MessageResource.ValidatePeripherals;
 
-                    ValidatePeripherals();
+                    //ValidatePeripherals();
 
-                    //callbackResult?.Invoke(true);
+                    callbackResult?.Invoke(true);
                 }
                 else
                 {
@@ -430,7 +430,12 @@ namespace WPFEmpresaEPM.Classes
             {
                 if (transaction != null)
                 {
-                    CreateConsecutivoDashboard();
+                    bool response = await CreateConsecutivoDashboard(transaction);
+
+                    if (!response)
+                    {
+                        return;
+                    }
 
                     transaction.IsReturn = await ValidateMoney(transaction);
 
@@ -542,29 +547,23 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
-        public async static Task<bool> CreateConsecutivoDashboard()
+        public async static Task<bool> CreateConsecutivoDashboard(Transaction ts)
         {
             try
             {
-                //ConsecutivoApi = new SP_GET_INVOICE_DATA_Result();
-
-
-                var response = await api.CallApi("GetInvoiceData",new RequestApi
-                {
-                    Data = true
-                });
+                var response = await api.CallApi("GetInvoiceData", true);
 
                 if (response != null)
                 {
                     //if (response.CodeError == 200)
                     //{
-                        //var responseApi = JsonConvert.DeserializeObject<SP_GET_INVOICE_DATA_Result>(response.Data.ToString());
+                        var responseApi = JsonConvert.DeserializeObject<SP_GET_INVOICE_DATA_Result>(response.ToString());
 
-                        //if (responseApi.IS_AVAILABLE == true)
-                        //{
-                        //    ConsecutivoApi = responseApi;
-                        //    return true;
-                        //}
+                        if (responseApi.IS_AVAILABLE == true)
+                        {
+                            ts.ConsecutivoId = Convert.ToInt32(responseApi.RANGO_ACTUAL);
+                            return true;
+                        }
                     //}
                 }
 
@@ -617,6 +616,8 @@ namespace WPFEmpresaEPM.Classes
 
                     if (tRANSACTION != null)
                     {
+                        tRANSACTION.TRANSACTION_REFERENCE = transaction.ConsecutivoId.ToString();
+
                         var responseTransaction = await api.CallApi("UpdateTransaction", tRANSACTION);
                         if (responseTransaction != null)
                         {
@@ -771,7 +772,10 @@ namespace WPFEmpresaEPM.Classes
                 if (transaction.Amount > 0)
                 {
                     var isValidateMoney = await api.CallApi("ValidateDispenserAmount", transaction.Amount);
-                    return (bool)isValidateMoney;
+                    if (isValidateMoney != null)
+                    {
+                        return (bool)isValidateMoney;
+                    }
                 }
             }
             catch (Exception ex)

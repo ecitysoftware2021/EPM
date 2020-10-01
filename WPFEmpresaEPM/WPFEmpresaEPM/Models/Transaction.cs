@@ -96,6 +96,21 @@ namespace WPFEmpresaEPM.Models
             }
         }
 
+        private int _consecutivoId { get; set; }
+
+        public int ConsecutivoId
+        {
+            get
+            {
+                return _consecutivoId;
+            }
+            set
+            {
+                _consecutivoId = value;
+                OnPropertyRaised("ConsecutivoId");
+            }
+        }
+
         private int _idTransactionAPi { get; set; }
 
         public int IdTransactionAPi
