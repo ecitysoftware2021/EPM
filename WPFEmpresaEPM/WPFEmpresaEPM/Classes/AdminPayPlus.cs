@@ -430,6 +430,8 @@ namespace WPFEmpresaEPM.Classes
             {
                 if (transaction != null)
                 {
+                    CreateConsecutivoDashboard();
+
                     transaction.IsReturn = await ValidateMoney(transaction);
 
                     if (transaction.payer == null)
@@ -537,6 +539,40 @@ namespace WPFEmpresaEPM.Classes
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "InitPaypad", ex, ex.ToString());
+            }
+        }
+
+        public async static Task<bool> CreateConsecutivoDashboard()
+        {
+            try
+            {
+                //ConsecutivoApi = new SP_GET_INVOICE_DATA_Result();
+
+
+                var response = await api.CallApi("GetInvoiceData",new RequestApi
+                {
+                    Data = true
+                });
+
+                if (response != null)
+                {
+                    //if (response.CodeError == 200)
+                    //{
+                        //var responseApi = JsonConvert.DeserializeObject<SP_GET_INVOICE_DATA_Result>(response.Data.ToString());
+
+                        //if (responseApi.IS_AVAILABLE == true)
+                        //{
+                        //    ConsecutivoApi = responseApi;
+                        //    return true;
+                        //}
+                    //}
+                }
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
 
