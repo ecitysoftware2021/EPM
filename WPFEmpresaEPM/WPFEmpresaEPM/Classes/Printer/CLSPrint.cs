@@ -160,21 +160,21 @@ namespace WPFEmpresaEPM.Classes.Printer
                 g.DrawString("Nit 890.904.996-1", fContent, sb, 95, y += sum);
                 g.DrawString("PAGA A TU MEDIDA", fGIBTitles, sb, 55, y += sum - 10);
 
-                g.DrawString("Referente de pago: "+ REFERENTE_DE_PAGO, fTitles, sb, 50, y += sum);
-                g.DrawString("Fecha pago: "+ FECHA_DE_PAGO, fTitles, sb, 50, y += sum-10);
-                g.DrawString("Contrato: "+ CONTRATO, fTitles, sb, 85, y += sum-10);
-                g.DrawString("Identifiación cliente: "+ IDENTIFICACION_C, fTitles, sb, 50, y += sum-10);
-                g.DrawString("Valor total fact: "+ VALOR_TOTAL_FACT, fTitles, sb, 70, y += sum-10);
-                g.DrawString("Saldo anterior vencido: "+ SALDO_ANTERIOR_VENCIDO, fTitles, sb, 70, y += sum-10);
-                g.DrawString("Saldo anterior vigente: "+ SALDO_ANTERIOR_VIGENTE, fTitles, sb, 70, y += sum-10);
-                g.DrawString("Saldo anterior total: "+ SALDO_ANTERIOR_TOTAL, fTitles, sb, 70, y += sum-10);
-                g.DrawString("Valor pago: "+ VALOR_PAGO, fTitles, sb, 75, y += sum-10);
-                g.DrawString("Nuevo saldo: "+ NUEVO_SALDO, fTitles, sb, 75, y += sum-10);
-                g.DrawString("Saldo a favor: "+ SALDO_FAVOR, fTitles, sb, 75, y += sum-10);
-                g.DrawString("Num restante pagos: "+ NUM_REST_PAGOS, fTitles, sb, 80, y += sum-10);
-                g.DrawString("Fecha vencimiento fact: "+ FECHA_DE_VENCI_FACT, fTitles, sb, 45, y += sum-10);
-                g.DrawString("Servicios a suspender: "+ SERVICIO_A_SUSPENDER, fTitles, sb, 25, y += sum-10);
-                g.DrawString("Punto de venta: "+PUNTO_DE_VENTA, fTitles, sb, 80, y += sum-10);
+                g.DrawString("Referente de pago: "+ REFERENTE_DE_PAGO, fTitles, sb, 10, y += sum);
+                g.DrawString("Fecha pago: "+ FECHA_DE_PAGO, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Contrato: "+ CONTRATO, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Identifiación cliente: "+ IDENTIFICACION_C, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Valor total fact: "+ VALOR_TOTAL_FACT, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Saldo anterior vencido: "+ SALDO_ANTERIOR_VENCIDO, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Saldo anterior vigente: "+ SALDO_ANTERIOR_VIGENTE, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Saldo anterior total: "+ SALDO_ANTERIOR_TOTAL, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Valor pago: "+ VALOR_PAGO, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Nuevo saldo: "+ NUEVO_SALDO, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Saldo a favor: "+ SALDO_FAVOR, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Num restante pagos: "+ NUM_REST_PAGOS, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Fecha vencimiento fact: "+ FECHA_DE_VENCI_FACT, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Servicios a suspender: "+ SERVICIO_A_SUSPENDER, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Punto de venta: "+PUNTO_DE_VENTA, fTitles, sb, 10, y += sum-10);
 
                 g.DrawString("========================================", fContent, sb, 10, y += sum);
                 g.DrawString("MAYOR INFORMACIÓN LLAMAR A  LINEA", fTitles, sb, 10, y += sum + 10);
