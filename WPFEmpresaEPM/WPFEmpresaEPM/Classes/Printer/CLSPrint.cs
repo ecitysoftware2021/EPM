@@ -132,7 +132,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                 g.DrawString("PUNTO DE VENTA:" + PUNTO_DE_VENTA, fContent, sb, 80, y += sum - 10);
                 g.DrawString("========================================", fContent, sb, 10, y += sum);
                 g.DrawString("MAYOR INFORMACIÓN LLAMAR A  LINEA", fTitles, sb, 10, y += sum + 10);
-                g.DrawString("GRATUITA DE ATENCIÓN EMP: 01 8000 415115", fTitles, sb, 10, y += 20);
+                g.DrawString("GRATUITA DE ATENCIÓN EPM: 01 8000 415115", fTitles, sb, 10, y += 20);
                 g.DrawString("RECUERDE SIEMPRE ESPERAR LA TIRILLA DE ", fTitles, sb, 10, y += sum - 10);
                 g.DrawString("SOPORTE DE PAGO, ES EL ÚNICO DOCUMENTO", fTitles, sb, 10, y += 20);
                 g.DrawString("QUE LO RESPALDA.", fTitles, sb, 10, y += 20);
@@ -168,7 +168,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                 g.DrawString("Saldo anterior vencido: "+ SALDO_ANTERIOR_VENCIDO, fTitles, sb, 10, y += sum-10);
                 g.DrawString("Saldo anterior vigente: "+ SALDO_ANTERIOR_VIGENTE, fTitles, sb, 10, y += sum-10);
                 g.DrawString("Saldo anterior total: "+ SALDO_ANTERIOR_TOTAL, fTitles, sb, 10, y += sum-10);
-                g.DrawString("Valor pago: "+ VALOR_PAGO, fTitles, sb, 10, y += sum-10);
+                g.DrawString("Valor pagado: "+ VALOR_PAGO, fTitles, sb, 10, y += sum-10);
                 g.DrawString("Nuevo saldo: "+ NUEVO_SALDO, fTitles, sb, 10, y += sum-10);
                 g.DrawString("Saldo a favor: "+ SALDO_FAVOR, fTitles, sb, 10, y += sum-10);
                 g.DrawString("Num restante pagos: "+ NUM_REST_PAGOS, fTitles, sb, 10, y += sum-10);
@@ -178,7 +178,7 @@ namespace WPFEmpresaEPM.Classes.Printer
 
                 g.DrawString("========================================", fContent, sb, 10, y += sum);
                 g.DrawString("MAYOR INFORMACIÓN LLAMAR A  LINEA", fTitles, sb, 10, y += sum + 10);
-                g.DrawString("GRATUITA DE ATENCIÓN EMP: 01 8000 415115", fTitles, sb, 10, y += 20);
+                g.DrawString("GRATUITA DE ATENCIÓN EPM: 01 8000 415115", fTitles, sb, 10, y += 20);
                 g.DrawString("RECUERDE SIEMPRE ESPERAR LA TIRILLA DE ", fTitles, sb, 10, y += sum - 10);
                 g.DrawString("SOPORTE DE PAGO, ES EL ÚNICO DOCUMENTO", fTitles, sb, 10, y += 20);
                 g.DrawString("QUE LO RESPALDA.", fTitles, sb, 10, y += 20);
@@ -219,7 +219,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                 g.DrawString(VALOR, fContent, sb, x, y);
                 g.DrawString("========================================", fContent, sb, 10, y += sum);
                 g.DrawString("MAYOR INFORMACIÓN LLAMAR A  LINEA", fTitles, sb, 10, y += sum + 10);
-                g.DrawString("GRATUITA DE ATENCIÓN EMP: 01 8000 415115", fTitles, sb, 10, y += 20);
+                g.DrawString("GRATUITA DE ATENCIÓN EPM: 01 8000 415115", fTitles, sb, 10, y += 20);
                 g.DrawString("RECUERDE SIEMPRE ESPERAR LA TIRILLA DE ", fTitles, sb, 10, y += sum - 10);
                 g.DrawString("SOPORTE DE PAGO, ES EL ÚNICO DOCUMENTO", fTitles, sb, 10, y += 20);
                 g.DrawString("QUE LO RESPALDA.", fTitles, sb, 10, y += 20);
