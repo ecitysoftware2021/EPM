@@ -36,33 +36,33 @@ namespace WPFEmpresaEPM.UserControls
         {
             try
             {
-                if (transaction.State == ETransactionState.Success)
-                {
-                    AdminPayPlus.SaveLog(new RequestLog
-                    {
-                        Description = MessageResource.SussesTransaction,
-                        Reference = transaction.reference
-                    }, ELogType.General);
-                }
-                else
-                {
-                    AdminPayPlus.SaveLog(new RequestLog
-                    {
-                        Description = MessageResource.NoveltyTransation,
-                        Reference = transaction.reference
-                    }, ELogType.General);
-                }
+                //if (transaction.State == ETransactionState.Success)
+                //{
+                //    AdminPayPlus.SaveLog(new RequestLog
+                //    {
+                //        Description = MessageResource.SussesTransaction,
+                //        Reference = transaction.reference
+                //    }, ELogType.General);
+                //}
+                //else
+                //{
+                //    AdminPayPlus.SaveLog(new RequestLog
+                //    {
+                //        Description = MessageResource.NoveltyTransation,
+                //        Reference = transaction.reference
+                //    }, ELogType.General);
+                //}
 
                 GC.Collect();
 
-                Task.Run(() =>
-                {
-                    if (!string.IsNullOrEmpty(transaction.Observation))
-                    {
-                        AdminPayPlus.SaveErrorControl(transaction.Observation, "", EError.Device, ELevelError.Medium);
-                    }
+                //Task.Run(() =>
+                //{
+                    //if (!string.IsNullOrEmpty(transaction.Observation))
+                    //{
+                    //    AdminPayPlus.SaveErrorControl(transaction.Observation, "", EError.Device, ELevelError.Medium);
+                    //}
 
-                    AdminPayPlus.UpdateTransaction(this.transaction);
+                    //AdminPayPlus.UpdateTransaction(this.transaction);
 
                     transaction.StatePay = "Aprobado";
 
@@ -70,19 +70,21 @@ namespace WPFEmpresaEPM.UserControls
 
                     Thread.Sleep(5000);
 
-                    Dispatcher.BeginInvoke((Action)delegate
-                    {
-                        if (transaction.State == ETransactionState.Error)
-                        {
-                            Utilities.RestartApp();
-                        }
-                        else
-                        {
-                            Utilities.navigator.Navigate(UserControlView.Main);
-                        }
-                    });
-                    GC.Collect();
-                });
+                    //Dispatcher.BeginInvoke((Action)delegate
+                    //{
+                        //if (transaction.State == ETransactionState.Error)
+                        //{
+                        //    Utilities.RestartApp();
+                        //}
+                        //else
+                        //{
+                        //    Utilities.navigator.Navigate(UserControlView.Main);
+                        //}
+                    //});
+                    //GC.Collect();
+                //});
+
+                FinishTrnsaction();
             }
             catch (Exception ex)
             {
