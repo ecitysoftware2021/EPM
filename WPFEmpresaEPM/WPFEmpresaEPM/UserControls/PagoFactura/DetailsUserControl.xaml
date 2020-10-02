@@ -42,8 +42,18 @@
                    TouchDown="BtnBack_TouchDown"
                    />
         </Grid>
-        <Border Grid.Row="1" BorderThickness="10,10,10,10" BorderBrush="#FF68B549"  CornerRadius="30,30,30,30" Margin="50,100,50,100" Background="White">
+        <Border Grid.Row="1" BorderThickness="10,10,10,10" BorderBrush="#FF68B549"  CornerRadius="30,30,30,30" Margin="50,0,50,200" Background="White">
             <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180" />
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
                 <TextBlock Text="Pago De Factura"
                        TextWrapping="Wrap"
                        TextAlignment="Justify"
@@ -54,79 +64,59 @@
                        Foreground="#FF68B549" 
                        Margin="0,0,0,0"/>
                 <TextBlock 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top"
-                   Margin="0,150,0,0"
-                   TextAlignment="Center"
-                   TextWrapping="Wrap"
-                   Text="Referencia"
-                   FontSize="50"
-                   FontWeight="Bold"
-                   Foreground="#606060"/>
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="30,0,0,0"
+                       Grid.Row="1"
+                       FontSize="80"
+                       FontWeight="Bold"
+                       >
+                <Run Foreground="#FF68B549" Text="Contrato:" />
+                <Run Foreground="#FF68B549" Text="{Binding NumeroCuenta}"/>
+                </TextBlock>
                 <TextBlock 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Top" 
-                   Margin="0,220,0,0" 
-                   FontSize="40"
-                   TextAlignment="Center"
-                   Text="{Binding Referencia}"
-                    />
-
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="30,0,0,0"
+                       Grid.Row="3"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       >
+                <Run Foreground="Gray" Text="Referencia:" />
+                <Run Foreground="Black" Text="{Binding Referencia}"/>
+                </TextBlock>
                 <TextBlock 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Margin="0,0,0,250"
-                   TextAlignment="Center"
-                   TextWrapping="Wrap"
-                   Text="Número de Contrato"
-                   FontSize="50"
-                   FontWeight="Bold"                   
-                   Foreground="#606060"/>
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       Margin="30,0,0,0"
+                       Grid.Row="3"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       >
+                <Run Foreground="Gray" Text="Fecha límite de pago:" />
+                <Run Foreground="Black" Text="{Binding FechaLimite}"/>
+                </TextBlock>
                 <TextBlock 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" 
-                   Margin="0,0,0,100" 
-                   FontSize="40"
-                   TextAlignment="Center"
-                   Text="{Binding NumeroCuenta}"
-                    />
-                <TextBlock 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Margin="0,200,0,0"
-                   TextAlignment="Center"
-                   TextWrapping="Wrap"
-                   Text="Fecha límite de pago"
-                   FontSize="50"
-                   FontWeight="Bold"                   
-                   Foreground="#606060"/>
-                <TextBlock Name="txtDate"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Margin="0,350,0,0" 
-                   FontSize="40"
-                   TextAlignment="Center"
-                   Text="{Binding FechaLimite}"
-                    />
-                <TextBlock 
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
-                   Margin="0,0,0,170"
-                   TextAlignment="Center"
-                   TextWrapping="Wrap"
-                   Text="Valor a pagar"
-                   FontSize="50"
-                   FontWeight="Bold"                   
-                   Foreground="#606060"/>
-                <TextBlock 
-                   Name="txtValor"
-                   Text="{Binding ValorPagar, StringFormat={}{0:C0}}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
-                   Margin="0,0,0,100" 
-                   FontSize="40"
-                   TextAlignment="Center"
-                    />
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Bottom"
+                       Margin="30,0,0,0"
+                       Grid.Row="3"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       >
+                <Run Foreground="Gray" Text="Valor a pagar:" />
+                <Run Foreground="Black" Text="{Binding ValorPagar, StringFormat={}{0:C0}}"/>
+                </TextBlock>
+                <Image 
+                    x:Name="BtnPagar"
+                    Source="/Images/Buttons/b-pagar-en-efectivo.png"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top" 
+                    Height="100"
+                    Grid.Row="7"
+                    Stretch="Uniform"
+                    TouchDown="BtnPagar_TouchDown"
+                />
             </Grid>
             <Border.Effect>
                 <DropShadowEffect
@@ -137,16 +127,5 @@
                         BlurRadius="30.0"/>
             </Border.Effect>
         </Border>
-        <Grid Grid.Row="2">
-            <Image 
-                x:Name="BtnPagar"
-                Source="/Images/Buttons/b-pagar-en-efectivo.png"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top" 
-                Height="100"  
-                Stretch="Uniform"
-                TouchDown="BtnPagar_TouchDown"
-                />
-        </Grid>
     </Grid>
 </UserControl>

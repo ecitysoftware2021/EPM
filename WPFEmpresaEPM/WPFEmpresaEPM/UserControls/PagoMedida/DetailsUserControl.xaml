@@ -44,7 +44,7 @@
                    TouchDown="BtnBack_TouchDown"
                    />
         </Grid>
-        <Border Grid.Row="1" BorderThickness="10,10,10,10" BorderBrush="#FF68B549"  CornerRadius="30,30,30,30" Margin="50,100,50,100" Background="White">
+        <Border Grid.Row="1" BorderThickness="10,10,10,10" BorderBrush="#FF68B549"  CornerRadius="30,30,30,30" Margin="50,0,50,200" Background="White">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="130" />
@@ -58,11 +58,8 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Paga A Tu Medida"
-                       TextWrapping="Wrap"
-                       TextAlignment="Justify"
                        FontSize="60"
                        FontWeight="Bold"
-                       Grid.ColumnSpan="2"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
                        Foreground="#FF68B549" 
@@ -71,76 +68,43 @@
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="30,0,0,0"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="Contrato:"
                        Grid.Row="1"
-                       FontSize="90"
-                       FontWeight="Bold"
-                       Foreground="#FF68B549"/>
-                <TextBlock 
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" 
-                       Margin="250,20,0,0" 
                        FontSize="80"
-                       TextWrapping="Wrap"
-                       TextAlignment="Left"
-                       Grid.Row="1"
-                       Grid.ColumnSpan="2"
-                       Foreground="#FF68B549"
-                       Text="{Binding Contrato}"
-                        />
+                       FontWeight="Bold"
+                       >
+                <Run Foreground="#FF68B549" Text="Contrato:" />
+                <Run Foreground="#FF68B549" Text="{Binding Contrato}"/>
+                </TextBlock>
                 <TextBlock 
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="30,0,0,0"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="Cliente:"
                        Grid.Row="3"
                        FontSize="30"
                        FontWeight="Bold"
-                       Foreground="#606060"/>
-                <TextBlock 
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Top" 
-                       Margin="0,0,280,0" 
-                       FontSize="30"
-                       TextWrapping="Wrap"
-                       TextAlignment="Left"
-                       Grid.Row="3"
-                       Text="{Binding Nombre}"
-                        />
+                       >
+                <Run Foreground="Gray" Text="Cliente:" />
+                <Run Foreground="Black" Text="{Binding Nombre}"/>
+                </TextBlock>
                 <TextBlock 
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Margin="30,0,0,0"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="CC/Nit:"
+                       Text=""
                        FontSize="30"
-                       Grid.Column="0"
                        Grid.Row="3"
                        FontWeight="Bold"
-                       Foreground="#606060"/>
-                <TextBlock 
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" 
-                       Grid.Column="0"
-                       Grid.Row="3"
-                       Margin="0,0,550,0" 
-                       FontSize="30"
-                       TextAlignment="Center"
-                       Text="{Binding Identificacion}"
-                        />
+                       >
+                <Run Foreground="Gray" Text="CC/Nit:" />
+                <Run Foreground="Black" Text="{Binding Identificacion}"/>
+                </TextBlock>
                 <TextBlock 
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center" 
-                       Margin="30,30,0,0" 
+                       VerticalAlignment="Bottom" 
+                       Margin="30,0,0,0" 
                        FontSize="30"
                        Grid.Row="2"
-                       Grid.Column="0"
-                       TextAlignment="Center"
+                       FontWeight="Bold"
                         >
                 <Run Foreground="Black" Text="{Binding Localidad}" />
                 <Run Foreground="Gray" Text="-" />
@@ -148,56 +112,46 @@
                 </TextBlock>
                 <TextBlock Name="txtDae"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
+                       VerticalAlignment="Center"
                        Margin="30,0,0,0" 
                        FontSize="35"
                        Grid.Row="2"
-                       TextWrapping="Wrap"
                        TextAlignment="Left"
+                       FontWeight="Bold"
                        Text="{Binding Direccion}"
                         />
                 <TextBlock 
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
+                       VerticalAlignment="Bottom"
                        Margin="30,0,0,0"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="Valor total:"
+                       Text=""
                        FontSize="35"
-                       Grid.Row="4"
+                       Grid.Row="3"
                        FontWeight="Bold"                   
-                       Foreground="#606060"/>
-                <TextBlock 
-                       Text="{Binding ValorTotalFactura, StringFormat={}{0:C0}}"
-                       Grid.Row="4"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       Margin="220,0,0,0" 
-                       FontSize="35"
-                       TextAlignment="Center"
-                        />
+                       >
+                <Run Foreground="Gray" Text="Valor total:" />
+                <Run Foreground="Black" Text="{Binding ValorTotalFactura, StringFormat={}{0:C0}}"/>
+                </TextBlock>
                 <TextBlock 
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       Margin="0,0,30,0"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Grid.Row="5"
+                       VerticalAlignment="Bottom"
+                       Margin="0,0,0,0"
+                       Grid.Row="4"
                        Text="Valor mínimo de pago"
-                       FontSize="40"
+                       FontSize="35"
                        FontWeight="Bold"                   
                        Foreground="#606060"/>
                 <TextBox x:Name="txtvalorminimomedida"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
-                   Grid.Row="6"
+                   Grid.Row="5"
                    Height="80" 
                    Text="{Binding ValorMinimoPago, StringFormat={}{0:C0}, UpdateSourceTrigger=PropertyChanged}"
                    Width="400"      
                    TextAlignment="Center"
                    FontSize="45"
                    Margin="0,0,0,0"
-                   TabIndex="0"
+                   FontWeight="Bold"
                    TouchDown="txtvalorminimomedida_TouchDown"
                    TextChanged="txtvalorminimomedida_TextChanged"
                          />
@@ -210,7 +164,7 @@
                    VerticalAlignment="Bottom"
                    Margin="0,0,290,0"
                    Visibility="Visible"
-                   Grid.Row="6"
+                   Grid.Row="5"
                    Opacity="0.3"
                    />
                 <TextBlock
@@ -219,11 +173,21 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
                 FontSize="35"
-                Grid.RowSpan="9"
+                Grid.RowSpan="8"
                 Foreground="Red"
                 TextAlignment="Center"
                 Visibility="Hidden"
                 Margin="0,0,0,160"/>
+                <Image 
+                    x:Name="BtnPagar"
+                    Source="/Images/Buttons/b-pagar-en-efectivo.png"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top" 
+                    Height="100"  
+                    Grid.Row="8"
+                    Stretch="Uniform"
+                    TouchDown="BtnPagar_TouchDown"
+                />
             </Grid>
             <Border.Effect>
                 <DropShadowEffect
@@ -234,16 +198,5 @@
                         BlurRadius="30.0"/>
             </Border.Effect>
         </Border>
-        <Grid Grid.Row="2">
-            <Image 
-                x:Name="BtnPagar"
-                Source="/Images/Buttons/b-pagar-en-efectivo.png"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Top" 
-                Height="100"  
-                Stretch="Uniform"
-                TouchDown="BtnPagar_TouchDown"
-                />
-        </Grid>
     </Grid>
 </UserControl>

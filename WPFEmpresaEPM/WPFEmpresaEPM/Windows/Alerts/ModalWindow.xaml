@@ -22,35 +22,33 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="360" />
-                <RowDefinition Height="810" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="400" />
             </Grid.RowDefinitions>
-
-            <Grid Grid.Row="1">
-                <TextBlock x:Name="LblTittle" 
+            <Border Grid.Row="1" BorderThickness="10,10,10,10" BorderBrush="#FF68B549"  CornerRadius="30,30,30,30" Margin="50,0,50,200" Background="White">
+                <Grid>
+                    <TextBlock x:Name="LblTittle" 
                            Text="{Binding Tittle}"
                            HorizontalAlignment="Center"
-                           Margin="0,160,0,0" 
+                           Margin="0,80,0,0" 
                            FontSize="55" 
-                           Width="500"
                            FontFamily="Myriad Pro"
                            FontWeight="Bold"
-                           TextWrapping="WrapWithOverflow"
                            VerticalAlignment="Top"
                            TextAlignment="Center" />
 
-                <TextBlock x:Name="LblMessage" 
+                    <TextBlock x:Name="LblMessage" 
                            Text="{Binding Messaje}"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,200" 
                            FontSize="48" 
-                           Width="500"
+                           Width="700"
                            FontFamily="Myriad Pro"
                            TextWrapping="WrapWithOverflow"
-                           VerticalAlignment="Bottom"
+                           VerticalAlignment="Center"
                            TextAlignment="Center" />
 
-                <TextBlock x:Name="LblMessageTouch" 
+                    <TextBlock x:Name="LblMessageTouch" 
                            Text="¡Toca la pantalla para continuar!"
                            HorizontalAlignment="Center"
                            Margin="0,0,0,30" 
@@ -60,47 +58,53 @@
                            TextWrapping="WrapWithOverflow"
                            VerticalAlignment="Bottom"
                            TextAlignment="Center" />
-            </Grid>
-
-            <Grid Grid.Row ="2">
-                <Image gif:ImageBehavior.AnimatedSource="/Images/Gif/loading.gif" 
+                    <Image gif:ImageBehavior.AnimatedSource="/Images/Gif/loading.gif" 
                        gif:ImageBehavior.AnimateInDesignMode="True"
                        gif:ImageBehavior.AutoStart="True" 
                        x:Name="GifLoadder"  
                        Stretch="Uniform"
-                       VerticalAlignment="Center" 
+                       VerticalAlignment="Bottom" 
                        HorizontalAlignment="Center" 
-                       Height="400"
-                       Margin="0,0,0,350"
+                       Height="300"
+                       Margin="0,0,0,20"
                        Visibility="Hidden"/>
 
-                <Image x:Name="BtnOk" 
-                        VerticalAlignment="Top"
+                    <Image x:Name="BtnOk" 
+                        VerticalAlignment="Bottom"
                         HorizontalAlignment="Center"
                         Height="100"
-                        Margin="0,80,0,0"
+                        Margin="0,0,0,50"
                         TouchDown="BtnOk_TouchDown"
                         Source="/Images/Buttons/b-aceptar.png" 
                         Stretch="Uniform" />
 
-                <Image x:Name="BtnNo" 
-                        VerticalAlignment="Top"
+                    <Image x:Name="BtnNo" 
+                        VerticalAlignment="Bottom"
                         HorizontalAlignment="Left"
                         Height="100"
-                        Margin="100,55,0,0"
+                        Margin="100,0,0,50"
                         TouchDown="BtnNo_TouchDown"
                         Source="/Images/Buttons/b-cancelar.png"
                         Stretch="Uniform" />
 
-                <Image x:Name="BtnYes" 
-                        VerticalAlignment="Top"
+                    <Image x:Name="BtnYes" 
+                        VerticalAlignment="Bottom"
                         HorizontalAlignment="Right"
                         Height="100"
-                        Margin="0,55,100,0"
+                        Margin="0,0,100,50"
                         TouchDown="BtnYes_TouchDown"
                         Source="/Images/Buttons/b-aceptar.png" 
                         Stretch="Uniform" />
-            </Grid>
+                </Grid>
+                <Border.Effect>
+                    <DropShadowEffect
+                        ShadowDepth="20"
+                        Direction="225"
+                        Color="Gray"
+                        Opacity="0.6"
+                        BlurRadius="30.0"/>
+                </Border.Effect>
+            </Border>
         </Grid>
     </Grid>
 </Window>
