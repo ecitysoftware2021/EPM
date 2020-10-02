@@ -89,6 +89,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
         {
             check.Numero = GetImage(false);
             check.Referencia = GetImage(true);
+            imgEpm1.Opacity = 1;
+            imgEpm2.Opacity = 0.2;
             document = true;
         }
 
@@ -96,6 +98,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
         {
             check.Numero = GetImage(true);
             check.Referencia = GetImage(false);
+            imgEpm1.Opacity = 0.2;
+            imgEpm2.Opacity = 1;
             document = false;
         }
 

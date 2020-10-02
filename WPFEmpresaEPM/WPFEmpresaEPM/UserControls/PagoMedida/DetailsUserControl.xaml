@@ -46,10 +46,6 @@
         </Grid>
         <Border Grid.Row="1" BorderThickness="10,10,10,10" BorderBrush="#FF68B549"  CornerRadius="30,30,30,30" Margin="50,100,50,100" Background="White">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="130" />
                     <RowDefinition Height="*" />
@@ -73,130 +69,92 @@
                        Margin="0,0,0,0"/>
                 <TextBlock 
                        HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="30,0,0,0"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       Text="Contrato:"
+                       Grid.Row="1"
+                       FontSize="90"
+                       FontWeight="Bold"
+                       Foreground="#FF68B549"/>
+                <TextBlock 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" 
+                       Margin="250,20,0,0" 
+                       FontSize="80"
+                       TextWrapping="Wrap"
+                       TextAlignment="Left"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="2"
+                       Foreground="#FF68B549"
+                       Text="{Binding Contrato}"
+                        />
+                <TextBlock 
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="30,0,0,0"
+                       TextAlignment="Center"
+                       TextWrapping="Wrap"
+                       Text="Cliente:"
+                       Grid.Row="3"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       Foreground="#606060"/>
+                <TextBlock 
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top" 
+                       Margin="0,0,280,0" 
+                       FontSize="30"
+                       TextWrapping="Wrap"
+                       TextAlignment="Left"
+                       Grid.Row="3"
+                       Text="{Binding Nombre}"
+                        />
+                <TextBlock 
+                       HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Margin="30,0,0,0"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
-                       Text="Nombre"
-                       Grid.Row="1"
-                       FontSize="40"
+                       Text="CC/Nit:"
+                       FontSize="30"
+                       Grid.Column="0"
+                       Grid.Row="3"
                        FontWeight="Bold"
                        Foreground="#606060"/>
                 <TextBlock 
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top" 
-                       Margin="30,0,0,0" 
-                       FontSize="40"
-                       Grid.Row="2"
-                       TextAlignment="Center"
-                       Text="{Binding Nombre}"
-                        />
-                <TextBlock 
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Margin="0,0,30,0"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="Identificación"
-                       FontSize="40"
-                       Grid.Column="1"
-                       Grid.Row="1"
-                       FontWeight="Bold"
-                       Foreground="#606060"/>
-                <TextBlock 
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top" 
-                       Grid.Column="1"
-                       Grid.Row="2"
-                       Margin="0,0,30,0" 
-                       FontSize="40"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center" 
+                       Grid.Column="0"
+                       Grid.Row="3"
+                       Margin="0,0,550,0" 
+                       FontSize="30"
                        TextAlignment="Center"
                        Text="{Binding Identificacion}"
                         />
                 <TextBlock 
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       Margin="30,0,0,0"
+                       VerticalAlignment="Center" 
+                       Margin="30,30,0,0" 
+                       FontSize="30"
+                       Grid.Row="2"
+                       Grid.Column="0"
                        TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="Departamento"
-                       FontSize="40"
-                       Grid.Row="3"
-                       FontWeight="Bold"                   
-                       Foreground="#606060"/>
-                <TextBlock 
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Top" 
-                       Margin="30,0,0,0" 
-                       FontSize="40"
-                       Grid.Row="4"
-                       TextAlignment="Center"
-                       Text="{Binding Departamento}"
-                        />
-                <TextBlock 
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Margin="0,0,30,0"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="Localidad"
-                       Grid.Row="3"
-                       Grid.Column="1"
-                       FontSize="40"
-                       FontWeight="Bold"                   
-                       Foreground="#606060"/>
-                <TextBlock 
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top" 
-                       Margin="0,0,30,0" 
-                       FontSize="40"
-                       Grid.Row="4"
-                       Grid.Column="1"
-                       TextAlignment="Center"
-                       Text="{Binding Localidad}"
-                        />
-                <TextBlock 
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       Margin="30,0,0,0"
-                       TextAlignment="Center"
-                       TextWrapping="Wrap"
-                       Text="Dirección"
-                       FontSize="40"
-                       Grid.Row="5"
-                       FontWeight="Bold"                   
-                       Foreground="#606060"/>
+                        >
+                <Run Foreground="Black" Text="{Binding Localidad}" />
+                <Run Foreground="Gray" Text="-" />
+                <Run Foreground="Black" Text="{Binding Departamento}"/>
+                </TextBlock>
                 <TextBlock Name="txtDae"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Top"
                        Margin="30,0,0,0" 
                        FontSize="35"
-                       Grid.Row="6"
+                       Grid.Row="2"
                        TextWrapping="Wrap"
                        TextAlignment="Left"
                        Text="{Binding Direccion}"
-                        />
-                <TextBlock 
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Center"
-                       Margin="0,0,30,0"
-                       TextAlignment="Right"
-                       TextWrapping="Wrap"
-                       Text="Número restante de pagos"
-                       FontSize="36"
-                       Grid.Row="5"
-                       Grid.Column="1"
-                       FontWeight="Bold"                   
-                       Foreground="#606060"/>
-                <TextBlock Name="tDae"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       Grid.Row="6"
-                       Grid.Column="1"
-                       Margin="0,0,30,0" 
-                       FontSize="40"
-                       TextAlignment="Center"
-                       Text="{Binding NumRestantePagos}"
                         />
                 <TextBlock 
                        HorizontalAlignment="Left"
@@ -204,28 +162,27 @@
                        Margin="30,0,0,0"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
-                       Text="Valor total"
-                       FontSize="40"
-                       Grid.Row="7"
+                       Text="Valor total:"
+                       FontSize="35"
+                       Grid.Row="4"
                        FontWeight="Bold"                   
                        Foreground="#606060"/>
                 <TextBlock 
                        Text="{Binding ValorTotalFactura, StringFormat={}{0:C0}}"
-                       Grid.Row="8"
+                       Grid.Row="4"
                        HorizontalAlignment="Left"
-                       VerticalAlignment="Top"
-                       Margin="30,0,0,0" 
-                       FontSize="40"
+                       VerticalAlignment="Center"
+                       Margin="220,0,0,0" 
+                       FontSize="35"
                        TextAlignment="Center"
                         />
                 <TextBlock 
-                       HorizontalAlignment="Right"
+                       HorizontalAlignment="Center"
                        VerticalAlignment="Center"
                        Margin="0,0,30,0"
                        TextAlignment="Center"
                        TextWrapping="Wrap"
-                       Grid.Row="7"
-                       Grid.Column="1"
+                       Grid.Row="5"
                        Text="Valor mínimo de pago"
                        FontSize="40"
                        FontWeight="Bold"                   
@@ -233,8 +190,7 @@
                 <TextBox x:Name="txtvalorminimomedida"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top"
-                   Grid.Row="8"
-                   Grid.Column="1"
+                   Grid.Row="6"
                    Height="80" 
                    Text="{Binding ValorMinimoPago, StringFormat={}{0:C0}, UpdateSourceTrigger=PropertyChanged}"
                    Width="400"      
@@ -252,12 +208,22 @@
                    Height="90"
                    HorizontalAlignment="Right"
                    VerticalAlignment="Bottom"
-                   Margin="0,0,90,0"
+                   Margin="0,0,290,0"
                    Visibility="Visible"
-                   Grid.Row="8"
-                   Grid.Column="1"
+                   Grid.Row="6"
                    Opacity="0.3"
                    />
+                <TextBlock
+                Name="txtErrorValor"
+                Text="Debe ingresar el valor a pagar" 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="35"
+                Grid.RowSpan="9"
+                Foreground="Red"
+                TextAlignment="Center"
+                Visibility="Hidden"
+                Margin="0,0,0,160"/>
             </Grid>
             <Border.Effect>
                 <DropShadowEffect
@@ -278,16 +244,6 @@
                 Stretch="Uniform"
                 TouchDown="BtnPagar_TouchDown"
                 />
-            <TextBlock
-                Name="txtErrorValor"
-                Text="Debe ingresar el valor a pagar" 
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                FontSize="35"      Grid.Row="8"
-                   Grid.Column="1"
-                Foreground="Red" 
-                Visibility="Hidden"
-                Margin="0,0,0,60"/>
         </Grid>
     </Grid>
 </UserControl>

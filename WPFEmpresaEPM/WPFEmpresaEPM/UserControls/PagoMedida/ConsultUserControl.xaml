@@ -43,10 +43,10 @@
                    />
         </Grid>
         <Grid Name="GrvPagoMedida" Grid.Row="1">
-            <TextBlock Text="Pago A Tu Medida"
+            <TextBlock Text="PAGO A TU MEDIDA"
                        TextWrapping="Wrap"
                        TextAlignment="Justify"
-                       FontSize="70"
+                       FontSize="80"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
@@ -57,15 +57,34 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 FontWeight="Bold" 
-                FontSize="40" 
+                FontSize="35" 
                 Foreground="Gray" 
-                Margin="0,220,0,0"/>
+                Margin="0,180,0,0"/>
+            <Image 
+                Name="imgEpm1"
+                Source="/Images/others/epm1.png" 
+                Stretch="Uniform"
+                Height="200"
+                Margin="0,300,400,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+            />
+            <Image 
+                Name="imgEpm2"
+                Source="/Images/others/epm2.png" 
+                Stretch="Uniform"
+                Height="200"
+                Opacity="0.2"
+                Margin="550,300,0,0"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+            />
             <Image x:Name="btnDocumento"
                    Source="{Binding Referencia}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top" 
                    Height="60"  
-                   Margin="100,400,0,0" 
+                   Margin="100,500,0,0" 
                    Stretch="Uniform"
                    TouchDown="BtnDocumento_TouchDown"
                    />
@@ -75,13 +94,13 @@
                 VerticalAlignment="Top"
                 FontSize="35" 
                 Foreground="Gray" 
-                Margin="180,410,0,0"/>
+                Margin="180,510,0,0"/>
             <Image x:Name="btnContrato"
                    Source="{Binding Numero}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top" 
                    Height="60"  
-                   Margin="140,400,0,0" 
+                   Margin="140,500,0,0" 
                    Stretch="Uniform"
                    TouchDown="BtnContrato_TouchDown"
                    />
@@ -91,23 +110,23 @@
                 VerticalAlignment="Top"
                 FontSize="35" 
                 Foreground="Gray" 
-                Margin="0,410,100,0"/>
+                Margin="0,510,100,0"/>
 
             <TextBlock 
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Margin="0,0,0,0"
+                   Margin="0,250,0,0"
                    TextAlignment="Center"
                    TextWrapping="Wrap"
                    Text="Ingresa el número"
-                   FontSize="40"
+                   FontSize="35"
                    FontWeight="Bold"
-                   Foreground="#606060"/>
+                   Foreground="Gray"/>
             <TextBox 
                     x:Name="TxtNumDocument" 
                     TextAlignment="Center"
                     Height="70" 
-                    Margin="0,200,0,0" 
+                    Margin="0,400,0,0" 
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Width="415" 
@@ -125,7 +144,7 @@
                 FontSize="35" 
                 Foreground="Red" 
                 Visibility="Hidden"
-                Margin="0,350,0,0"/>
+                Margin="0,550,0,0"/>
         </Grid>
         <Grid Grid.Row="2">
             <Image 
