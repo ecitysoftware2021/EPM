@@ -173,8 +173,8 @@ namespace WPFEmpresaEPM.Classes
                     case ETypeTransaction.PagoFactura:
 
                         objPrint.FACTURA = ts.Document;
-                        objPrint.FECHA_FACTURA = DateTime.Now.ToString("yyyy-MM-dd");
-                        objPrint.HORA_FACTURA = DateTime.Now.ToString("hh:mm:ss");
+                        objPrint.FECHA_FACTURA = DateTime.Now.ToString("yyyy/MM/dd");
+                        objPrint.HORA_FACTURA = DateTime.Now.ToString("hh:mm:ss tt");
                         objPrint.VALOR = String.Format("{0:C0}", ts.Amount);
                         break;
 
