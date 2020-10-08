@@ -55,8 +55,8 @@ namespace WPFEmpresaEPM.UserControls
             {
                 this.paymentViewModel = new PaymentViewModel
                 {
-                    PayValue = 200,
-                    ValorFaltante = 200,
+                    PayValue = 2200,
+                    ValorFaltante = 2200,
                     ImgContinue = Visibility.Hidden,
                     ImgCancel = Visibility.Visible,
                     ImgCambio = Visibility.Hidden,
@@ -69,8 +69,8 @@ namespace WPFEmpresaEPM.UserControls
 
                 this.DataContext = this.paymentViewModel;
 
-                //ActivateWallet();
-                SavePay();
+                ActivateWallet();
+                //SavePay();
             }
             catch (Exception ex)
             {
@@ -214,13 +214,13 @@ namespace WPFEmpresaEPM.UserControls
         {
             try
             {
-                //if (!this.paymentViewModel.StatePay)
-                //{
-                //    this.paymentViewModel.StatePay = true;
-                //    transaction.Payment = paymentViewModel;
-                //    transaction.State = statePay;
+                if (!this.paymentViewModel.StatePay)
+                {
+                    this.paymentViewModel.StatePay = true;
+                    transaction.Payment = paymentViewModel;
+                    transaction.State = statePay;
 
-                //    AdminPayPlus.ControlPeripherals.ClearValues();
+                    AdminPayPlus.ControlPeripherals.ClearValues();
 
                     Task.Run(async () =>
                     {
@@ -259,7 +259,7 @@ namespace WPFEmpresaEPM.UserControls
                         if (!response && Intentos < 3)
                         {
                             Intentos++;
-                            //this.paymentViewModel.StatePay = false;
+                            this.paymentViewModel.StatePay = false;
                             SavePay();
                             return;
                         }
@@ -275,7 +275,7 @@ namespace WPFEmpresaEPM.UserControls
                             CancelTransaction();
                         }
                     });
-                //}
+                }
             }
             catch (Exception ex)
             {

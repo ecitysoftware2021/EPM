@@ -53,7 +53,7 @@ namespace WPFEmpresaEPM.Services
 
                 var json = JsonConvert.DeserializeObject<ResponseDataInvoice>(responseClient.ResponseData.ToString());
 
-                AdminPayPlus.SaveErrorControl("Response Consulta Factura: " + json, "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Consulta Factura: " + responseClient.ResponseData, "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.IFX.Count > 0 && json.IFX[0].PaySvcRs.PmtAddRs.Status.StatusCode == "0")
                 {
@@ -97,7 +97,7 @@ namespace WPFEmpresaEPM.Services
                 }
                 var json = JsonConvert.DeserializeObject<ResponseConsultMedida>(responseClient.ResponseData.ToString());
 
-                AdminPayPlus.SaveErrorControl("Response Pago Medida: " + json, "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Pago Medida: " + responseClient.ResponseData, "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.CdError == 0)
                 {
@@ -155,7 +155,7 @@ namespace WPFEmpresaEPM.Services
                 }
                 var json = JsonConvert.DeserializeObject<ResponseConsultFacturaPrepago>(responseClient.ResponseData.ToString());
 
-                AdminPayPlus.SaveErrorControl("Response Consulta Factura Prepago: " + json, "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Consulta Factura Prepago: " + responseClient.ResponseData, "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.CdError == 0)
                 {
@@ -231,7 +231,7 @@ namespace WPFEmpresaEPM.Services
                 }
                 var json = JsonConvert.DeserializeObject<ResponsePayFactura.RootObject>(responseClient.ResponseData.ToString());
 
-                AdminPayPlus.SaveErrorControl("Response Notificar Pago Factura: " + json, "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Notificar Pago Factura: " + responseClient.ResponseData, "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.PaySvcRs.PmtAddRs.Status.StatusCode == "0")
                 {
@@ -265,7 +265,7 @@ namespace WPFEmpresaEPM.Services
                 }
                 var json = JsonConvert.DeserializeObject<ResponsePaymedida>(responseClient.ResponseData.ToString());
 
-                AdminPayPlus.SaveErrorControl("Response Notificar Pago a tu Medida: " + json, "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Notificar Pago a tu Medida: " + responseClient.ResponseData, "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.CdError == 0)
                 {
@@ -323,7 +323,7 @@ namespace WPFEmpresaEPM.Services
                 }
                 var json = JsonConvert.DeserializeObject<ResponsePayFacturaPrepago>(responseClient.ResponseData.ToString());
 
-                AdminPayPlus.SaveErrorControl("Response Notificar Factura Prepago: " + json, "", EError.Customer, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Notificar Factura Prepago: " + responseClient.ResponseData, "", EError.Customer, ELevelError.Mild);
 
                 if (json != null && json.CdError == 0)
                 {
@@ -374,7 +374,8 @@ namespace WPFEmpresaEPM.Services
                 var client = new RestClient(string.Format(Utilities.GetConfiguration("basseAddresEPM"), url));
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
-                request.AddParameter("application/json", JsonConvert.SerializeObject(data), ParameterType.RequestBody);
+                string rq = JsonConvert.SerializeObject(data);
+                request.AddParameter("application/json", rq, ParameterType.RequestBody);
                 IRestResponse response = client.Execute(request);
                 return response.Content;
             }
