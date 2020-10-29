@@ -69,8 +69,8 @@ namespace WPFEmpresaEPM.UserControls
 
                 this.DataContext = this.paymentViewModel;
 
-                ActivateWallet();
-                //SavePay();
+                //ActivateWallet();
+                SavePay();
             }
             catch (Exception ex)
             {
@@ -214,13 +214,13 @@ namespace WPFEmpresaEPM.UserControls
         {
             try
             {
-                if (!this.paymentViewModel.StatePay)
-                {
-                    this.paymentViewModel.StatePay = true;
-                    transaction.Payment = paymentViewModel;
-                    transaction.State = statePay;
+                //if (!this.paymentViewModel.StatePay)
+                //{
+                //    this.paymentViewModel.StatePay = true;
+                //    transaction.Payment = paymentViewModel;
+                //    transaction.State = statePay;
 
-                    AdminPayPlus.ControlPeripherals.ClearValues();
+                //    AdminPayPlus.ControlPeripherals.ClearValues();
 
                     Task.Run(async () =>
                     {
@@ -275,7 +275,7 @@ namespace WPFEmpresaEPM.UserControls
                             CancelTransaction();
                         }
                     });
-                }
+                //}
             }
             catch (Exception ex)
             {
