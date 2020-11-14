@@ -53,7 +53,7 @@
                 VerticalAlignment="Top"
                 Foreground="#FF68B549" 
                 Margin="0,0,0,0"/>
-            <TextBlock
+            <!--<TextBlock
                 Text="Seleccione el medio de pago" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
@@ -92,16 +92,18 @@
                 VerticalAlignment="Top"
                 FontSize="35" 
                 Foreground="Gray" 
-                Margin="0,250,100,0"/>
+                Margin="0,250,100,0"/>-->
             <TextBlock
                 x:Name="txTitleSearch"
-                Text="Ingrese el número de contrato" 
+                Text="Escribe el número verde que está en la parte superior de tu factura o el referente de pago, tambien puedes escanear el código de barras de tu factura." 
                 HorizontalAlignment="Center"
+                TextWrapping="Wrap"
+                TextAlignment="Center"
                 VerticalAlignment="Top"
                 FontWeight="Bold" 
                 FontSize="40" 
                 Foreground="Gray" 
-                Margin="0,330,0,0"/>
+                Margin="0,200,0,0"/>
             <TextBox x:Name="TxtIdentification"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
@@ -117,7 +119,7 @@
                 />
             <TextBlock
                 Name="txtError"
-                Text="Debe ingresar un número de factura" 
+                Text="Debe ingresar un número para consultar" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 FontSize="35" 

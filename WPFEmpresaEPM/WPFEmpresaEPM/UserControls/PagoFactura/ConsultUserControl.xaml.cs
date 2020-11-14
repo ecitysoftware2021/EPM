@@ -33,9 +33,9 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 transaction = ts;
                 check = new CheckTypeSerch();
-                check.Numero = GetImage(true);
-                check.Referencia = GetImage(false);
-                this.DataContext = check;
+                //check.Numero = GetImage(true);
+                //check.Referencia = GetImage(false);
+                //this.DataContext = check;
                 transaction.typeSearch = ETypeSearch.NumeroDeContrato;
                 ActivateTimer();
             }
@@ -173,14 +173,21 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                 Task.Run(async () =>
                 {
                     Thread.Sleep(500);
-
+                    if (transaction.Document.Length > 7)
+                    {
+                        transaction.typeSearch = ETypeSearch.ReferenteDePago;
+                    }
+                    else
+                    {
+                        transaction.typeSearch = ETypeSearch.NumeroDeContrato;
+                    }
                     var response = await ApiIntegration.SearchPagoFactura(transaction.Document, transaction.typeSearch);
 
                     Utilities.CloseModal();
 
                     if (response == null)
                     {
-                        Utilities.ShowModal("No se encontraron resultados. Por favor vuelve a intentarlo.", EModalType.Error);
+                        Utilities.ShowModal($"No se encontraron resultados para {transaction.Document}. Por favor vuelve a intentarlo.", EModalType.Error);
                         ActivateTimer();
                     }
                     else
