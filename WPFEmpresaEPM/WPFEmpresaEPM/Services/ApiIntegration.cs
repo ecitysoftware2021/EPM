@@ -27,17 +27,17 @@ namespace WPFEmpresaEPM.Services
         }
 
         #region "Métodos"
-        public static async Task<ResponseDataInvoice> SearchPagoFactura(string reference)
+        public static async Task<ResponseDataInvoice> SearchPagoFactura(string reference, ETypeSearch eTypeSearch)
         {
             try
             {
                 InvoiceSearchRequest request = new InvoiceSearchRequest
                 {
                     reference = reference,
-                    typeSearch = 0
-                    
+                    typeSearch = (int)eTypeSearch
+
                 };
-                AdminPayPlus.SaveErrorControl($"Request Consulta Factura: reference: {reference}", "", EError.Aplication, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl($"Request Consulta Factura: tipo_busqueda: {(int)eTypeSearch} reference: {reference}", "", EError.Aplication, ELevelError.Mild);
 
                 DateTime dateCall = DateTime.Now;
                 string keydecrypt = string.Concat(Utilities.GetConfiguration("ConsultarFactura"), "|", dateCall.ToString("dd?MM?yyyy"));
@@ -431,7 +431,7 @@ namespace WPFEmpresaEPM.Services
     }
     public class InvoiceSearchRequest
     {
-        public short typeSearch { get; set; }
+        public int typeSearch { get; set; }
         public string reference { get; set; }
         public string paypadID { get; } = Utilities.paypadID.ToString();
     }

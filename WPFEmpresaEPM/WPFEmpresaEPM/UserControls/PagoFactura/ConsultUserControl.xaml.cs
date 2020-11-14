@@ -33,9 +33,9 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 transaction = ts;
                 check = new CheckTypeSerch();
-                //check.Numero = GetImage(false);
-                //check.Referencia = GetImage(true);
-                //this.DataContext = check;
+                check.Numero = GetImage(true);
+                check.Referencia = GetImage(false);
+                this.DataContext = check;
                 transaction.typeSearch = ETypeSearch.NumeroDeContrato;
                 ActivateTimer();
             }
@@ -130,6 +130,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         private void btnReferente_TouchDown(object sender, TouchEventArgs e)
         {
             transaction.typeSearch = ETypeSearch.ReferenteDePago;
+            txTitleSearch.Text = "Ingrese el referente de pago o escanee la factura";
             check.Numero = GetImage(false);
             check.Referencia = GetImage(true);
         }
@@ -137,6 +138,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         private void btnNumero_TouchDown(object sender, TouchEventArgs e)
         {
             transaction.typeSearch = ETypeSearch.NumeroDeContrato;
+            txTitleSearch.Text = "Ingrese el número de contrato";
             check.Numero = GetImage(true);
             check.Referencia = GetImage(false);
         }
@@ -172,7 +174,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                 {
                     Thread.Sleep(500);
 
-                    var response = await ApiIntegration.SearchPagoFactura(transaction.Document);
+                    var response = await ApiIntegration.SearchPagoFactura(transaction.Document, transaction.typeSearch);
 
                     Utilities.CloseModal();
 

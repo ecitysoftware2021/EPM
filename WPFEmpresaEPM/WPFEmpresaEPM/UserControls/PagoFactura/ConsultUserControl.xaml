@@ -52,21 +52,21 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Foreground="#FF68B549" 
-                Margin="0,80,0,0"/>
-            <!--<TextBlock
+                Margin="0,0,0,0"/>
+            <TextBlock
                 Text="Seleccione el medio de pago" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 FontWeight="Bold" 
                 FontSize="40" 
                 Foreground="Gray" 
-                Margin="0,120,0,0"/>-->
-            <!--<Image x:Name="btnReferente"
+                Margin="0,140,0,0"/>
+            <Image x:Name="btnReferente"
                    Source="{Binding Referencia}"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top" 
                    Height="60"  
-                   Margin="100,200,0,0" 
+                   Margin="100,250,0,0" 
                    Stretch="Uniform"
                    TouchDown="btnReferente_TouchDown"
                    />
@@ -76,13 +76,13 @@
                 VerticalAlignment="Top"
                 FontSize="35" 
                 Foreground="Gray" 
-                Margin="180,210,0,0"/>
+                Margin="180,250,0,0"/>
             <Image x:Name="btnNumero"
                    Source="{Binding Numero}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Top" 
                    Height="60"  
-                   Margin="100,200,0,0" 
+                   Margin="100,250,0,0" 
                    Stretch="Uniform"
                    TouchDown="btnNumero_TouchDown"
                    />
@@ -92,15 +92,16 @@
                 VerticalAlignment="Top"
                 FontSize="35" 
                 Foreground="Gray" 
-                Margin="0,210,100,0"/>-->
+                Margin="0,250,100,0"/>
             <TextBlock
+                x:Name="txTitleSearch"
                 Text="Ingrese el número de contrato" 
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 FontWeight="Bold" 
                 FontSize="40" 
                 Foreground="Gray" 
-                Margin="0,300,0,0"/>
+                Margin="0,330,0,0"/>
             <TextBox x:Name="TxtIdentification"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center" 
