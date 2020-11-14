@@ -35,6 +35,7 @@ namespace WPFEmpresaEPM.Services
                 {
                     reference = reference,
                     typeSearch = 0
+                    
                 };
                 AdminPayPlus.SaveErrorControl($"Request Consulta Factura: reference: {reference}", "", EError.Aplication, ELevelError.Mild);
 
@@ -432,11 +433,13 @@ namespace WPFEmpresaEPM.Services
     {
         public short typeSearch { get; set; }
         public string reference { get; set; }
+        public string paypadID { get; } = Utilities.paypadID.ToString();
     }
     public class InvoicePayRequest
     {
         public decimal payValue { get; set; }
         public string reference { get; set; }
+        public string paypadID { get; } = Utilities.paypadID.ToString();
     }
     public class PrepaidPayRequest : InvoicePayRequest
     {
@@ -446,6 +449,7 @@ namespace WPFEmpresaEPM.Services
     {
         public int contract { get; set; }
         public string document { get; set; }
+        public int paypadID { get; } = Utilities.paypadID;
     }
     public class RequestGlobal
     {

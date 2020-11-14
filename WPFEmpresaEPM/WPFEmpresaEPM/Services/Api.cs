@@ -85,7 +85,7 @@ namespace WPFEmpresaEPM.Services
                                 token = requestresponse.Token;
                                 requestApi.Session = Convert.ToInt32(requestresponse.Session);
                                 requestApi.User = Convert.ToInt32(requestresponse.User);
-
+                                Utilities.paypadID = Convert.ToInt32(requestresponse.User);
                                 return requestresponse;
                             }
                         }

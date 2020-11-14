@@ -545,3 +545,4 @@ C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debu
 C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.GenerateResource.cache
 C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.CoreCompileInputs.cache
 C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.CopyComplete
+C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csprojAssemblyReference.cache
