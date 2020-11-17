@@ -118,7 +118,7 @@
                 TextAlignment="Center"
                 FontSize="45"
                 Foreground="#585858" 
-                MaxLength="15"
+                MaxLength="12"
                 TextChanged="TxtIdentification_TextChanged"  
                 />
             <TextBlock

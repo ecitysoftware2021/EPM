@@ -21,12 +21,12 @@ namespace WPFEmpresaEPM.Services.ObjectIntegration
         public string MensajeError { get; set; }
         public string Nombre { get; set; }
         public int NumRestantePagos { get; set; }
-        public double SaldoPendiente { get; set; }
-        public double ValorTotalFactura { get; set; }
-        public double ValorMin { get; set; }
+        public decimal SaldoPendiente { get; set; }
+        public decimal ValorTotalFactura { get; set; }
+        public decimal ValorMin { get; set; }
 
-        private double _valorMinimoPago;
-        public double ValorMinimoPago
+        private decimal _valorMinimoPago;
+        public decimal ValorMinimoPago
         {
             get
             {
@@ -57,16 +57,16 @@ namespace WPFEmpresaEPM.Services.ObjectIntegration
         public string MensajeUltimaOportunidad { get; set; }
         public string Nit { get; set; }
         public string Nombre { get; set; }
-        public double NuevoSaldo { get; set; }
+        public decimal NuevoSaldo { get; set; }
         public int NumRestantePagos { get; set; }
         public string ProductosASupenderse { get; set; }
-        public double SaldoAFavor { get; set; }
-        public double SaldoAnteriorTotal { get; set; }
-        public double SaldoAnteriorVencido { get; set; }
-        public double SaldoAnteriorVigente { get; set; }
+        public decimal SaldoAFavor { get; set; }
+        public decimal SaldoAnteriorTotal { get; set; }
+        public decimal SaldoAnteriorVencido { get; set; }
+        public decimal SaldoAnteriorVigente { get; set; }
         public string Servicio { get; set; }
         public int Transaccion { get; set; }
-        public double ValorPagado { get; set; }
-        public double ValorTotalFactura { get; set; }
+        public decimal ValorPagado { get; set; }
+        public decimal ValorTotalFactura { get; set; }
     }
 }

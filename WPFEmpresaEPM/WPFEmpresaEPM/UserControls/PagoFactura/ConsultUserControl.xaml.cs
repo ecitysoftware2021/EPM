@@ -36,7 +36,6 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                 //check.Numero = GetImage(true);
                 //check.Referencia = GetImage(false);
                 //this.DataContext = check;
-                transaction.typeSearch = ETypeSearch.NumeroDeContrato;
                 ActivateTimer();
             }
             catch (Exception ex)
@@ -115,9 +114,9 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 txtError.Visibility = Visibility.Hidden;
 
-                if (TxtIdentification.Text.Length > 10)
+                if (TxtIdentification.Text.Length > TxtIdentification.MaxLength)
                 {
-                    TxtIdentification.Text = TxtIdentification.Text.Remove(10, 1);
+                    TxtIdentification.Text = TxtIdentification.Text.Remove(TxtIdentification.MaxLength, 1);
                     return;
                 }
             }

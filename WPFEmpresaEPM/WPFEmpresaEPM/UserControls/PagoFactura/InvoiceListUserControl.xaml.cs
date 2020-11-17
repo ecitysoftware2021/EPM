@@ -35,7 +35,6 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                 view = new CollectionViewSource();
                 lstPager = new ObservableCollection<DetailsPagoFactura>();
                 ProductsSelected = new DetailsPagoFactura();
-                transaction.Amount = 0;
                 ActivateTimer();
                 InitView();
             }
@@ -55,10 +54,11 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                     lstPager.Add(new DetailsPagoFactura
                     {
                         img = GetImage(false),
-                        ValorPagar = Convert.ToDecimal(product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.CurAmt.Amt),
+                        ValorPagar = Utilities.RoundValue(Convert.ToDecimal(product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.CurAmt.Amt), true),
                         Referencia = product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillId,
                         FechaLimite = product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillDt,
-                        NumeroCuenta = product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillingAcct
+                        NumeroCuenta = product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillingAcct,
+                        Direccion = product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillRefInfo
                     });
                 }
 
@@ -98,7 +98,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         {
             SetCallBacksNull();
             timer.CallBackStop?.Invoke(1);
-            Utilities.navigator.Navigate(UserControlView.Menu);
+            Utilities.navigator.Navigate(UserControlView.ConsultPagoFactura,this.transaction);
         }
 
         private void BtnExit_TouchDown(object sender, TouchEventArgs e)
@@ -148,7 +148,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
 
                 transaction.detailsPagoFactura = service;
 
-                transaction.Amount = Utilities.RoundValue(service.ValorPagar);
+                transaction.Amount = Utilities.RoundValue(service.ValorPagar, true);
             }
             catch (Exception ex)
             {

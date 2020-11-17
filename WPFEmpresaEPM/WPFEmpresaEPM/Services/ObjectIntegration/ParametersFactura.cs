@@ -11,6 +11,7 @@ namespace WPFEmpresaEPM.Services.ObjectIntegration
         public string Referencia { get; set; }
         public string NumeroCuenta { get; set; }
         public string FechaLimite { get; set; }
+        public string Direccion { get; set; }
         public decimal ValorPagar { get; set; }
         public string MensajeError { get; set; }
         public string img { get; set; }

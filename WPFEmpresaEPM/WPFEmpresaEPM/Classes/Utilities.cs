@@ -303,17 +303,26 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
-        public static decimal RoundValue(decimal Total)
+        public static decimal RoundValue(decimal Total, bool arriba)
         {
             try
             {
                 decimal roundTotal = 0;
-                roundTotal = Math.Floor(Total / 100) * 100;
+
+                if (arriba)
+                {
+                    roundTotal = Math.Ceiling(Total / 100) * 100;
+                }
+                else
+                {
+                    roundTotal = Math.Floor(Total / 100) * 100;
+                }
+
                 return roundTotal;
             }
             catch (Exception ex)
             {
-                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex, ex.ToString());
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex);
                 return Total;
             }
         }

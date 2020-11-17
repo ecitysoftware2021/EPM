@@ -127,10 +127,10 @@ namespace WPFEmpresaEPM.Services
                         MensajeError = json.MensajeError,
                         Nombre = json.Nombre,
                         NumRestantePagos = json.NumRestantePagos,
-                        SaldoPendiente = json.SaldoPendiente,
-                        ValorMinimoPago = json.ValorMinimoPago,
-                        ValorTotalFactura = json.ValorTotalFactura,
-                        ValorMin = json.ValorMinimoPago
+                        SaldoPendiente = Utilities.RoundValue(json.SaldoPendiente,true),
+                        ValorMinimoPago = Utilities.RoundValue(json.ValorMinimoPago, true),
+                        ValorTotalFactura = Utilities.RoundValue(json.ValorTotalFactura, true),
+                        ValorMin = Utilities.RoundValue(json.ValorMinimoPago, true)
                     };
                     return medida;
                 }

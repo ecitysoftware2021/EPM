@@ -82,7 +82,7 @@
                        FontSize="30"
                        FontWeight="Bold"
                        >
-                <Run Foreground="Gray" Text="Referencia:" />
+                <Run Foreground="Gray" Text="Referencia de pago:" />
                 <Run Foreground="Black" Text="{Binding Referencia}"/>
                 </TextBlock>
                 <TextBlock 
@@ -93,7 +93,7 @@
                        FontSize="30"
                        FontWeight="Bold"
                        >
-                <Run Foreground="Gray" Text="Fecha límite de pago:" />
+                <Run Foreground="Gray" Text="Fecha de vencimiento:" />
                 <Run Foreground="Black" Text="{Binding FechaLimite}"/>
                 </TextBlock>
                 <TextBlock 
@@ -101,6 +101,17 @@
                        VerticalAlignment="Bottom"
                        Margin="30,0,0,0"
                        Grid.Row="3"
+                       FontSize="30"
+                       FontWeight="Bold"
+                       >
+                <Run Foreground="Gray" Text="Dirección:" />
+                <Run Foreground="Black" Text="{Binding Direccion}"/>
+                </TextBlock>
+                <TextBlock 
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Top"
+                       Margin="30,0,0,0"
+                       Grid.Row="4"
                        FontSize="30"
                        FontWeight="Bold"
                        >
