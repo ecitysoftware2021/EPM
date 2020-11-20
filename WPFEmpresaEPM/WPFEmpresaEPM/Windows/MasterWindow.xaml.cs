@@ -30,6 +30,11 @@ namespace WPFEmpresaEPM.Windows
                     Utilities.navigator = new Navigation();
                 }
 
+                if (Utilities.UCSupport == null)
+                {
+                    Utilities.UCSupport = new System.Windows.Controls.UserControl();
+                }
+
                 //string a = Encryptor.Ecity.Dll.Encryptor.Encrypt("usrapli", "WPFEmpresaEPM");
                 //string b = Encryptor.Ecity.Dll.Encryptor.Encrypt("1Cero12019$/*", "WPFEmpresaEPM");
                 //string c = Encryptor.Ecity.Dll.Encryptor.Encrypt("Ecity.Software", "WPFEmpresaEPM");

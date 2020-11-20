@@ -28,6 +28,8 @@ namespace WPFEmpresaEPM.Classes
 
         private static SpeechSynthesizer speechSynthesizer;
 
+        public static UserControl UCSupport;
+
         private static ModalWindow modal { get; set; }
         public static int paypadID { get; set; }
         #endregion
