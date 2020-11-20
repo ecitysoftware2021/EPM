@@ -72,7 +72,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
             {
                 if (AdminPayPlus.DataPayPlus.StateUpdate)
                 {
-                    Utilities.ShowModal(MessageResource.UpdateAplication, EModalType.Error, true);
+                    Utilities.ShowModal(MessageResource.UpdateAplication, EModalType.Error);
                     Utilities.UpdateApp();
                 }
                 else if (AdminPayPlus.DataPayPlus.StateBalanece)
@@ -93,7 +93,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
-                Utilities.ShowModal(MessageResource.NoService, EModalType.Error, false);
+                Utilities.ShowModal(MessageResource.NoService, EModalType.Error);
                 Initial();
             }
         }
@@ -129,7 +129,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                             }, ELogType.General);
 
                             Error.SaveLogError("Finish", this.GetType().Name, null, AdminPayPlus.DataPayPlus.Message);
-                            Utilities.ShowModal(MessageResource.NoService + " " + MessageResource.NoMoneyKiosco, EModalType.Error, false);
+                            Utilities.ShowModal(MessageResource.NoService + " " + MessageResource.NoMoneyKiosco, EModalType.Error);
                             Initial();
                         }
                         else
@@ -143,7 +143,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                             }, ELogType.General);
 
                             Error.SaveLogError("Finish", this.GetType().Name, null, init.DescriptionStatusPayPlus);
-                            Utilities.ShowModal(MessageResource.NoService + " " + init.DescriptionStatusPayPlus, EModalType.Error, false);
+                            Utilities.ShowModal(MessageResource.NoService + " " + init.DescriptionStatusPayPlus, EModalType.Error);
                             Initial();
                         }
                     }
@@ -152,7 +152,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
-                Utilities.ShowModal(MessageResource.NoService, EModalType.Error, false);
+                Utilities.ShowModal(MessageResource.NoService, EModalType.Error);
                 Initial();
             }
         }

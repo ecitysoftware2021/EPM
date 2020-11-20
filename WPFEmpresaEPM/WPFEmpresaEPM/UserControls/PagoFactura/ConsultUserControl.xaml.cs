@@ -186,7 +186,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
 
                     if (response == null)
                     {
-                        Utilities.ShowModal($"No se encontraron resultados para {transaction.Document}. Por favor vuelve a intentarlo.", EModalType.Error);
+                        Utilities.ShowModal($"No se encontrarón resultados para {transaction.Document}. Por favor vuelve a intentarlo.", EModalType.Error);
                         ActivateTimer();
                     }
                     else

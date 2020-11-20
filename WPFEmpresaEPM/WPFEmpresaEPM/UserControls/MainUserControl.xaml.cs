@@ -101,7 +101,7 @@ namespace WPFEmpresaEPM.UserControls
             {
                 if (AdminPayPlus.DataPayPlus.StateUpdate)
                 {
-                    Utilities.ShowModal(MessageResource.UpdateAplication, EModalType.Error, true);
+                    Utilities.ShowModal(MessageResource.UpdateAplication, EModalType.Error);
                     Utilities.UpdateApp();
                 }
                 else if (AdminPayPlus.DataPayPlus.StateBalanece)
@@ -160,7 +160,7 @@ namespace WPFEmpresaEPM.UserControls
                 {
                     //_imageSleader.Stop();
                     Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, null, AdminPayPlus.DataPayPlus.Message);
-                    Utilities.ShowModal(MessageResource.NoService + " " + MessageResource.NoMoneyKiosco, EModalType.Error, false);
+                    Utilities.ShowModal(MessageResource.NoService + " " + MessageResource.NoMoneyKiosco, EModalType.Error);
                     //Utilities.RestartApp();
                 }
             }

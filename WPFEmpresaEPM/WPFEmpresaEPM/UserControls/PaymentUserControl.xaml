@@ -20,6 +20,16 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <TextBlock 
+                Text="Cualquirer error llamar a viviana #303535"
+                FontSize="45"
+                TextAlignment="Center"
+                Margin="100,0,0,0"
+                FontFamily="Arial"
+                Foreground="#FF606060"
+                VerticalAlignment="Top"
+                HorizontalAlignment="Right"
+             />
+            <TextBlock 
                 Text="Ingrese el dinero"
                 FontSize="60"
                 Width="500"

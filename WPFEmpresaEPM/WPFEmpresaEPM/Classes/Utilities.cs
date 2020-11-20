@@ -52,7 +52,7 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
-        public static bool ShowModal(string message, EModalType type, bool timer = false)
+        public static bool ShowModal(string message, EModalType type)
         {
             bool response = false;
             try
@@ -61,7 +61,6 @@ namespace WPFEmpresaEPM.Classes
                 {
                     Tittle = "Estimado Cliente: ",
                     Messaje = message,
-                    Timer = timer,
                     TypeModal = type,
                     ImageModal = @"Images/Backgrounds/modal.png",
                 };

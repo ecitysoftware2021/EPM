@@ -53,8 +53,6 @@ namespace WPFEmpresaEPM.UserControls
                     }, ELogType.General);
                 }
 
-                GC.Collect();
-
                 Task.Run(() =>
                 {
                     if (!string.IsNullOrEmpty(transaction.Observation))
@@ -68,7 +66,7 @@ namespace WPFEmpresaEPM.UserControls
 
                     Utilities.PrintVoucherSuccess(this.transaction);
 
-                    Thread.Sleep(5000);
+                    Thread.Sleep(3000);
 
                     Dispatcher.BeginInvoke((Action)delegate
                     {

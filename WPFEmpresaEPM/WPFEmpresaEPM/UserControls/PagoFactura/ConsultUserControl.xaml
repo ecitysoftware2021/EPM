@@ -96,7 +96,7 @@
                 Margin="0,250,100,0"/>-->
             <TextBlock
                 x:Name="txTitleSearch"
-                Text="Escribe el número verde que está en la parte superior de tu factura o el referente de pago, tambien puedes escanear el código de barras de tu factura." 
+                Text="Escribe el número verde que está en la parte superior de tu factura o el referente de pago." 
                 HorizontalAlignment="Center"
                 TextWrapping="Wrap"
                 TextAlignment="Center"

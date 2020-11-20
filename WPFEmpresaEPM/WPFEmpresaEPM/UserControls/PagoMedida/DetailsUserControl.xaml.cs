@@ -112,7 +112,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
         {
             try
             {
-                if ((decimal)transaction.detailsPagoMedida.ValorMinimoPago % 100 != 0)
+                if (transaction.detailsPagoMedida.ValorMinimoPago % 100 != 0)
                 {
                     txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
                     Environment.NewLine, "Ejemplo: $100, $1.000, $10.000... etc.");
@@ -120,7 +120,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     return false;
                 }
 
-                if ((decimal)transaction.detailsPagoMedida.ValorMinimoPago < ValorMin || (decimal)transaction.detailsPagoMedida.ValorMinimoPago > ValorMax)
+                if (transaction.detailsPagoMedida.ValorMinimoPago < ValorMin || transaction.detailsPagoMedida.ValorMinimoPago > ValorMax)
                 {
                     txtErrorValor.Text = string.Concat("Debe ingresar un valor entre",
                     Environment.NewLine, string.Format("{0} y {1}", ValorMin.ToString("C"), ValorMax.ToString("C")));
@@ -128,7 +128,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     return false;
                 }
 
-                transaction.Amount = (decimal)transaction.detailsPagoMedida.ValorMinimoPago;
+                transaction.Amount = transaction.detailsPagoMedida.ValorMinimoPago;
                 return true;
             }
             catch (Exception ex)

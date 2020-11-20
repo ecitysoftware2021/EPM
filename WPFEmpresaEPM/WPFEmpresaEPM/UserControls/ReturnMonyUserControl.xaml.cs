@@ -41,15 +41,19 @@ namespace WPFEmpresaEPM.UserControls
                 ValueReturn = transaction.Payment.ValorIngresado - transaction.Payment.ValorDispensado;
 
                 txtValueReturn.Text = string.Format("{0:C0}", ValueReturn);
+
                 Task.Run(() =>
                 {
                     AdminPayPlus.ControlPeripherals.callbackTotalOut = totalOut =>
                     {
-                        transaction.StateReturnMoney = true;
+                        AdminPayPlus.ControlPeripherals.callbackOut = null;
+                        AdminPayPlus.ControlPeripherals.callbackTotalOut = null;
 
+                        transaction.StateReturnMoney = true;
                         transaction.Payment.ValorDispensado = totalOut;
                         transaction.Payment.ValorSobrante = transaction.Payment.ValorIngresado;
                         transaction.State = ETransactionState.Cancel;
+
                         FinishCancelPay();
                     };
 
@@ -68,8 +72,9 @@ namespace WPFEmpresaEPM.UserControls
                     AdminPayPlus.ControlPeripherals.callbackOut = valueOut =>
                     {
                         AdminPayPlus.ControlPeripherals.callbackOut = null;
-                        transaction.Payment.ValorDispensado = valueOut;
+                        AdminPayPlus.ControlPeripherals.callbackTotalOut = null;
 
+                        transaction.Payment.ValorDispensado = valueOut;
                         transaction.StateReturnMoney = false;
 
                         if (!transaction.statePaySuccess && transaction.Payment.ValorDispensado != transaction.Payment.ValorIngresado)
@@ -79,8 +84,10 @@ namespace WPFEmpresaEPM.UserControls
                         }
                         else
                         {
+                            transaction.State = ETransactionState.Cancel;
                             transaction.StateReturnMoney = true;
                         }
+
                         FinishCancelPay();
                     };
 
@@ -109,17 +116,13 @@ namespace WPFEmpresaEPM.UserControls
                     AdminPayPlus.SaveErrorControl(transaction.Observation, "", EError.Device, ELevelError.Medium);
                 }
 
-                transaction.State = ETransactionState.Cancel;
-
                 transaction.StatePay = "Cancelada";
 
                 AdminPayPlus.UpdateTransaction(transaction);
 
                 Utilities.PrintVoucher(transaction);
 
-                Thread.Sleep(5000);
-
-                AdminPayPlus.ControlPeripherals.ClearValues();
+                Thread.Sleep(3000);
 
                 Utilities.navigator.Navigate(UserControlView.Main);
             }

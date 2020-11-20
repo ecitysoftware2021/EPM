@@ -37,9 +37,9 @@ namespace WPFEmpresaEPM.Windows
         {
             try
             {
-                if (this.modal.Timer)
+                if (this.modal.TypeModal != EModalType.Preload)
                 {
-                    ActivateTimer();
+                    GoTimer();
                 }
 
                 if (this.modal.TypeModal == EModalType.Preload)
@@ -83,60 +83,87 @@ namespace WPFEmpresaEPM.Windows
         #endregion
 
         #region "Eventos"
-        private void Grid_TouchDown(object sender, TouchEventArgs e)
-        {
-            if (this.modal.TypeModal == EModalType.MaxAmount || this.modal.TypeModal == EModalType.Error)
-            {
-                try
-                {
-                    SetCallBacksNull();
-                    timer.CallBackStop?.Invoke(1);
-                }
-                catch { }
-
-                this.DialogResult = true;
-            }
-        }
-
         private void BtnOk_TouchDown(object sender, TouchEventArgs e)
         {
-            if (modal.Timer)
+            try
             {
-                SetCallBacksNull();
-                timer.CallBackStop?.Invoke(1);
+                StopTimer();
+                this.DialogResult = true;
             }
-
-            this.DialogResult = true;
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
         }
 
         private void BtnYes_TouchDown(object sender, TouchEventArgs e)
         {
-            this.DialogResult = true;
+            try
+            {
+                StopTimer();
+                this.DialogResult = true;
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
         }
 
         private void BtnNo_TouchDown(object sender, TouchEventArgs e)
         {
-            this.DialogResult = false;
+            try
+            {
+                StopTimer();
+                this.DialogResult = false;
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
         }
         #endregion
 
         #region "Timer"
-        private void ActivateTimer()
+        public void GoTimer()
         {
-            timer = new TimerGeneric(Utilities.GetConfiguration("TimerModal"));
-            timer.CallBackClose = response =>
+            try
             {
                 Dispatcher.BeginInvoke((Action)delegate
                 {
-                    DialogResult = true;
+                    timer = new TimerGeneric(Utilities.GetConfiguration("TimerModal"));
+                    timer.CallBackClose = response =>
+                    {
+                        Dispatcher.BeginInvoke((Action)delegate
+                        {
+                            DialogResult = true;
+                        });
+                        GC.Collect();
+                    };
                 });
-            };
+                GC.Collect();
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
         }
 
-        private void SetCallBacksNull()
+        public void StopTimer()
         {
-            timer.CallBackClose = null;
-            timer.CallBackTimer = null;
+            try
+            {
+                Dispatcher.BeginInvoke((Action)delegate
+                {
+                    timer.CallBackClose = null;
+                    timer.CallBackTimer = null;
+                    timer.CallBackStop?.Invoke(1);
+                });
+                GC.Collect();
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
         }
         #endregion
     }

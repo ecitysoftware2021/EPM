@@ -168,7 +168,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
 
                     if (response == null)
                     {
-                        Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error,true);
+                        Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error);
                         ActivateTimer();
                         Dispatcher.BeginInvoke((Action)delegate
                         {

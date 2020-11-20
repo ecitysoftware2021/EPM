@@ -5,21 +5,6 @@ namespace WPFEmpresaEPM.Models
 {
     public class ModalModel : INotifyPropertyChanged
     {
-        private bool _Timer;
-
-        public bool Timer
-        {
-            get
-            {
-                return _Timer;
-            }
-            set
-            {
-                _Timer = value;
-                OnPropertyRaised("Timer");
-            }
-        }
-
         private string _Messaje;
 
         public string Messaje

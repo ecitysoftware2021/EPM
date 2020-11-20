@@ -14,6 +14,7 @@ using System.Threading;
 using WPFEmpresaEPM.Services;
 using Newtonsoft.Json;
 using WPFEmpresaEPM.Services.ObjectIntegration;
+using WPFEmpresaEPM.Windows.Alerts;
 
 namespace WPFEmpresaEPM.UserControls
 {
@@ -26,6 +27,7 @@ namespace WPFEmpresaEPM.UserControls
         private Transaction transaction;
         private PaymentViewModel paymentViewModel;
         private int Intentos = 1;
+        private ModalLoadWindow loading;
         #endregion
 
         #region "Constructor"
@@ -68,7 +70,8 @@ namespace WPFEmpresaEPM.UserControls
                 };
 
                 this.DataContext = this.paymentViewModel;
-                ActivateWallet();
+                //ActivateWallet();
+                SavePay();
             }
             catch (Exception ex)
             {
@@ -110,7 +113,7 @@ namespace WPFEmpresaEPM.UserControls
                             {
                                 this.paymentViewModel.ImgCambio = Visibility.Visible;
 
-                                ReturnMoney(paymentViewModel.ValorSobrante, true);
+                                ReturnMoney(paymentViewModel.ValorSobrante);
                             }
                             else
                             {
@@ -140,18 +143,18 @@ namespace WPFEmpresaEPM.UserControls
             }
         }
 
-        private void ReturnMoney(decimal returnValue, bool state)
+        private void ReturnMoney(decimal returnValue)
         {
             try
             {
                 AdminPayPlus.ControlPeripherals.callbackTotalOut = totalOut =>
                 {
-                    if (state)
-                    {
-                        transaction.StateReturnMoney = true;
-                        paymentViewModel.ValorDispensado = totalOut;
-                        SavePay();
-                    }
+                    AdminPayPlus.ControlPeripherals.callbackOut = null;
+                    AdminPayPlus.ControlPeripherals.callbackTotalOut = null;
+
+                    transaction.StateReturnMoney = true;
+                    paymentViewModel.ValorDispensado = totalOut;
+                    SavePay();
                 };
 
                 AdminPayPlus.ControlPeripherals.callbackLog = log =>
@@ -163,22 +166,21 @@ namespace WPFEmpresaEPM.UserControls
                 AdminPayPlus.ControlPeripherals.callbackOut = valueOut =>
                 {
                     AdminPayPlus.ControlPeripherals.callbackOut = null;
-                    if (state)
-                    {
-                        paymentViewModel.ValorDispensado = valueOut;
-                        transaction.StateReturnMoney = false;
+                    AdminPayPlus.ControlPeripherals.callbackTotalOut = null;
 
-                        if (paymentViewModel.ValorDispensado == paymentViewModel.ValorSobrante)
-                        {
-                            transaction.StateReturnMoney = true;
-                            SavePay();
-                        }
-                        else
-                        {
-                            transaction.Observation += MessageResource.IncompleteMony + " " + "Devolvio: " + valueOut.ToString();
-                            Utilities.ShowModal(MessageResource.IncompleteMony, EModalType.Error);
-                            SavePay(ETransactionState.Error);
-                        }
+                    paymentViewModel.ValorDispensado = valueOut;
+                    transaction.StateReturnMoney = false;
+
+                    if (paymentViewModel.ValorDispensado == paymentViewModel.ValorSobrante)
+                    {
+                        transaction.StateReturnMoney = true;
+                        SavePay();
+                    }
+                    else
+                    {
+                        transaction.Observation += MessageResource.IncompleteMony + " Devolvio: " + valueOut.ToString();
+                        Utilities.ShowModal("No se pudo entregar la totalidad del dinero. Por favor comunícate con un administrador.", EModalType.Error);
+                        SavePay(ETransactionState.Error);
                     }
                 };
 
@@ -218,10 +220,12 @@ namespace WPFEmpresaEPM.UserControls
                     transaction.Payment = paymentViewModel;
                     transaction.State = statePay;
 
-                    AdminPayPlus.ControlPeripherals.ClearValues();
+                    //AdminPayPlus.ControlPeripherals.ClearValues();
 
                     Task.Run(async () =>
                     {
+                        Thread.Sleep(1000);
+
                         object dataTransaction = null;
 
                         switch (transaction.typeTransaction)
@@ -252,7 +256,9 @@ namespace WPFEmpresaEPM.UserControls
                                 break;
                         }
 
-                        bool response = await ApiIntegration.ReportPay(transaction, dataTransaction);
+                        bool response = false;//await ApiIntegration.ReportPay(transaction, dataTransaction);
+
+                        Thread.Sleep(1000);
 
                         if (!response && Intentos < 3)
                         {
@@ -261,6 +267,13 @@ namespace WPFEmpresaEPM.UserControls
                             SavePay();
                             return;
                         }
+
+                        Dispatcher.BeginInvoke((Action)delegate
+                        {
+                            this.Opacity = 1;
+                            loading.Close();
+                        });
+                        GC.Collect();
 
                         if (response)
                         {
@@ -273,6 +286,17 @@ namespace WPFEmpresaEPM.UserControls
                             CancelTransaction();
                         }
                     });
+
+                    Dispatcher.BeginInvoke((Action)delegate
+                    {
+                        if (loading == null)
+                        {
+                            loading = new ModalLoadWindow();
+                            this.Opacity = 0.3;
+                            loading.ShowDialog();
+                        }
+                    });
+                    GC.Collect();
                 }
             }
             catch (Exception ex)
@@ -308,6 +332,7 @@ namespace WPFEmpresaEPM.UserControls
                 {
                     AdminPayPlus.ControlPeripherals.StopAceptance();
                     AdminPayPlus.ControlPeripherals.callbackLog = null;
+
                     if (!this.paymentViewModel.StatePay)
                     {
                         if (paymentViewModel.ValorIngresado > 0)
