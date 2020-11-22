@@ -33,6 +33,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 transaction = ts;
                 check = new CheckTypeSerch();
+                grvSupport.Content = Utilities.UCSupport;
                 //check.Numero = GetImage(true);
                 //check.Referencia = GetImage(false);
                 //this.DataContext = check;

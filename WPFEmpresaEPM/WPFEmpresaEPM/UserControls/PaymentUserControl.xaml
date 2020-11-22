@@ -9,7 +9,7 @@
              Width="1080">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Backgrounds/soporte.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="380" />
@@ -260,6 +260,9 @@
                    HorizontalAlignment="Right"
                    VerticalAlignment="Top"
                    Margin="0,50,50,0" />-->
+        </Grid>
+        <Grid Grid.RowSpan="7" Grid.ColumnSpan="6">
+            <ContentControl x:Name="grvSupport"></ContentControl>
         </Grid>
     </Grid>
 </UserControl>

@@ -9,12 +9,12 @@
              Width="1080" >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Backgrounds/soporte.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="300"/>
             <RowDefinition Height="*" />
-            <RowDefinition Height="380" />
+            <RowDefinition Height="410" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Image x:Name="BtnExit"
@@ -156,6 +156,9 @@
                 VerticalAlignment="Top"
                 TouchDown="btnConsult_TouchDown"
             />
+        </Grid>
+        <Grid Grid.RowSpan="7" Grid.ColumnSpan="6">
+            <ContentControl x:Name="grvSupport"></ContentControl>
         </Grid>
     </Grid>
 </UserControl>

@@ -33,6 +33,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             try
             {
                 transaction = ts;
+                grvSupport.Content = Utilities.UCSupport;
                 check = new CheckTypeSerch();
                 check.Numero = GetImage(false);
                 check.Referencia = GetImage(true);
@@ -169,9 +170,10 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     if (response == null)
                     {
                         Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error);
-                        ActivateTimer();
+
                         Dispatcher.BeginInvoke((Action)delegate
                         {
+                            ActivateTimer();
                             btnConsult.Visibility = Visibility.Visible;
                         });
                         GC.Collect();

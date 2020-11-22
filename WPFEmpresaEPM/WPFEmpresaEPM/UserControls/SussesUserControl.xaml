@@ -10,7 +10,7 @@
              Width="1080" >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Backgrounds/soporte.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
@@ -31,6 +31,9 @@
             Text="¡Gracias por usar nuestros servicios! Recuerda retirar su recibo."
             FontWeight="Bold" 
         />
+        <Grid Grid.RowSpan="7" Grid.ColumnSpan="6">
+            <ContentControl x:Name="grvSupport"></ContentControl>
+        </Grid>
     </Grid>
 </UserControl>
 

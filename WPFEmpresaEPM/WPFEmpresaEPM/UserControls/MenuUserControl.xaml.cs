@@ -27,7 +27,7 @@ namespace WPFEmpresaEPM.UserControls
         {
             InitializeComponent();
             transaction = new Transaction();
-            grvSupport.DataContext = Utilities.UCSupport;
+            grvSupport.Content = Utilities.UCSupport;
             ActivateTimer();
         }
         #endregion

@@ -30,6 +30,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
             {
                 transaction = ts;
                 DataContext = transaction.detailsPrepago;
+                grvSupport.Content = Utilities.UCSupport;
                 ActivateTimer();
             }
             catch (Exception ex)

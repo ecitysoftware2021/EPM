@@ -15,7 +15,6 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using WPFEmpresaEPM.Models;
 using WPFEmpresaEPM.Classes.Printer;
-using WPFEmpresaEPM.Models;
 using WPFEmpresaEPM.Resources;
 using WPFEmpresaEPM.Windows;
 
@@ -54,7 +53,7 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
-        public static bool ShowModal(string message, EModalType type)
+        public static bool ShowModal(string message, EModalType type, bool timer = true)
         {
             bool response = false;
             try
@@ -64,6 +63,7 @@ namespace WPFEmpresaEPM.Classes
                     Tittle = "Estimado Cliente: ",
                     Messaje = message,
                     TypeModal = type,
+                    Timer = timer,
                     ImageModal = @"Images/Backgrounds/modal.png",
                 };
 
@@ -260,7 +260,7 @@ namespace WPFEmpresaEPM.Classes
                         new DataPrinter { brush = color, font = fontValue, value = "EPM", x = 110, y = y += sum+10 },
 
                         new DataPrinter{ brush = color, font = fontKey,   value = "NIT:", x = xKey, y = y+=sum+10 },
-                        new DataPrinter{ brush = color, font = fontValue, value = "xxx xxx xxx-x" ?? string.Empty, x = x, y = y },
+                        new DataPrinter{ brush = color, font = fontValue, value = "890 904 996-1" ?? string.Empty, x = x, y = y },
 
                         new DataPrinter{ brush = color, font = fontKey,   value = "========================================", x = xKey, y = y+=sum },
 

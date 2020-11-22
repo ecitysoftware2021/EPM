@@ -382,9 +382,6 @@
     <Resource Include="Images\Others\btn-show-id.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Others\cootreguaLogo.PNG" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\Others\circle.png" />
   </ItemGroup>
   <ItemGroup>
@@ -400,8 +397,6 @@
     <Resource Include="Images\Backgrounds\Publicidad-01.jpg" />
     <Resource Include="Images\Backgrounds\Publicidad-02.jpg" />
     <Resource Include="Images\Backgrounds\Publicidad-03.jpg" />
-    <Resource Include="Images\Buttons\ACERCAR.png" />
-    <Resource Include="Images\Buttons\AHORROS.png" />
     <Resource Include="Images\Buttons\b-Aceptar.png" />
     <Resource Include="Images\Buttons\b-Alumbrado-publico.png" />
     <Resource Include="Images\Buttons\b-Atras.png" />
@@ -423,13 +418,7 @@
     <Resource Include="Images\Buttons\b-Salir.png" />
     <Resource Include="Images\Buttons\b-Validar.png" />
     <Resource Include="Images\Buttons\backspace.png" />
-    <Resource Include="Images\Buttons\CORRIENTE.png" />
-    <Resource Include="Images\Buttons\CREDITO.png" />
-    <Resource Include="Images\Buttons\DESLIZAR.png" />
-    <Resource Include="Images\Buttons\INSERTAR.png" />
     <Resource Include="Images\Buttons\ok.png" />
-    <Resource Include="Images\Buttons\PAGO MOVIL.png" />
-    <Resource Include="Images\Buttons\QR.png" />
     <Resource Include="Images\Buttons\x.png" />
     <Resource Include="Images\Gif\clave.gif" />
     <Resource Include="Images\Gif\click.gif" />

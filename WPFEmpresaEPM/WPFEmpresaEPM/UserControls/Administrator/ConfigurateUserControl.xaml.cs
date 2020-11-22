@@ -102,8 +102,20 @@ namespace WPFEmpresaEPM.UserControls.Administrator
         {
             try
             {
+                if (Utilities.UCSupport == null)
+                {
+                    Dispatcher.BeginInvoke((Action)delegate
+                    {
+                        Utilities.UCSupport = new SupportUserControl();
+                        grvSupport.Content = Utilities.UCSupport;
+                    });
+                    GC.Collect();
+                }
+
                 Task.Run(() =>
                 {
+                    Thread.Sleep(10000);
+
                     if (state)
                     {
                         AdminPayPlus.SaveLog(new RequestLog

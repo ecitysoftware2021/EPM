@@ -39,6 +39,8 @@ namespace WPFEmpresaEPM.UserControls
 
             this.transaction.statePaySuccess = false;
 
+            grvSupport.Content = Utilities.UCSupport;
+
             OrganizeValues();
         }
         #endregion
@@ -70,8 +72,8 @@ namespace WPFEmpresaEPM.UserControls
                 };
 
                 this.DataContext = this.paymentViewModel;
-                //ActivateWallet();
-                SavePay();
+                
+                ActivateWallet();
             }
             catch (Exception ex)
             {
@@ -179,7 +181,7 @@ namespace WPFEmpresaEPM.UserControls
                     else
                     {
                         transaction.Observation += MessageResource.IncompleteMony + " Devolvio: " + valueOut.ToString();
-                        Utilities.ShowModal("No se pudo entregar la totalidad del dinero. Por favor comunícate con un administrador.", EModalType.Error);
+                        Utilities.ShowModal("No se pudo entregar la totalidad del dinero. Por favor comunícate con un administrador.", EModalType.Error, false);
                         SavePay(ETransactionState.Error);
                     }
                 };
@@ -220,7 +222,7 @@ namespace WPFEmpresaEPM.UserControls
                     transaction.Payment = paymentViewModel;
                     transaction.State = statePay;
 
-                    //AdminPayPlus.ControlPeripherals.ClearValues();
+                    AdminPayPlus.ControlPeripherals.ClearValues();
 
                     Task.Run(async () =>
                     {
@@ -256,7 +258,7 @@ namespace WPFEmpresaEPM.UserControls
                                 break;
                         }
 
-                        bool response = false;//await ApiIntegration.ReportPay(transaction, dataTransaction);
+                        bool response = await ApiIntegration.ReportPay(transaction, dataTransaction);
 
                         Thread.Sleep(1000);
 
@@ -311,7 +313,7 @@ namespace WPFEmpresaEPM.UserControls
             try
             {
                 string ms = "Estimado usuario, no se pudo notificar el pago. Se le hará la devolución del dinero ingresado.";
-                Utilities.ShowModal(ms, EModalType.Error);
+                Utilities.ShowModal(ms, EModalType.Error , false);
                 Utilities.navigator.Navigate(UserControlView.ReturnMony, transaction);
             }
             catch (Exception ex)

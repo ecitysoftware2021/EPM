@@ -1,17 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows.Controls;
 using WPFEmpresaEPM.Classes;
 
 namespace WPFEmpresaEPM.UserControls.Administrator
@@ -24,7 +11,21 @@ namespace WPFEmpresaEPM.UserControls.Administrator
         public SupportUserControl()
         {
             InitializeComponent();
-            txtNumberPhone.Text = Utilities.GetConfiguration("NumbersPhone");
+
+            try
+            {
+                txtNumberPhone.Text = Utilities.GetConfiguration("NumbersPhone");
+
+                if (AdminPayPlus.DataConfiguration == null)
+                {
+                    txtNumberMachine.Text = Utilities.GetConfiguration("NumbersSerial");
+                }
+                else
+                {
+                    txtNumberMachine.Text = AdminPayPlus.DataConfiguration.ID_PAYPAD.ToString();
+                }
+            }
+            catch { }
         }
     }
 }

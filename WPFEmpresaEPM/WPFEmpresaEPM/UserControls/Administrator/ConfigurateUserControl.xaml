@@ -12,7 +12,7 @@
         Width="1080">
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Backgrounds/soporte.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="400" />
@@ -56,8 +56,8 @@
                 VerticalAlignment="Center" 
                 HorizontalAlignment="Center" 
                 Height="400" />
-            
-            <TextBlock x:Name="txtMs"
+
+        <TextBlock x:Name="txtMs"
                 Text="{Binding DescriptionStatusPayPlus}"
                 FontFamily="Arial"
                 FontSize="40"
@@ -68,5 +68,9 @@
                 TextWrapping="Wrap"
                 TextAlignment="Center"
                 FontWeight="Bold"  />
+
+        <Grid Grid.RowSpan="7" Grid.ColumnSpan="6">
+            <ContentControl x:Name="grvSupport"></ContentControl>
+        </Grid>
     </Grid>
 </UserControl>

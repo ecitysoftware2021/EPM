@@ -19,6 +19,21 @@ namespace WPFEmpresaEPM.Models
                 OnPropertyRaised("Messaje");
             }
         }
+        
+        private bool _Timer;
+
+        public bool Timer
+        {
+            get
+            {
+                return _Timer;
+            }
+            set
+            {
+                _Timer = value;
+                OnPropertyRaised("Timer");
+            }
+        }
 
         private string _Tittle;
 

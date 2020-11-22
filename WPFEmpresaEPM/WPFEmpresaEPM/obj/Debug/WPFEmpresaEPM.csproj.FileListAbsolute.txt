@@ -552,3 +552,5 @@ C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\Windows\Alerts\ModalLoadWindow.g.cs
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\Windows\Alerts\ModalLoadWindow.baml
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\SupportUserControl.baml
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\SupportUserControl.g.cs
+C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\SupportUserControl.baml

@@ -29,6 +29,8 @@ namespace WPFEmpresaEPM.UserControls
 
             ValueReturn = 0;
 
+            grvSupport.Content = Utilities.UCSupport;
+
             ReturnMoney();
         }
         #endregion

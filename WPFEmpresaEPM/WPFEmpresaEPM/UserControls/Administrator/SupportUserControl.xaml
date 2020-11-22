@@ -5,32 +5,61 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:WPFEmpresaEPM.UserControls.Administrator"
              mc:Ignorable="d" 
-             Height="200" 
-             Width="400"
+             Height="300" 
+             Width="1080"
+             VerticalAlignment="Bottom"
              Background="Transparent" >
     <Grid>
         <Image 
             Source="/Images/others/soporte.png"
-            Height="150"
-            Width="150"
+            Height="202"
             HorizontalAlignment="Left"
-            Margin="0,0,0,0"
+            VerticalAlignment="Top"
+            Margin="50,0,0,0"
             Stretch="Uniform"
         />
         <TextBlock 
-            FontSize="20"
+            FontSize="40"
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
-            Margin="200,0,0,50"
+            Margin="260,0,0,240"
             FontWeight="Bold"
             Text="Línea de soporte"
         />
         <TextBlock 
+            FontSize="30"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="200,0,0,140"
+            Width="500"
+            TextWrapping="Wrap"
+            Text="Máquina:"
+        />
+        <TextBlock 
+            x:Name="txtNumberMachine"
+            FontSize="30"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="330,0,0,140"
+            Width="500"
+            TextWrapping="Wrap"
+            FontWeight="Bold"
+        />
+        <TextBlock 
+            FontSize="30"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Center"
+            Margin="200,0,0,30"
+            Width="450"
+            TextWrapping="Wrap"
+            Text="Si presentas algún inconveniente comunícate a la línea:"
+        />
+        <TextBlock 
             x:Name="txtNumberPhone"
-            FontSize="20"
+            FontSize="35"
             HorizontalAlignment="Left"
             VerticalAlignment="Bottom"
-            Margin="200,0,0,50"
+            Margin="200,0,0,90"
             FontWeight="Bold"
         />
     </Grid>

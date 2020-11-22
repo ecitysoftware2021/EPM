@@ -34,6 +34,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
             try
             {
                 transaction = ts;
+                grvSupport.Content = Utilities.UCSupport;
                 valueModel = new ValueModel
                 {
                     Val = 0

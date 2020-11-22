@@ -17,7 +17,7 @@
         >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Backgrounds/soporte.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <Grid>
             <Grid.RowDefinitions>

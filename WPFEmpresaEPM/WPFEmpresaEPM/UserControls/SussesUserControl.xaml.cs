@@ -27,6 +27,8 @@ namespace WPFEmpresaEPM.UserControls
 
             this.transaction = transaction;
 
+            grvSupport.Content = Utilities.UCSupport;
+
             FinishTrnsaction();
         }
         #endregion

@@ -32,6 +32,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             try
             {
                 transaction = ts;
+                grvSupport.Content = Utilities.UCSupport;
                 view = new CollectionViewSource();
                 lstPager = new ObservableCollection<DetailsPagoFactura>();
                 ProductsSelected = new DetailsPagoFactura();

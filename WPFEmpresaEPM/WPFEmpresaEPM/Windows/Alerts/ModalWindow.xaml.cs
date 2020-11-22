@@ -37,7 +37,7 @@ namespace WPFEmpresaEPM.Windows
         {
             try
             {
-                if (this.modal.TypeModal != EModalType.Preload)
+                if (this.modal.Timer && this.modal.TypeModal != EModalType.Preload)
                 {
                     GoTimer();
                 }
@@ -128,19 +128,22 @@ namespace WPFEmpresaEPM.Windows
         {
             try
             {
-                Dispatcher.BeginInvoke((Action)delegate
+                if (this.modal.Timer && this.modal.TypeModal != EModalType.Preload)
                 {
-                    timer = new TimerGeneric(Utilities.GetConfiguration("TimerModal"));
-                    timer.CallBackClose = response =>
+                    Dispatcher.BeginInvoke((Action)delegate
                     {
-                        Dispatcher.BeginInvoke((Action)delegate
+                        timer = new TimerGeneric(Utilities.GetConfiguration("TimerModal"));
+                        timer.CallBackClose = response =>
                         {
-                            DialogResult = true;
-                        });
-                        GC.Collect();
-                    };
-                });
-                GC.Collect();
+                            Dispatcher.BeginInvoke((Action)delegate
+                            {
+                                DialogResult = true;
+                            });
+                            GC.Collect();
+                        };
+                    });
+                    GC.Collect();
+                }
             }
             catch (Exception ex)
             {
@@ -152,13 +155,16 @@ namespace WPFEmpresaEPM.Windows
         {
             try
             {
-                Dispatcher.BeginInvoke((Action)delegate
+                if (this.modal.Timer && this.modal.TypeModal != EModalType.Preload)
                 {
-                    timer.CallBackClose = null;
-                    timer.CallBackTimer = null;
-                    timer.CallBackStop?.Invoke(1);
-                });
-                GC.Collect();
+                    Dispatcher.BeginInvoke((Action)delegate
+                    {
+                        timer.CallBackClose = null;
+                        timer.CallBackTimer = null;
+                        timer.CallBackStop?.Invoke(1);
+                    });
+                    GC.Collect();
+                }
             }
             catch (Exception ex)
             {

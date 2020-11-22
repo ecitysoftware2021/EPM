@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Windows;
 using WPFEmpresaEPM.Classes;
 using WPFEmpresaEPM.Models;
+using WPFEmpresaEPM.UserControls.Administrator;
 
 namespace WPFEmpresaEPM.Windows
 {
@@ -28,11 +29,6 @@ namespace WPFEmpresaEPM.Windows
                 if (Utilities.navigator == null)
                 {
                     Utilities.navigator = new Navigation();
-                }
-
-                if (Utilities.UCSupport == null)
-                {
-                    Utilities.UCSupport = new System.Windows.Controls.UserControl();
                 }
 
                 //string a = Encryptor.Ecity.Dll.Encryptor.Encrypt("usrapli", "WPFEmpresaEPM");

@@ -32,6 +32,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             try
             {
                 transaction = ts;
+                grvSupport.Content = Utilities.UCSupport;
                 DataContext = transaction.detailsPagoMedida;
                 ValorMin = (decimal)transaction.detailsPagoMedida.ValorMin;
                 ValorMax = (decimal)transaction.detailsPagoMedida.ValorTotalFactura;

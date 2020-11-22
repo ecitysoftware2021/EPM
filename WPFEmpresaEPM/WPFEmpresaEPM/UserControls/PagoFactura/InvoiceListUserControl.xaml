@@ -9,13 +9,13 @@
              Width="1080" >
     <Grid>
         <Grid.Background>
-            <ImageBrush ImageSource="/Images/Backgrounds/soporte.jpg" Stretch="Uniform"/>
+            <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="300" />
             <RowDefinition Height="400" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="400" />
+            <RowDefinition Height="440" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -242,6 +242,9 @@
                 Stretch="Uniform"
                 MouseDown="btnCancelar_MouseDown"
             />
+        </Grid>
+        <Grid Grid.RowSpan="7" Grid.ColumnSpan="6">
+            <ContentControl x:Name="grvSupport"></ContentControl>
         </Grid>
     </Grid>
 </UserControl>
