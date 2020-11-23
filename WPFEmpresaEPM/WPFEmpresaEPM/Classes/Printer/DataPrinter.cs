@@ -14,6 +14,7 @@ namespace WPFEmpresaEPM.Classes.Printer
         public string value { get; set; }
 
         public string image { get; set; }
+        public System.Drawing.Image imageQR { get; set; }
 
         public int x { get; set; }
 

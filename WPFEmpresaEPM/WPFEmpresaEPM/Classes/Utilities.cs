@@ -17,6 +17,7 @@ using WPFEmpresaEPM.Models;
 using WPFEmpresaEPM.Classes.Printer;
 using WPFEmpresaEPM.Resources;
 using WPFEmpresaEPM.Windows;
+using Zen.Barcode;
 
 namespace WPFEmpresaEPM.Classes
 {
@@ -169,7 +170,7 @@ namespace WPFEmpresaEPM.Classes
             try
             {
                 CLSPrint objPrint = new CLSPrint();
-
+                objPrint.TOKEN = Encryptor.Decrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", ts.TransactionId,"|","Valor: ",ts.Amount));
                 switch (ts.typeTransaction)
                 {
                     case ETypeTransaction.PagoFactura:
@@ -250,6 +251,7 @@ namespace WPFEmpresaEPM.Classes
                     int sum = 25;
                     int x = 150;
                     int xKey = 15;
+                    string TOKEN = Encryptor.Decrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", transaction.TransactionId, "|", "Valor: ", transaction.Amount));
 
                     var data = new List<DataPrinter>()
                     {
@@ -294,7 +296,7 @@ namespace WPFEmpresaEPM.Classes
                     data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.PrintMs1, x = xKey, y = y += sum });
                     data.Add(new DataPrinter { brush = color, font = fontValue, value = MessageResource.PrintMs2, x = xKey, y = y += 20 });
                     data.Add(new DataPrinter { brush = color, font = fontValue, value = "E-city Software", x = 100, y = y += sum });
-
+                    data.Add(new DataPrinter { imageQR = GenerateCode(TOKEN), x = 90, y = y += sum });
                     AdminPayPlus.PrintService.Start(data);
                 }
             }
@@ -302,6 +304,13 @@ namespace WPFEmpresaEPM.Classes
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "PrintVoucher", ex, ex.ToString());
             }
+        }
+
+        public static System.Drawing.Image GenerateCode(string code)
+        {
+            CodeQrBarcodeDraw qrcode = BarcodeDrawFactory.CodeQr;
+
+            return qrcode.Draw(code, 1, 2);
         }
 
         public static decimal RoundValue(decimal Total, bool arriba)

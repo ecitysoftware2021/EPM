@@ -111,8 +111,11 @@ namespace WPFEmpresaEPM.Classes.Printer
                     foreach (var item in dataPrinter)
                     {
                         graphics = e.Graphics;
-
-                        if (!string.IsNullOrEmpty(item.image))
+                        if (item.imageQR != null)
+                        {
+                            graphics.DrawImage(item.imageQR, item.x, item.y);
+                        }
+                        else if (!string.IsNullOrEmpty(item.image))
                         {
                             graphics.DrawImage(Image.FromFile(item.image), item.x, item.y);
                         }

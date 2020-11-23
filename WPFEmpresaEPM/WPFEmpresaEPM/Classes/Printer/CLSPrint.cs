@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Printing;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using Zen.Barcode;
 
 namespace WPFEmpresaEPM.Classes.Printer
 {
@@ -71,6 +68,7 @@ namespace WPFEmpresaEPM.Classes.Printer
         public string FECHA_FACTURA { get; set; }
         public string HORA_FACTURA { get; set; }
         //_______________FIN_FACTURA__________________//
+        public string TOKEN { get; set; }
         #endregion
 
         #region "Métodos"
@@ -95,7 +93,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                         pd.PrintPage += new PrintPageEventHandler(PrintPageAtuMedida);
                         break;
                 }
-                
+
                 pd.Print();
             }
             catch (Exception ex)
@@ -136,6 +134,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                 g.DrawString("RECUERDE SIEMPRE ESPERAR LA TIRILLA DE ", fTitles, sb, 10, y += sum - 10);
                 g.DrawString("SOPORTE DE PAGO, ES EL ÚNICO DOCUMENTO", fTitles, sb, 10, y += 20);
                 g.DrawString("QUE LO RESPALDA.", fTitles, sb, 10, y += 20);
+                g.DrawImage(Utilities.GenerateCode(TOKEN), 90, y += sum);
 
             }
             catch (Exception ex)
@@ -153,7 +152,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                 int sum = 30;
                 int x = 150;
 
-                
+
                 StringFormat sf = new StringFormat();
                 sf.Alignment = StringAlignment.Center;
                 sf.LineAlignment = StringAlignment.Center;
@@ -163,42 +162,42 @@ namespace WPFEmpresaEPM.Classes.Printer
                 string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
                 g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
 
-                rect = new Rectangle(0, y += sum-10, 270, 20);
+                rect = new Rectangle(0, y += sum - 10, 270, 20);
                 g.DrawString("COMPROBANTE DE PAGO", fGIBTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum, 270, 20);
                 g.DrawString("Nit 890.904.996-1", fContent, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
                 g.DrawString("PAGA A TU MEDIDA", fGIBTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Referente de pago: "+ REFERENTE_DE_PAGO, fTitles, sb, rect, sf);
+                g.DrawString("Referente de pago: " + REFERENTE_DE_PAGO, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Fecha pago: "+ FECHA_DE_PAGO, fTitles, sb, rect, sf);
+                g.DrawString("Fecha pago: " + FECHA_DE_PAGO, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Contrato: "+ CONTRATO, fTitles, sb, rect, sf);
+                g.DrawString("Contrato: " + CONTRATO, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Identifiación cliente: "+ IDENTIFICACION_C, fTitles, sb, rect, sf);
+                g.DrawString("Identifiación cliente: " + IDENTIFICACION_C, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Valor total fact: "+ VALOR_TOTAL_FACT, fTitles, sb, rect, sf);
+                g.DrawString("Valor total fact: " + VALOR_TOTAL_FACT, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Saldo anterior vencido: "+ SALDO_ANTERIOR_VENCIDO, fTitles, sb, rect, sf);
+                g.DrawString("Saldo anterior vencido: " + SALDO_ANTERIOR_VENCIDO, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Saldo anterior vigente: "+ SALDO_ANTERIOR_VIGENTE, fTitles, sb, rect, sf);
+                g.DrawString("Saldo anterior vigente: " + SALDO_ANTERIOR_VIGENTE, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Saldo anterior total: "+ SALDO_ANTERIOR_TOTAL, fTitles, sb, rect, sf);
+                g.DrawString("Saldo anterior total: " + SALDO_ANTERIOR_TOTAL, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Valor pagado: "+ VALOR_PAGO, fTitles, sb, rect, sf);
+                g.DrawString("Valor pagado: " + VALOR_PAGO, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Nuevo saldo: "+ NUEVO_SALDO, fTitles, sb, rect, sf);
+                g.DrawString("Nuevo saldo: " + NUEVO_SALDO, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Saldo a favor: "+ SALDO_FAVOR, fTitles, sb, rect, sf);
+                g.DrawString("Saldo a favor: " + SALDO_FAVOR, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Num restante pagos: "+ NUM_REST_PAGOS, fTitles, sb, rect, sf);
+                g.DrawString("Num restante pagos: " + NUM_REST_PAGOS, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Fecha vencimiento fact: "+ FECHA_DE_VENCI_FACT, fTitles, sb, rect, sf);
+                g.DrawString("Fecha vencimiento fact: " + FECHA_DE_VENCI_FACT, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Servicios a suspender: "+ SERVICIO_A_SUSPENDER, fTitles, sb, rect, sf);
+                g.DrawString("Servicios a suspender: " + SERVICIO_A_SUSPENDER, fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
-                g.DrawString("Punto de venta: "+PUNTO_DE_VENTA, fTitles, sb, rect, sf);
+                g.DrawString("Punto de venta: " + PUNTO_DE_VENTA, fTitles, sb, rect, sf);
 
                 g.DrawString("========================================", fContent, sb, 10, y += sum);
                 rect = new Rectangle(0, y += 20, 270, 20);
@@ -211,7 +210,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                 g.DrawString("SOPORTE DE PAGO, ES EL ÚNICO DOCUMENTO", fTitles, sb, rect, sf);
                 rect = new Rectangle(0, y += 20, 270, 20);
                 g.DrawString("QUE LO RESPALDA.", fTitles, sb, rect, sf);
-
+                g.DrawImage(Utilities.GenerateCode(TOKEN), 90, y += sum);
             }
             catch (Exception ex)
             {
@@ -252,12 +251,15 @@ namespace WPFEmpresaEPM.Classes.Printer
                 g.DrawString("RECUERDE SIEMPRE ESPERAR LA TIRILLA DE ", fTitles, sb, 10, y += sum - 10);
                 g.DrawString("SOPORTE DE PAGO, ES EL ÚNICO DOCUMENTO", fTitles, sb, 10, y += 20);
                 g.DrawString("QUE LO RESPALDA.", fTitles, sb, 10, y += 20);
+                g.DrawImage(Utilities.GenerateCode(TOKEN), 90, y += sum);
             }
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "CLSPrint", ex, ex.ToString());
             }
         }
+
+        
         #endregion
     }
 }
