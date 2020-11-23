@@ -54,12 +54,7 @@ namespace WPFEmpresaEPM.Classes
             get { return _controlPeripherals; }
         }
 
-        private static ControlScanner _controlScanner;
-
-        public static ControlScanner ControlScanner
-        {
-            get { return _controlScanner; }
-        }
+        public static ControlScanner ControlScanner;
 
         private string _descriptionStatusPayPlus;
 
@@ -95,6 +90,11 @@ namespace WPFEmpresaEPM.Classes
             if (_dataPayPlus == null)
             {
                 _dataPayPlus = new DataPayPlus();
+            }
+            
+            if (ControlScanner == null)
+            {
+                ControlScanner = new ControlScanner();
             }
 
         }
