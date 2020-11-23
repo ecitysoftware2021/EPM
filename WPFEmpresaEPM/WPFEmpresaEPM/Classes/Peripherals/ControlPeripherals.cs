@@ -18,7 +18,7 @@ namespace WPFEmpresaEPM.Classes
 
         #region SerialPorts
         private SerialPort _serialPort;//Puerto billeteros
-        private SerialPort _BarcodeReader;
+      
 
         #endregion
 
@@ -60,8 +60,7 @@ namespace WPFEmpresaEPM.Classes
         public Action<string> callbackMessage;//Calback de mensaje
 
         public Action<bool> callbackToken;//Calback de mensaje
-        public Action<string> callbackScanner;
-        public Action<string> callbackErrorScanner;
+       
         #endregion
 
         #region EvaluationValues
@@ -70,7 +69,7 @@ namespace WPFEmpresaEPM.Classes
         #endregion
 
         #region Variables
-        public int flagScanner = 0;
+       
         private decimal payValue;//Valor a pagar
 
         private List<Tuple<string, int>> denominationsDispenser;
@@ -104,10 +103,7 @@ namespace WPFEmpresaEPM.Classes
                     _serialPort = new SerialPort();
                     InitPortBills(portNameBills);
                 }
-                if (_BarcodeReader == null)
-                {
-                    _BarcodeReader = new SerialPort();
-                }
+               
 
                 if (!string.IsNullOrEmpty(denominatios))
                 {
@@ -168,36 +164,7 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
-        /// <summary>
-        ///  Método para inciar el puerto del scanner
-        /// </summary>
-        public void InitializePortScanner(string portName, int baudrate)
-        {
-            try
-            {
-                if (!_BarcodeReader.IsOpen)
-                {
-                    _BarcodeReader.PortName = portName;
-                    _BarcodeReader.BaudRate = baudrate;
-                    _BarcodeReader.Open();
-                    _BarcodeReader.ReadTimeout = 200;
-                    //_BarcodeReader.DtrEnable = true;
-                    //_BarcodeReader.RtsEnable = true;
-                    _BarcodeReader.DataReceived += new SerialDataReceivedEventHandler(Scanner_DataReceived);
-                }
-            }
-            catch (Exception ex)
-            {
-                callbackError?.Invoke(Tuple.Create("", string.Concat("Error (InitializePortScanner), Iniciando scanner", ex)));
-            }
-        }
-        public void ClosePortScanner()
-        {
-            if (_BarcodeReader.IsOpen)
-            {
-                _BarcodeReader.Close();
-            }
-        }
+        
         #endregion
 
         #region SendMessage
@@ -257,58 +224,12 @@ namespace WPFEmpresaEPM.Classes
         }
 
 
-        /// <summary>
-        /// Método que escucha la respuesta del puerto del scanner
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Scanner_DataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            try
-            {
-                if (flagScanner == 0)
-                {
-                    flagScanner = 1;
-                    var data = _BarcodeReader.ReadExisting();
-                    proccessResponseScanner(data);
-                }
-            }
-            catch (Exception ex)
-            {
-                callbackError?.Invoke(Tuple.Create("", string.Concat("Error (Scanner_DataReceived), leyendo respuesta", ex)));
-            }
-        }
         #endregion
 
 
         #region ProcessResponse
 
-        private void proccessResponseScanner(string response)
-        {
-            try
-            {
-                string referente = response.Substring(int.Parse(Utilities.GetConfiguration("InitialPositionSubstringReference")), int.Parse(Utilities.GetConfiguration("LastPositionSubstringReference")));
-                ulong trueResult;
-                if (ulong.TryParse(referente, out trueResult))
-                {
-                    flagScanner = 1;
-                    callbackScanner?.Invoke(trueResult.ToString());
-                    ClosePortScanner();
-                }
-                else
-                {
-                    flagScanner = 1;
-                    ClosePortScanner();
-                    callbackErrorScanner?.Invoke("Por favor, escanee el código de barras ocultando el código QR que se encuentra al lado.");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                callbackError?.Invoke(Tuple.Create("", string.Concat("Error (proccessResponseScanner), procesando la respuesta", ex)));
-            }
-        }
-
+       
         /// <summary>
         /// Método que procesa la respuesta del puerto de los billeteros
         /// </summary>

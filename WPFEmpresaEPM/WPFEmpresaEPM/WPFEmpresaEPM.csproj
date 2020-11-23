@@ -127,7 +127,7 @@
     <Compile Include="Classes\DB\SqliteDataAccess.cs" />
     <Compile Include="Classes\Peripherals\ControlPeripherals.cs" />
     <Compile Include="Classes\Printer\CLSPrint.cs" />
-    <Compile Include="Classes\UseFull\ReaderBarCode.cs" />
+    <Compile Include="Classes\Scanner\ControlScanner.cs" />
     <Compile Include="Classes\UseFull\Encryptor.cs" />
     <Compile Include="Classes\UseFull\Enumerables.cs" />
     <Compile Include="Classes\UseFull\Error.cs" />

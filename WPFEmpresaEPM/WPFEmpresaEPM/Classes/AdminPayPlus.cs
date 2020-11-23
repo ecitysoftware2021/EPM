@@ -12,6 +12,7 @@ using WPFEmpresaEPM.Resources;
 using WPFEmpresaEPM.Services;
 using WPFEmpresaEPM.Services.Object;
 using System.Collections.Generic;
+using WPFEmpresaEPM.Classes.Scanner;
 
 namespace WPFEmpresaEPM.Classes
 {
@@ -44,18 +45,20 @@ namespace WPFEmpresaEPM.Classes
             get { return _printService; }
         }
 
-        private static ReaderBarCode _readerBarCode;
-
-        public static ReaderBarCode ReaderBarCode
-        {
-            get { return _readerBarCode; }
-        }
+        
 
         private static ControlPeripherals _controlPeripherals;
 
         public static ControlPeripherals ControlPeripherals
         {
             get { return _controlPeripherals; }
+        }
+
+        private static ControlScanner _controlScanner;
+
+        public static ControlScanner ControlScanner
+        {
+            get { return _controlScanner; }
         }
 
         private string _descriptionStatusPayPlus;
@@ -94,10 +97,6 @@ namespace WPFEmpresaEPM.Classes
                 _dataPayPlus = new DataPayPlus();
             }
 
-            if (_readerBarCode == null)
-            {
-                _readerBarCode = new ReaderBarCode();
-            }
         }
         #endregion
 

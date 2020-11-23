@@ -199,7 +199,8 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                         Utilities.navigator.Navigate(UserControlView.InvoiceListPagoFactura, transaction);
                     }
                 });
-
+                AdminPayPlus.ControlScanner.callbackScanner = null;
+                AdminPayPlus.ControlScanner.callbackErrorScanner = null;
                 SetCallBacksNull();
                 timer.CallBackStop?.Invoke(1);
                 Utilities.ShowModal(MessageResource.LoadInformation, EModalType.Preload);
@@ -269,7 +270,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
 
         private void ActivateScanner()
         {
-            AdminPayPlus.ControlPeripherals.callbackScanner = Reference =>
+            AdminPayPlus.ControlScanner.callbackScanner = Reference =>
             {
                 if (!string.IsNullOrEmpty(Reference))
                 {
@@ -281,7 +282,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
 
                 }
             };
-            AdminPayPlus.ControlPeripherals.callbackErrorScanner = Error =>
+            AdminPayPlus.ControlScanner.callbackErrorScanner = Error =>
             {
                 Dispatcher.BeginInvoke((Action)delegate
                 {
@@ -293,8 +294,8 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                 });
             };
 
-            AdminPayPlus.ControlPeripherals.flagScanner = 0;
-            AdminPayPlus.ControlPeripherals.InitializePortScanner(Utilities.GetConfiguration("PortScanner"),
+            AdminPayPlus.ControlScanner.flagScanner = 0;
+            AdminPayPlus.ControlScanner.InitializePortScanner(Utilities.GetConfiguration("PortScanner"),
                 int.Parse(Utilities.GetConfiguration("BaudRateScanner")));
         }
     }
