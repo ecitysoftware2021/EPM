@@ -115,9 +115,9 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 txtError.Visibility = Visibility.Hidden;
 
-                if (TxtIdentification.Text.Length > TxtIdentification.MaxLength)
+                if (TxtIdentification.Text.Length > int.Parse(Utilities.GetConfiguration("MaxLengthReference")))
                 {
-                    TxtIdentification.Text = TxtIdentification.Text.Remove(TxtIdentification.MaxLength, 1);
+                    TxtIdentification.Text = TxtIdentification.Text.Remove(int.Parse(Utilities.GetConfiguration("MaxLengthReference")), 1);
                     return;
                 }
             }
@@ -173,7 +173,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                 Task.Run(async () =>
                 {
                     Thread.Sleep(500);
-                    if (transaction.Document.Length > 7)
+                    if (transaction.Document.Length > int.Parse(Utilities.GetConfiguration("MaxLength")))
                     {
                         transaction.typeSearch = ETypeSearch.ReferenteDePago;
                     }
@@ -187,7 +187,9 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
 
                     if (response == null)
                     {
+
                         Utilities.ShowModal($"No se encontrarón resultados para {transaction.Document}. Por favor vuelve a intentarlo.", EModalType.Error);
+                        ActivateScanner();
                         ActivateTimer();
                     }
                     else
@@ -259,5 +261,41 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             GC.Collect();
         }
         #endregion
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ActivateScanner();
+        }
+
+        private void ActivateScanner()
+        {
+            AdminPayPlus.ControlPeripherals.callbackScanner = Reference =>
+            {
+                if (!string.IsNullOrEmpty(Reference))
+                {
+                    Dispatcher.BeginInvoke((Action)delegate
+                    {
+                        TxtIdentification.Text = Reference;
+                        Validate();
+                    });
+
+                }
+            };
+            AdminPayPlus.ControlPeripherals.callbackErrorScanner = Error =>
+            {
+                Dispatcher.BeginInvoke((Action)delegate
+                {
+                    SetCallBacksNull();
+                    timer.CallBackStop?.Invoke(1);
+                    Utilities.ShowModal(Error, EModalType.Error);
+                    ActivateScanner();
+                    ActivateTimer();
+                });
+            };
+
+            AdminPayPlus.ControlPeripherals.flagScanner = 0;
+            AdminPayPlus.ControlPeripherals.InitializePortScanner(Utilities.GetConfiguration("PortScanner"),
+                int.Parse(Utilities.GetConfiguration("BaudRateScanner")));
+        }
     }
 }

@@ -169,7 +169,8 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
 
                     if (response == null)
                     {
-                        Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error);
+                        string busqueda = transaction.NumeroContrato > 0 ? transaction.NumeroContrato.ToString() : transaction.Document;
+                        Utilities.ShowModal($"No se encontrarón resultados para {busqueda}. Por favor vuelve a intentarlo.", EModalType.Error);
 
                         Dispatcher.BeginInvoke((Action)delegate
                         {

@@ -99,7 +99,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         {
             SetCallBacksNull();
             timer.CallBackStop?.Invoke(1);
-            Utilities.navigator.Navigate(UserControlView.ConsultPagoFactura,this.transaction);
+            Utilities.navigator.Navigate(UserControlView.ConsultPagoFactura, this.transaction);
         }
 
         private void BtnExit_TouchDown(object sender, TouchEventArgs e)
@@ -137,19 +137,19 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         {
             try
             {
-                var service = (DetailsPagoFactura)(sender as ListViewItem).Content;
+                    var service = (DetailsPagoFactura)(sender as ListViewItem).Content;
 
-                ProductsSelected.img = GetImage(false);
+                    ProductsSelected.img = GetImage(false);
 
-                service.img = GetImage(true);
+                    service.img = GetImage(true);
 
-                lv_Products.Items.Refresh();
+                    lv_Products.Items.Refresh();
 
-                ProductsSelected = service;
+                    ProductsSelected = service;
 
-                transaction.detailsPagoFactura = service;
+                    transaction.detailsPagoFactura = service;
 
-                transaction.Amount = Utilities.RoundValue(service.ValorPagar, true);
+                    transaction.Amount = Utilities.RoundValue(service.ValorPagar, true);
             }
             catch (Exception ex)
             {

@@ -7,7 +7,8 @@
              mc:Ignorable="d" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
              Height="1920" 
-             Width="1080" >
+             Width="1080" 
+             Loaded="UserControl_Loaded">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
@@ -96,7 +97,6 @@
                 Margin="0,250,100,0"/>-->
             <TextBlock
                 x:Name="txTitleSearch"
-                Text="Escribe el número verde que está en la parte superior de tu factura o el referente de pago." 
                 HorizontalAlignment="Center"
                 TextWrapping="Wrap"
                 TextAlignment="Center"
@@ -104,7 +104,11 @@
                 FontWeight="Bold" 
                 FontSize="40" 
                 Foreground="Gray" 
-                Margin="0,200,0,0"/>
+                Margin="0,200,0,0">
+                <Run Text="Escribe el número "/>
+                <Run Text="verde " Foreground="#FF68B549" FontWeight="Bold"/>
+                <Run Text="que está en la parte superior de tu factura o el referente de pago, tambien puedes escanear el código de barras de tu factura."/>
+            </TextBlock>
             <TextBox x:Name="TxtIdentification"
                 HorizontalAlignment="Center"
                 md:HintAssist.Hint="Número de contrato o referente"

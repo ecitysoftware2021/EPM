@@ -142,7 +142,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                 if (valueModel.Val % 100 != 0)
                 {
                     txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
-                    Environment.NewLine, "Ejemplo: $100, $1.000, $10.000... etc."); 
+                    Environment.NewLine, "Ejemplo: $100, $1.000, $10.000... etc.");
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
@@ -150,7 +150,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                 if (valueModel.Val < ValorMin || valueModel.Val > ValorMax)
                 {
                     txtErrorValor.Text = string.Concat("Debe ingresar un valor entre",
-                    Environment.NewLine, string.Format("{0} y {1}",ValorMin.ToString("C"),ValorMax.ToString("C")));
+                    Environment.NewLine, string.Format("{0} y {1}", ValorMin.ToString("C"), ValorMax.ToString("C")));
                     txtErrorValor.Visibility = Visibility.Visible;
                     return false;
                 }
@@ -180,7 +180,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
 
                     if (response == null)
                     {
-                        Utilities.ShowModal("No se encontrarón resultados. Por favor vuelve a intentarlo.", EModalType.Error);
+                        Utilities.ShowModal($"No se encontrarón resultados para {transaction.NumeroMedidor}. Por favor vuelve a intentarlo.", EModalType.Error);
                         ActivateTimer();
                     }
                     else
