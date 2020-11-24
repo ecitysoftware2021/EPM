@@ -170,7 +170,7 @@ namespace WPFEmpresaEPM.Classes
             try
             {
                 CLSPrint objPrint = new CLSPrint();
-                objPrint.TOKEN = Encryptor.Decrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", ts.TransactionId,"|","Valor: ",ts.Amount));
+                objPrint.TOKEN = Encryptor.Encrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", ts.TransactionId,"|","Valor: ",ts.Amount));
                 switch (ts.typeTransaction)
                 {
                     case ETypeTransaction.PagoFactura:
@@ -251,7 +251,7 @@ namespace WPFEmpresaEPM.Classes
                     int sum = 25;
                     int x = 150;
                     int xKey = 15;
-                    string TOKEN = Encryptor.Decrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", transaction.TransactionId, "|", "Valor: ", transaction.Amount));
+                    string TOKEN = Encryptor.Encrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", transaction.TransactionId, "|", "Valor: ", transaction.Amount));
 
                     var data = new List<DataPrinter>()
                     {
