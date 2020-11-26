@@ -170,7 +170,7 @@ namespace WPFEmpresaEPM.Classes
             try
             {
                 CLSPrint objPrint = new CLSPrint();
-                objPrint.TOKEN = Encryptor.Encrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", ts.TransactionId,"|","Valor: ",ts.Amount));
+                objPrint.TOKEN = Encryptor.Encrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", ts.TransactionId, "|", "Valor: ", ts.Amount));
                 switch (ts.typeTransaction)
                 {
                     case ETypeTransaction.PagoFactura:
@@ -247,7 +247,7 @@ namespace WPFEmpresaEPM.Classes
                     SolidBrush color = new SolidBrush(Color.Black);
                     Font fontKey = new Font("Arial", 8, System.Drawing.FontStyle.Bold);
                     Font fontValue = new Font("Arial", 8, System.Drawing.FontStyle.Regular);
-                    int y = 0;
+                    int y = 50;
                     int sum = 25;
                     int x = 150;
                     int xKey = 15;
@@ -255,11 +255,7 @@ namespace WPFEmpresaEPM.Classes
 
                     var data = new List<DataPrinter>()
                     {
-                        //new DataPrinter{ image = GetConfiguration("ImageBoucher"),  x = 80, y = 2 },
-
-                        new DataPrinter{ brush = color, font = fontKey,   value = "Comprobante de pago", x = 80, y = y+=10 },
-
-                        new DataPrinter { brush = color, font = fontValue, value = "EPM", x = 110, y = y += sum+10 },
+                        new DataPrinter{ image = GetConfiguration("ImageBoucher"),  x = 50, y = 0 },
 
                         new DataPrinter{ brush = color, font = fontKey,   value = "NIT:", x = xKey, y = y+=sum+10 },
                         new DataPrinter{ brush = color, font = fontValue, value = "890 904 996-1" ?? string.Empty, x = x, y = y },

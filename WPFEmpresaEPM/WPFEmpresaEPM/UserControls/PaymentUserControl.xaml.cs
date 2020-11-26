@@ -12,8 +12,6 @@ using System.Collections.Generic;
 using WPFEmpresaEPM.Resources;
 using System.Threading;
 using WPFEmpresaEPM.Services;
-using Newtonsoft.Json;
-using WPFEmpresaEPM.Services.ObjectIntegration;
 using WPFEmpresaEPM.Windows.Alerts;
 
 namespace WPFEmpresaEPM.UserControls
@@ -72,7 +70,7 @@ namespace WPFEmpresaEPM.UserControls
                 };
 
                 this.DataContext = this.paymentViewModel;
-                
+
                 ActivateWallet();
             }
             catch (Exception ex)
@@ -119,6 +117,7 @@ namespace WPFEmpresaEPM.UserControls
                             }
                             else
                             {
+                                transaction.StateReturnMoney = true;
                                 SavePay();
                             }
                         }
@@ -262,9 +261,10 @@ namespace WPFEmpresaEPM.UserControls
 
                         Thread.Sleep(1000);
 
-                        if (!response && Intentos < 3)
+                        if (!response && Intentos < 5)
                         {
                             Intentos++;
+                            AdminPayPlus.CreateConsecutivoDashboard(transaction);
                             this.paymentViewModel.StatePay = false;
                             SavePay();
                             return;

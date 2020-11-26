@@ -470,12 +470,27 @@ namespace WPFEmpresaEPM.Classes
                             TRANSACTION_REFERENCE = ""
                         };
 
+                        string desc = string.Empty;
+
+                        switch (transaction.typeTransaction)
+                        {
+                            case ETypeTransaction.PagoFactura:
+                                desc = "PagoFactura";
+                                break;
+                            case ETypeTransaction.FacturaPrepago:
+                                desc = "FacturaPrepago";
+                                break;
+                            case ETypeTransaction.PagoMedida:
+                                desc = "PagoMedida";
+                                break;
+                        }
+
                         data.TRANSACTION_DESCRIPTION.Add(new TRANSACTION_DESCRIPTION
                         {
                             AMOUNT = transaction.Amount,
                             TRANSACTION_ID = data.ID,
                             TRANSACTION_PRODUCT_ID = (int)transaction.typeTransaction,
-                            DESCRIPTION = "",
+                            DESCRIPTION = desc,
                             EXTRA_DATA = "",
                             TRANSACTION_DESCRIPTION_ID = 0,
                             STATE = true
@@ -618,10 +633,14 @@ namespace WPFEmpresaEPM.Classes
                         tRANSACTION.TRANSACTION_REFERENCE = transaction.ConsecutivoId.ToString();
 
                         var responseTransaction = await api.CallApi("UpdateTransaction", tRANSACTION);
-                        if (responseTransaction != null)
+                        if (responseTransaction != null && (bool)responseTransaction == true)
                         {
                             tRANSACTION.STATE = 1;
                             SqliteDataAccess.UpdateTransactionState(tRANSACTION);
+                        }
+                        else
+                        {
+
                         }
                     }
                 }
