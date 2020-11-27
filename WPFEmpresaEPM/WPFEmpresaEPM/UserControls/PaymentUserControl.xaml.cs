@@ -38,8 +38,6 @@ namespace WPFEmpresaEPM.UserControls
             this.transaction.statePaySuccess = false;
 
             grvSupport.Content = Utilities.UCSupport;
-
-            OrganizeValues();
         }
         #endregion
 
@@ -71,7 +69,25 @@ namespace WPFEmpresaEPM.UserControls
 
                 this.DataContext = this.paymentViewModel;
 
-                ActivateWallet();
+                string moreMs = string.Empty;
+
+                if (transaction.Amount > transaction.RealAmount)
+                {
+                    moreMs = $"¿ Desea asumir el ajuste de {String.Format("{0:C0}", transaction.RealAmount)} a {String.Format("{0:C0}", transaction.Amount)} ?";
+
+                    if (Utilities.ShowModal(string.Concat("Este dispositivo no devuelve cantidades inferiores a $100. ",Environment.NewLine,moreMs), EModalType.Information ,false))
+                    {
+                        ActivateWallet();
+                    }
+                    else
+                    {
+                        Utilities.navigator.Navigate(UserControlView.Main);
+                    }
+                }
+                else
+                {
+                    ActivateWallet();
+                }
             }
             catch (Exception ex)
             {
@@ -364,5 +380,10 @@ namespace WPFEmpresaEPM.UserControls
             }
         }
         #endregion
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            OrganizeValues();
+        }
     }
 }

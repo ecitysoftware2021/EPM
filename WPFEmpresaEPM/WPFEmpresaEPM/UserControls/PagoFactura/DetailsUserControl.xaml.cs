@@ -73,7 +73,9 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                     transaction.Type = ETransactionType.Payment;
                     transaction.State = ETransactionState.Initial;
                     transaction.payer = null;
-                    transaction.Amount = transaction.detailsPagoFactura.ValorPagar;
+                    
+                    transaction.Amount = Utilities.RoundValue(transaction.detailsPagoFactura.ValorPagar,true);
+                    transaction.RealAmount = transaction.detailsPagoFactura.ValorPagar;
 
                     await AdminPayPlus.SaveTransaction(this.transaction);
 

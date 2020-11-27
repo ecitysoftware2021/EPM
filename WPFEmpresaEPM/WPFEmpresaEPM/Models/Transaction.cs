@@ -63,6 +63,7 @@ namespace WPFEmpresaEPM.Models
         public int StateNotification { get; set; }
 
         public decimal AmountToReturn { get; set; }
+        public decimal RealAmount { get; set; }
 
         public object File { get; set; }
 

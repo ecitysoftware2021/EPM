@@ -18,6 +18,7 @@ namespace WPFEmpresaEPM.DataModel
         public DateTime DATE_BEGIN { get; set; }
         public DateTime DATE_END { get; set; }
         public decimal TOTAL_AMOUNT { get; set; }
+        public decimal REAL_AMOUNT { get; set; }
         public Nullable<decimal> INCOME_AMOUNT { get; set; }
         public Nullable<decimal> RETURN_AMOUNT { get; set; }
         public string DESCRIPTION { get; set; }

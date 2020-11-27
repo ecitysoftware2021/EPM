@@ -73,7 +73,6 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     transaction.Type = ETransactionType.Payment;
                     transaction.State = ETransactionState.Initial;
                     transaction.payer = null;
-                    //transaction.Amount = Convert.ToDecimal(transaction.detailsPrepago..ValorTotalFactura);
 
                     await AdminPayPlus.SaveTransaction(this.transaction);
 

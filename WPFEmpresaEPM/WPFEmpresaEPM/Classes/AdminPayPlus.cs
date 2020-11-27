@@ -458,6 +458,7 @@ namespace WPFEmpresaEPM.Classes
                             PAYER_ID = transaction.payer.PAYER_ID,
                             STATE_TRANSACTION_ID = Convert.ToInt32(transaction.State),
                             TOTAL_AMOUNT = transaction.Amount,
+                            REAL_AMOUNT = transaction.RealAmount,
                             DATE_END = DateTime.Now,
                             TRANSACTION_ID = 0,
                             RETURN_AMOUNT = 0,

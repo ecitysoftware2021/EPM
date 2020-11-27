@@ -55,7 +55,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                     lstPager.Add(new DetailsPagoFactura
                     {
                         img = GetImage(false),
-                        ValorPagar = Utilities.RoundValue(Convert.ToDecimal(product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.CurAmt.Amt), true),
+                        ValorPagar = Convert.ToDecimal(product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.CurAmt.Amt),
                         Referencia = product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillId,
                         FechaLimite = product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillDt,
                         NumeroCuenta = product.PaySvcRs.PmtAddRs.PmtInfo.RemitInfo.BillingAcct,
@@ -148,8 +148,10 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                     ProductsSelected = service;
 
                     transaction.detailsPagoFactura = service;
-
+                    
                     transaction.Amount = Utilities.RoundValue(service.ValorPagar, true);
+
+                    transaction.RealAmount = service.ValorPagar;
             }
             catch (Exception ex)
             {

@@ -155,7 +155,9 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                     return false;
                 }
 
+               
                 transaction.Amount = valueModel.Val;
+                transaction.RealAmount = valueModel.Val;
                 transaction.NumeroMedidor = txtNumeroMedidor.Text;
                 return true;
             }
