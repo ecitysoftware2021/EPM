@@ -181,17 +181,10 @@ namespace WPFEmpresaEPM.Classes
                     Thread.Sleep(2000);
                     _serialPort.Write(message);
 
-                    AdminPayPlus.SaveLog(new RequestLog
-                    {
-                        Reference = "",
-                        Description = "Mensaje al billetero " + message,
-                        State = 1,
-                        Date = DateTime.Now
-                    }, ELogType.General);
+                    Error.SaveLogError("SendMessageBills", "ControlPeripherals", null, "Mensaje al billetero: " + message);
 
                     return true;
                 }
-
             }
             catch (Exception ex)
             {
@@ -212,8 +205,11 @@ namespace WPFEmpresaEPM.Classes
             try
             {
                 string response = _serialPort.ReadLine();
+
                 if (!string.IsNullOrEmpty(response))
                 {
+                    Error.SaveLogError("_serialPortBillsDataReceived", "ControlPeripherals", null, "Respuesta del billetero: " + response);
+
                     ProcessResponseBills(response.Replace("\r", string.Empty));
                 }
             }
@@ -225,7 +221,6 @@ namespace WPFEmpresaEPM.Classes
 
 
         #endregion
-
 
         #region ProcessResponse
 
@@ -243,21 +238,6 @@ namespace WPFEmpresaEPM.Classes
                     ProcessRC(response);
                     break;
                 case "ER":
-
-                    foreach (var item in Utilities.ErrorVector)
-                    {
-                        if (message.ToLower().Contains(item.ToLower()))
-                        {
-                            AdminPayPlus.SaveLog(new RequestLog
-                            {
-                                Reference = "",
-                                Description = "Respuesta del billetero " + message,
-                                State = 1,
-                                Date = DateTime.Now
-                            }, ELogType.General);
-                        }
-                    }
-
                     ProcessER(response);
                     break;
                 case "UN":
