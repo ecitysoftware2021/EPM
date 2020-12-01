@@ -45,7 +45,7 @@ namespace WPFEmpresaEPM.Classes
             get { return _printService; }
         }
 
-        
+
 
         private static ControlPeripherals _controlPeripherals;
 
@@ -91,7 +91,7 @@ namespace WPFEmpresaEPM.Classes
             {
                 _dataPayPlus = new DataPayPlus();
             }
-            
+
             if (ControlScanner == null)
             {
                 ControlScanner = new ControlScanner();
@@ -452,6 +452,30 @@ namespace WPFEmpresaEPM.Classes
 
                     if (transaction.payer.PAYER_ID > 0)
                     {
+
+
+                        string desc = string.Empty;
+                        string reference = string.Empty;
+                        string contract = string.Empty;
+                        switch (transaction.typeTransaction)
+                        {
+                            case ETypeTransaction.PagoFactura:
+                                desc = "Pago de Factura";
+                                reference = transaction.detailsPagoFactura.Referencia;
+                                contract = transaction.detailsPagoFactura.NumeroCuenta;
+                                break;
+                            case ETypeTransaction.FacturaPrepago:
+                                desc = "Factura Prepago";
+                                reference = transaction.detailsPrepago.ElementoMedicion;
+                                contract = transaction.detailsPrepago.Dni;
+                                break;
+                            case ETypeTransaction.PagoMedida:
+                                desc = "Pago a tu Medida";
+                                contract = transaction.detailsPagoMedida.Contrato + "";
+                                reference = transaction.detailsPagoMedida.Identificacion;
+
+                                break;
+                        }
                         var data = new TRANSACTION
                         {
                             TYPE_TRANSACTION_ID = Convert.ToInt32(transaction.Type),
@@ -467,32 +491,17 @@ namespace WPFEmpresaEPM.Classes
                             DATE_BEGIN = DateTime.Now,
                             STATE_NOTIFICATION = 0,
                             STATE = 0,
-                            DESCRIPTION = "Transaccion iniciada",
-                            TRANSACTION_REFERENCE = ""
+                            DESCRIPTION = desc,
+                            TRANSACTION_REFERENCE = reference
                         };
-
-                        string desc = string.Empty;
-
-                        switch (transaction.typeTransaction)
-                        {
-                            case ETypeTransaction.PagoFactura:
-                                desc = "PagoFactura";
-                                break;
-                            case ETypeTransaction.FacturaPrepago:
-                                desc = "FacturaPrepago";
-                                break;
-                            case ETypeTransaction.PagoMedida:
-                                desc = "PagoMedida";
-                                break;
-                        }
 
                         data.TRANSACTION_DESCRIPTION.Add(new TRANSACTION_DESCRIPTION
                         {
-                            AMOUNT = transaction.Amount,
+                            AMOUNT = transaction.RealAmount,
                             TRANSACTION_ID = data.ID,
                             TRANSACTION_PRODUCT_ID = (int)transaction.typeTransaction,
-                            DESCRIPTION = desc,
-                            EXTRA_DATA = "",
+                            DESCRIPTION = reference,
+                            EXTRA_DATA = contract,
                             TRANSACTION_DESCRIPTION_ID = 0,
                             STATE = true
                         });
@@ -572,13 +581,13 @@ namespace WPFEmpresaEPM.Classes
                 {
                     //if (response.CodeError == 200)
                     //{
-                        var responseApi = JsonConvert.DeserializeObject<SP_GET_INVOICE_DATA_Result>(response.ToString());
+                    var responseApi = JsonConvert.DeserializeObject<SP_GET_INVOICE_DATA_Result>(response.ToString());
 
-                        if (responseApi.IS_AVAILABLE == true)
-                        {
-                            ts.ConsecutivoId = Convert.ToInt32(responseApi.RANGO_ACTUAL);
-                            return true;
-                        }
+                    if (responseApi.IS_AVAILABLE == true)
+                    {
+                        ts.ConsecutivoId = Convert.ToInt32(responseApi.RANGO_ACTUAL);
+                        return true;
+                    }
                     //}
                 }
 
