@@ -559,7 +559,6 @@ C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debu
 C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\Windows\Alerts\ModalLoadWindow.baml
 C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\Encryptor.Ecity.Dll.pdb
 C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\Zen.Barcode.Core.dll
-C:\Users\David.Cordoba\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csprojAssemblyReference.cache
 C:\Users\H-81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\Zen.Barcode.Core.dll
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\Zen.Barcode.Core.dll
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\Encryptor.Ecity.Dll.pdb

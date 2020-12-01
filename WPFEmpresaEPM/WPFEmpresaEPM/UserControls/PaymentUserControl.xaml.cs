@@ -250,7 +250,7 @@ namespace WPFEmpresaEPM.UserControls
                             case ETypeTransaction.PagoFactura:
                                 dataTransaction = new InvoicePayRequest
                                 {
-                                    payValue = transaction.Amount,
+                                    payValue = transaction.RealAmount,
                                     reference = transaction.detailsPagoFactura.Referencia
                                 };
                                 break;
