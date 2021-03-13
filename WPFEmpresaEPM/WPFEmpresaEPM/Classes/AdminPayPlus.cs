@@ -283,10 +283,10 @@ namespace WPFEmpresaEPM.Classes
 
                     return new CONFIGURATION_PAYDAD
                     {
-                        USER_API = Utilities.EncryptorData(server[0].Split(':')[1]),
-                        PASSWORD_API = Utilities.EncryptorData(server[1].Split(':')[1]),
-                        USER = Utilities.EncryptorData(payplus[0].Split(':')[1]),
-                        PASSWORD = Utilities.EncryptorData(payplus[1].Split(':')[1]),
+                        USER_API = Utilities.EncryptorData(server[0].Split(':')[1],false),
+                        PASSWORD_API = Utilities.EncryptorData(server[1].Split(':')[1],false),
+                        USER = Utilities.EncryptorData(payplus[0].Split(':')[1],false),
+                        PASSWORD = Utilities.EncryptorData(payplus[1].Split(':')[1],false),
                         TYPE = Convert.ToInt32(payplus[2].Split(':')[1])
                     };
                 }

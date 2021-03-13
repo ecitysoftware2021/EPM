@@ -562,3 +562,4 @@ C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csproj.CopyComplete
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.exe
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.pdb
+C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csprojAssemblyReference.cache
