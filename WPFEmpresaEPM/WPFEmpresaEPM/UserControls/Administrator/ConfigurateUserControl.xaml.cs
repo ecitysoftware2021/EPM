@@ -118,14 +118,6 @@ namespace WPFEmpresaEPM.UserControls.Administrator
 
                     if (state)
                     {
-                        AdminPayPlus.SaveLog(new RequestLog
-                        {
-                            Reference = "",
-                            Description = MessageResource.YesGoInitial,
-                            State = 1,
-                            Date = DateTime.Now
-                        }, ELogType.General);
-
                         Utilities.navigator.Navigate(UserControlView.Main);
                     }
                     else
@@ -135,12 +127,11 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                             AdminPayPlus.SaveLog(new RequestLog
                             {
                                 Reference = "",
-                                Description = MessageResource.NoGoInitial,
+                                Description = string.Concat(MessageResource.NoGoInitial, " ", init.DescriptionStatusPayPlus),
                                 State = 6,
                                 Date = DateTime.Now
                             }, ELogType.General);
 
-                            Error.SaveLogError("Finish", this.GetType().Name, null, AdminPayPlus.DataPayPlus.Message);
                             Utilities.ShowModal(MessageResource.NoService + " " + MessageResource.NoMoneyKiosco, EModalType.Error);
                             Initial();
                         }
@@ -149,12 +140,11 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                             AdminPayPlus.SaveLog(new RequestLog
                             {
                                 Reference = "",
-                                Description = MessageResource.NoGoInitial,
+                                Description = string.Concat(MessageResource.NoGoInitial, " ", init.DescriptionStatusPayPlus),
                                 State = 2,
                                 Date = DateTime.Now
                             }, ELogType.General);
 
-                            Error.SaveLogError("Finish", this.GetType().Name, null, init.DescriptionStatusPayPlus);
                             Utilities.ShowModal(MessageResource.NoService + " " + init.DescriptionStatusPayPlus, EModalType.Error);
                             Initial();
                         }
@@ -164,8 +154,6 @@ namespace WPFEmpresaEPM.UserControls.Administrator
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
-                Utilities.ShowModal(MessageResource.NoService, EModalType.Error);
-                Initial();
             }
         }
         #endregion

@@ -139,8 +139,6 @@ namespace WPFEmpresaEPM.UserControls
                                 Date = DateTime.Now
                             }, ELogType.General);
 
-                            Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, null, MessageResource.PrinterNoPapper);
-
                             //if (Utilities.ShowModal(MessageResource.ErrorNoPaper, EModalType.Information))
                             //{
                             Redirect(true);

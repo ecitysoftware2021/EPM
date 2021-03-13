@@ -155,6 +155,16 @@ namespace WPFEmpresaEPM.Classes
                     _serialPort.RtsEnable = true;
                     _serialPort.Open();
                 }
+                else
+                {
+                    AdminPayPlus.SaveLog(new RequestLog
+                    {
+                        Reference = "",
+                        Description = "El billetero esta cerrado o el puerto esta ocupado",
+                        State = 1,
+                        Date = DateTime.Now
+                    }, ELogType.General);
+                }
 
                 _serialPort.DataReceived += new SerialDataReceivedEventHandler(_serialPortBillsDataReceived);
             }
@@ -181,9 +191,25 @@ namespace WPFEmpresaEPM.Classes
                     Thread.Sleep(2000);
                     _serialPort.Write(message);
 
-                    Error.SaveLogError("SendMessageBills", "ControlPeripherals", null, "Mensaje al billetero: " + message);
+                    AdminPayPlus.SaveLog(new RequestLog
+                    {
+                        Reference = "",
+                        Description = "Mensaje al billetero " + message,
+                        State = 1,
+                        Date = DateTime.Now
+                    }, ELogType.General);
 
                     return true;
+                }
+                else
+                {
+                    AdminPayPlus.SaveLog(new RequestLog
+                    {
+                        Reference = "",
+                        Description = "El puerto esta cerrado. Mensaje al billetero: "+message,
+                        State = 1,
+                        Date = DateTime.Now
+                    }, ELogType.General);
                 }
             }
             catch (Exception ex)
@@ -206,10 +232,10 @@ namespace WPFEmpresaEPM.Classes
             {
                 string response = _serialPort.ReadLine();
 
+                ValidateData(response);
+
                 if (!string.IsNullOrEmpty(response))
                 {
-                    Error.SaveLogError("_serialPortBillsDataReceived", "ControlPeripherals", null, "Respuesta del billetero: " + response);
-
                     ProcessResponseBills(response.Replace("\r", string.Empty));
                 }
             }
@@ -219,6 +245,33 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
+        private void ValidateData(string data)
+        {
+            try
+            {
+                var errorDiveces = Utilities.ErrorDevice();
+
+                if (errorDiveces != null)
+                {
+                    foreach (var item in errorDiveces)
+                    {
+                        if (data.ToLower().Contains(item.ToLower()))
+                        {
+                            AdminPayPlus.SaveLog(new RequestLog
+                            {
+                                Reference = "",
+                                Description = "Respuesta del billetero " + data,
+                                State = 1,
+                                Date = DateTime.Now
+                            }, ELogType.General);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+        }
 
         #endregion
 

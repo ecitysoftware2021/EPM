@@ -38,23 +38,6 @@ namespace WPFEmpresaEPM.UserControls
         {
             try
             {
-                if (transaction.State == ETransactionState.Success)
-                {
-                    AdminPayPlus.SaveLog(new RequestLog
-                    {
-                        Description = MessageResource.SussesTransaction,
-                        Reference = transaction.reference
-                    }, ELogType.General);
-                }
-                else
-                {
-                    AdminPayPlus.SaveLog(new RequestLog
-                    {
-                        Description = MessageResource.NoveltyTransation,
-                        Reference = transaction.reference
-                    }, ELogType.General);
-                }
-
                 Task.Run(() =>
                 {
                     if (!string.IsNullOrEmpty(transaction.Observation))

@@ -43,7 +43,7 @@ namespace WPFEmpresaEPM.Services
                 string keydecrypt = string.Concat(Utilities.GetConfiguration("ConsultarFactura"), "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
-                    Data = Encryptor.Ecity.Dll.Encryptor.Encrypt(JsonConvert.SerializeObject(request), keydecrypt),
+                    Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request), true, keydecrypt),
                     CallDate = dateCall
                 };
 
@@ -60,9 +60,9 @@ namespace WPFEmpresaEPM.Services
                     return null;
                 }
 
-                var json = JsonConvert.DeserializeObject<ResponseDataInvoice>(Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt));
+                var json = JsonConvert.DeserializeObject<ResponseDataInvoice>(Utilities.EncryptorData(responseClient.ResponseData.ToString(),false, keydecrypt));
 
-                AdminPayPlus.SaveErrorControl("Response Consulta Factura: " + Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt), "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Consulta Factura: " + Utilities.EncryptorData(responseClient.ResponseData.ToString(), false, keydecrypt), "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.IFX.Count > 0 && json.IFX[0].PaySvcRs.PmtAddRs.Status.StatusCode == "0")
                 {
@@ -94,7 +94,7 @@ namespace WPFEmpresaEPM.Services
                 string keydecrypt = string.Concat(Utilities.GetConfiguration("ValidarPagoMedida"), "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
-                    Data = Encryptor.Ecity.Dll.Encryptor.Encrypt(JsonConvert.SerializeObject(request), keydecrypt),
+                    Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request),true, keydecrypt),
                     CallDate = dateCall
                 };
 
@@ -110,9 +110,9 @@ namespace WPFEmpresaEPM.Services
                     AdminPayPlus.SaveErrorControl("ERROR Pago Medida: " + responseClient.ResponseMessage, "", EError.Api, ELevelError.Mild);
                     return null;
                 }
-                var json = JsonConvert.DeserializeObject<ResponseConsultMedida>(Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt));
+                var json = JsonConvert.DeserializeObject<ResponseConsultMedida>(Utilities.EncryptorData(responseClient.ResponseData.ToString(),false, keydecrypt));
 
-                AdminPayPlus.SaveErrorControl("Response Pago Medida: " + Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt), "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Pago Medida: " + Utilities.EncryptorData(responseClient.ResponseData.ToString(),false, keydecrypt), "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.CdError == 0)
                 {
@@ -159,7 +159,7 @@ namespace WPFEmpresaEPM.Services
                 string keydecrypt = string.Concat(Utilities.GetConfiguration("ValidarCompra"), "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
-                    Data = Encryptor.Ecity.Dll.Encryptor.Encrypt(JsonConvert.SerializeObject(request), keydecrypt),
+                    Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request), true,keydecrypt),
                     CallDate = dateCall
                 };
                 var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("ValidarCompra"));
@@ -174,9 +174,9 @@ namespace WPFEmpresaEPM.Services
                     AdminPayPlus.SaveErrorControl("ERROR Consulta Factura Prepago: " + responseClient.ResponseMessage, "", EError.Api, ELevelError.Mild);
                     return null;
                 }
-                var json = JsonConvert.DeserializeObject<ResponseConsultFacturaPrepago>(Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt));
+                var json = JsonConvert.DeserializeObject<ResponseConsultFacturaPrepago>(Utilities.EncryptorData(responseClient.ResponseData.ToString(),false, keydecrypt));
 
-                AdminPayPlus.SaveErrorControl("Response Consulta Factura Prepago: " + Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt), "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Consulta Factura Prepago: " + Utilities.EncryptorData(responseClient.ResponseData.ToString(), false,keydecrypt), "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.CdError == 0)
                 {
@@ -242,7 +242,7 @@ namespace WPFEmpresaEPM.Services
                 string keydecrypt = string.Concat(Utilities.GetConfiguration("RegistrarPagoFactura"), "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
-                    Data = Encryptor.Ecity.Dll.Encryptor.Encrypt(JsonConvert.SerializeObject(request), keydecrypt),
+                    Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request),true, keydecrypt),
                     CallDate = dateCall
                 };
                 var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("RegistrarPagoFactura"));
@@ -257,9 +257,9 @@ namespace WPFEmpresaEPM.Services
                     AdminPayPlus.SaveErrorControl("ERROR Notificar Pago Factura: " + responseClient.ResponseMessage, "", EError.Api, ELevelError.Mild);
                     return false;
                 }
-                var json = JsonConvert.DeserializeObject<ResponsePayFactura.RootObject>(Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt));
+                var json = JsonConvert.DeserializeObject<ResponsePayFactura.RootObject>(Utilities.EncryptorData(responseClient.ResponseData.ToString(), false,keydecrypt));
 
-                AdminPayPlus.SaveErrorControl("Response Notificar Pago Factura: " + Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt), "", EError.Api, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Notificar Pago Factura: " + Utilities.EncryptorData(responseClient.ResponseData.ToString(), false,keydecrypt), "", EError.Api, ELevelError.Mild);
 
                 if (json != null && json.PaySvcRs.PmtAddRs.Status.StatusCode == "0")
                 {
@@ -283,7 +283,7 @@ namespace WPFEmpresaEPM.Services
                 string keydecrypt = string.Concat(Utilities.GetConfiguration("RegistrarPagoMedida"), "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
-                    Data = Encryptor.Ecity.Dll.Encryptor.Encrypt(JsonConvert.SerializeObject(request), keydecrypt),
+                    Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request), true,keydecrypt),
                     CallDate = dateCall
                 };
                 var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("RegistrarPagoMedida"));
@@ -298,7 +298,7 @@ namespace WPFEmpresaEPM.Services
                     AdminPayPlus.SaveErrorControl("ERROR Notificar Pago a tu Medida: " + responseClient.ResponseMessage, "", EError.Api, ELevelError.Mild);
                     return false;
                 }
-                var json = JsonConvert.DeserializeObject<ResponsePaymedida>(Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt));
+                var json = JsonConvert.DeserializeObject<ResponsePaymedida>(Utilities.EncryptorData(responseClient.ResponseData.ToString(), false,keydecrypt));
 
                 AdminPayPlus.SaveErrorControl("Response Notificar Pago a tu Medida: " + responseClient.ResponseData, "", EError.Api, ELevelError.Mild);
 
@@ -348,7 +348,7 @@ namespace WPFEmpresaEPM.Services
                 string keydecrypt = string.Concat(Utilities.GetConfiguration("RegistarCompraEnergia"), "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
-                    Data = Encryptor.Ecity.Dll.Encryptor.Encrypt(JsonConvert.SerializeObject(request), keydecrypt),
+                    Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request), true,keydecrypt),
                     CallDate = dateCall
                 };
                 var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("RegistarCompraEnergia"));
@@ -363,9 +363,9 @@ namespace WPFEmpresaEPM.Services
                     AdminPayPlus.SaveErrorControl("ERROR Notificar Factura Prepago: " + responseClient.ResponseMessage, "", EError.Customer, ELevelError.Mild);
                     return false;
                 }
-                var json = JsonConvert.DeserializeObject<ResponsePayFacturaPrepago>(Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt));
+                var json = JsonConvert.DeserializeObject<ResponsePayFacturaPrepago>(Utilities.EncryptorData(responseClient.ResponseData.ToString(), false, keydecrypt));
 
-                AdminPayPlus.SaveErrorControl("Response Notificar Factura Prepago: " + Encryptor.Ecity.Dll.Encryptor.Decrypt(responseClient.ResponseData.ToString(), keydecrypt), "", EError.Customer, ELevelError.Mild);
+                AdminPayPlus.SaveErrorControl("Response Notificar Factura Prepago: " + Utilities.EncryptorData(responseClient.ResponseData.ToString(), false, keydecrypt), "", EError.Customer, ELevelError.Mild);
 
                 if (json != null && json.CdError == 0)
                 {

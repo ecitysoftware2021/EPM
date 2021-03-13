@@ -31,15 +31,10 @@ namespace WPFEmpresaEPM.Windows
                     Utilities.navigator = new Navigation();
                 }
 
-                //string a = Encryptor.Ecity.Dll.Encryptor.Encrypt("usrapli", "WPFEmpresaEPM");
-                //string b = Encryptor.Ecity.Dll.Encryptor.Encrypt("1Cero12019$/*", "WPFEmpresaEPM");
-                //string c = Encryptor.Ecity.Dll.Encryptor.Encrypt("Ecity.Software", "WPFEmpresaEPM");
-                //string d = Encryptor.Ecity.Dll.Encryptor.Encrypt("Ecitysoftware2019#", "WPFEmpresaEPM");
-                //string e = Encryptor.Ecity.Dll.Encryptor.Encrypt("http://181.143.126.126:41400/", "WPFEmpresaEPM");
-                //string es = Encryptor.Ecity.Dll.Encryptor.Encrypt("Pay+ EPM Ed. Inteligente 1", "WPFEmpresaEPM");
-                //string ess = Encryptor.Ecity.Dll.Encryptor.Encrypt("EmpresasPublicasdeMedellin2020/", "WPFEmpresaEPM");
-                //USERNAME: Pay + EPM Ed.Inteligente 1
-                //PASSWORD: EmpresasPublicasdeMedellin2020 /
+                string a = Utilities.EncryptorData("usrapli",true, "WPFEmpresaEPM");
+                string b = Utilities.EncryptorData("1Cero12019$/*", true,"WPFEmpresaEPM");
+                string c = Utilities.EncryptorData("Pay+ EPM Punto Facil Rionegro", true,"WPFEmpresaEPM");
+                string d = Utilities.EncryptorData("EmpresaPublicadeMedellin2021%", true,"WPFEmpresaEPM");
 
                 WPKeyboard.Keyboard.ConsttrucKeyyboard(WPKeyboard.Keyboard.EStyle.style_2);
 

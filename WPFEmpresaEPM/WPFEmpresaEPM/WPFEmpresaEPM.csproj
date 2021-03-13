@@ -59,7 +59,8 @@
     <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Dapper.2.0.30\lib\net461\Dapper.dll</HintPath>
     </Reference>
-    <Reference Include="Encryptor.Ecity.Dll">
+    <Reference Include="Encryptor.Ecity.Dll, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\EcityEncryptor\Encryptor.Ecity.Dll\Encryptor.Ecity.Dll\bin\Debug\Encryptor.Ecity.Dll.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -131,7 +132,6 @@
     <Compile Include="Classes\Peripherals\ControlPeripherals.cs" />
     <Compile Include="Classes\Printer\CLSPrint.cs" />
     <Compile Include="Classes\Scanner\ControlScanner.cs" />
-    <Compile Include="Classes\UseFull\Encryptor.cs" />
     <Compile Include="Classes\UseFull\Enumerables.cs" />
     <Compile Include="Classes\UseFull\Error.cs" />
     <Compile Include="Classes\UseFull\ImageSleader.cs" />

@@ -8,11 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WPFEmpresaEPM.Resources
-{
+namespace WPFEmpresaEPM.Resources {
     using System;
-
-
+    
+    
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,70 +22,67 @@ namespace WPFEmpresaEPM.Resources
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class ConstantsResource
-    {
-
+    internal class ConstantsResource {
+        
         private static global::System.Resources.ResourceManager resourceMan;
-
+        
         private static global::System.Globalization.CultureInfo resourceCulture;
-
+        
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal ConstantsResource()
-        {
+        internal ConstantsResource() {
         }
-
+        
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager
-        {
-            get
-            {
-                if (object.ReferenceEquals(resourceMan, null))
-                {
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("WPFEmpresaEPM.Resources.ConstantsResource", typeof(ConstantsResource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-
+        
         /// <summary>
         ///   Overrides the current thread's CurrentUICulture property for all
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture
-        {
-            get
-            {
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
                 return resourceCulture;
             }
-            set
-            {
+            set {
                 resourceCulture = value;
             }
         }
-
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .\DeviceError.txt.
+        /// </summary>
+        internal static string PathDevice {
+            get {
+                return ResourceManager.GetString("PathDevice", resourceCulture);
+            }
+        }
+        
         /// <summary>
         ///   Looks up a localized string similar to .\Admin\Info.txt.
         /// </summary>
-        internal static string PathInfo
-        {
-            get
-            {
+        internal static string PathInfo {
+            get {
                 return ResourceManager.GetString("PathInfo", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to .\keys.txt.
         /// </summary>
-        internal static string PathKeys
-        {
-            get
-            {
+        internal static string PathKeys {
+            get {
                 return ResourceManager.GetString("PathKeys", resourceCulture);
             }
         }

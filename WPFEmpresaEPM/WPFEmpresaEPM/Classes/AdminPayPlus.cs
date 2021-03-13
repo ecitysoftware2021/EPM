@@ -184,6 +184,7 @@ namespace WPFEmpresaEPM.Classes
                             State = 4,
                             Date = DateTime.Now
                         }, ELogType.General);
+
                         return true;
                     }
                     if (_dataPayPlus.State && _dataPayPlus.StateAceptance && _dataPayPlus.StateDispenser)
@@ -199,8 +200,6 @@ namespace WPFEmpresaEPM.Classes
                             State = 6,
                             Date = DateTime.Now
                         }, ELogType.General);
-
-                        SaveErrorControl(MessageResource.NoGoInitial, _dataPayPlus.Message, EError.Aplication, ELevelError.Strong);
                     }
                 }
             }
@@ -227,7 +226,7 @@ namespace WPFEmpresaEPM.Classes
                     {
                         Code = "",
                         Date = DateTime.Now,
-                        Description = error.Item2,
+                        Description = string.Concat(MessageResource.ValidatePeripheralsFail, " ", error.Item2),
                         Level = ELevelError.Strong
                     }, ELogType.Device);
 
@@ -284,10 +283,10 @@ namespace WPFEmpresaEPM.Classes
 
                     return new CONFIGURATION_PAYDAD
                     {
-                        USER_API = Encryptor.Decrypt(server[0].Split(':')[1]),
-                        PASSWORD_API = Encryptor.Decrypt(server[1].Split(':')[1]),
-                        USER = Encryptor.Decrypt(payplus[0].Split(':')[1]),
-                        PASSWORD = Encryptor.Decrypt(payplus[1].Split(':')[1]),
+                        USER_API = Utilities.EncryptorData(server[0].Split(':')[1]),
+                        PASSWORD_API = Utilities.EncryptorData(server[1].Split(':')[1]),
+                        USER = Utilities.EncryptorData(payplus[0].Split(':')[1]),
+                        PASSWORD = Utilities.EncryptorData(payplus[1].Split(':')[1]),
                         TYPE = Convert.ToInt32(payplus[2].Split(':')[1])
                     };
                 }

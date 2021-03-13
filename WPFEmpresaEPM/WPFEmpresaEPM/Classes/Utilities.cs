@@ -18,6 +18,7 @@ using WPFEmpresaEPM.Classes.Printer;
 using WPFEmpresaEPM.Resources;
 using WPFEmpresaEPM.Windows;
 using Zen.Barcode;
+using Encryptor.Ecity.Dll;
 
 namespace WPFEmpresaEPM.Classes
 {
@@ -43,7 +44,7 @@ namespace WPFEmpresaEPM.Classes
                 value = reader.GetValue(key, typeof(String)).ToString();
                 if (decodeString)
                 {
-                    value = Encryptor.Decrypt(value);
+                    value = EncryptorData(value,false);
                 }
                 return value;
             }
@@ -142,6 +143,31 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
+        public static string EncryptorData(string plainText, bool encrypt = true, string Key = null)
+        {
+            try
+            {
+                if (Key == null)
+                {
+                    Key = Assembly.GetExecutingAssembly().EntryPoint.DeclaringType.Namespace;
+                }
+
+                if (encrypt)
+                {
+                    return EncryptorEcity.Encrypt(plainText, Key);
+                }
+                else
+                {
+                    return EncryptorEcity.Decrypt(plainText, Key);
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex);
+                return string.Empty;
+            }
+        }
+
         public static void UpdateApp()
         {
             try
@@ -165,12 +191,27 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
+        public static string[] ErrorDevice()
+        {
+            try
+            {
+                string[] keys = Utilities.ReadFile(@"" + ConstantsResource.PathDevice);
+
+                return keys;
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex, ex.ToString());
+                return null;
+            }
+        }
+
         public static void PrintVoucherSuccess(Transaction ts)
         {
             try
             {
                 CLSPrint objPrint = new CLSPrint();
-                objPrint.TOKEN = Encryptor.Encrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", ts.TransactionId, "|", "Valor: ", ts.Amount));
+                objPrint.TOKEN = EncryptorData(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", ts.TransactionId, "|", "Valor: ", ts.Amount));
                 switch (ts.typeTransaction)
                 {
                     case ETypeTransaction.PagoFactura:
@@ -251,7 +292,7 @@ namespace WPFEmpresaEPM.Classes
                     int sum = 25;
                     int x = 150;
                     int xKey = 15;
-                    string TOKEN = Encryptor.Encrypt(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", transaction.TransactionId, "|", "Valor: ", transaction.Amount));
+                    string TOKEN = EncryptorData(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", transaction.TransactionId, "|", "Valor: ", transaction.Amount));
 
                     var data = new List<DataPrinter>()
                     {

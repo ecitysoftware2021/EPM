@@ -1,0 +1,8 @@
+STACKER_OPEN
+JAM_IN_ACCEPTOR
+PAUSE
+ER:MD
+thickness
+Scan
+FATAL
+Printer
