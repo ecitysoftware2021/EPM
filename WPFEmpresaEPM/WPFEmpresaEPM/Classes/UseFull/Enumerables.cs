@@ -6,6 +6,16 @@ using System.Threading.Tasks;
 
 namespace WPFEmpresaEPM.Classes
 {
+    public enum EResponseRedenam
+    {
+        Aprobada = 0,
+        Declinada = 1,
+        PinIncorrecto = 2,
+        ClaveSupervisorErrada = 3,
+        EntidadNoResponse = 4,
+        ErrorGeneral = 99
+    }
+
     public enum ELogType
     {
         General = 0,

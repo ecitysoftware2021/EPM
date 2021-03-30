@@ -563,3 +563,6 @@ C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.exe
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.pdb
 C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\WPFEmpresaEPM.csprojAssemblyReference.cache
+C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\DatafonoUserControl.g.cs
+C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\bin\Debug\DLL_Conexion_Caja_Redebam.dll
+C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\DatafonoUserControl.baml
