@@ -41,6 +41,26 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         #endregion
 
         #region "Eventos"
+        private void UserControl_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+            try
+            {
+                if (Utilities.GetConfiguration("DatafonoIsEnable") == "0")
+                {
+                    btnTarjeta.Visibility = System.Windows.Visibility.Hidden;
+                }
+
+                if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+                {
+                    btnEfectivo.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
+        }
+
         private void BtnBack_TouchDown(object sender, TouchEventArgs e)
         {
             SetCallBacksNull();
@@ -55,14 +75,14 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             Utilities.navigator.Navigate(UserControlView.Main);
         }
 
-        private void BtnPagar_TouchDown(object sender, TouchEventArgs e)
+        private void btnPay_TouchDown(object sender, TouchEventArgs e)
         {
-            SaveTransaction();
+            SaveTransaction(int.Parse((sender as Image).Tag.ToString()));
         }
         #endregion
 
         #region "Métodos"
-        private void SaveTransaction()
+        private void SaveTransaction(int type)
         {
             try
             {
@@ -72,6 +92,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
 
                     transaction.Type = ETransactionType.Payment;
                     transaction.State = ETransactionState.Initial;
+                    transaction.PaymentType = type == 1 ? EPaymentType.Cash : EPaymentType.Card;
                     transaction.payer = null;
                     
                     transaction.Amount = Utilities.RoundValue(transaction.detailsPagoFactura.ValorPagar,true);
@@ -89,7 +110,14 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                     }
                     else
                     {
-                        Utilities.navigator.Navigate(UserControlView.Pay, transaction);
+                        if (type == 1)
+                        {
+                            Utilities.navigator.Navigate(UserControlView.Pay, transaction);
+                        }
+                        else
+                        {
+                            Utilities.navigator.Navigate(UserControlView.Card, transaction);
+                        }
                     }
                 });
 

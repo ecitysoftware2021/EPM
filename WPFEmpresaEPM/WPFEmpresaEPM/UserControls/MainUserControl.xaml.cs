@@ -198,7 +198,14 @@ namespace WPFEmpresaEPM.UserControls
         #region "Eventos"
         private void Grid_TouchDown(object sender, TouchEventArgs e)
         {
-            ValidateStatus();
+            if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+            {
+                Redirect(true);
+            }
+            else
+            {
+                ValidateStatus();
+            }
         }
         #endregion
     }

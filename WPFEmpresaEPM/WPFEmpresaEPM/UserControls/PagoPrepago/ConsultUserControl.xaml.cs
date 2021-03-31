@@ -213,6 +213,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
                 timer = new TimerGeneric(tbTimer.Text);
                 timer.CallBackClose = response =>
                 {
+                    Utilities.CloseKeyboard(this);
                     Utilities.navigator.Navigate(UserControlView.Main);
                 };
                 timer.CallBackTimer = response =>

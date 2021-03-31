@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:WPFEmpresaEPM.UserControls.PagoFactura"
              mc:Ignorable="d" 
              Height="1920" 
-             Width="1080" >
+             Width="1080" 
+             Loaded="UserControl_Loaded">
     <Grid>
         <Grid.Background>
             <ImageBrush ImageSource="/Images/Backgrounds/fondo.jpg" Stretch="Uniform"/>
@@ -51,8 +52,7 @@
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
+                    <RowDefinition Height="220" />
                 </Grid.RowDefinitions>
                 <TextBlock Text="Pago De Factura"
                        TextWrapping="Wrap"
@@ -119,14 +119,28 @@
                 <Run Foreground="Black" Text="{Binding ValorPagar, StringFormat={}{0:C0}}"/>
                 </TextBlock>
                 <Image 
-                    x:Name="BtnPagar"
-                    Source="/Images/Buttons/b-pagar-en-efectivo.png"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Top" 
-                    Height="100"
-                    Grid.Row="7"
+                    Name="btnEfectivo"
+                    Source="/Images/Buttons/b-efectivo.png"
+                    HorizontalAlignment="Right" 
+                    VerticalAlignment="Center" 
+                    Height="180"
+                    Tag="1"
+                    Grid.Row="6"
                     Stretch="Uniform"
-                    TouchDown="BtnPagar_TouchDown"
+                    Margin="0,0,150,0"
+                    TouchDown="btnPay_TouchDown"
+                />
+                <Image 
+                    Name="btnTarjeta"
+                    Source="/Images/Buttons/b-tarjeta.png"
+                    HorizontalAlignment="Left" 
+                    VerticalAlignment="Center" 
+                    Height="180"
+                    Tag="2"
+                    Grid.Row="6"
+                    Stretch="Uniform"
+                    Margin="150,0,0,0"
+                    TouchDown="btnPay_TouchDown"
                 />
             </Grid>
             <Border.Effect>

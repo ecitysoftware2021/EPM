@@ -113,9 +113,14 @@ namespace WPFEmpresaEPM.Classes
 
                     DescriptionStatusPayPlus = MessageResource.ValidatePeripherals;
 
-                    ValidatePeripherals();
-
-                    //callbackResult?.Invoke(true);
+                    if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+                    {
+                        callbackResult?.Invoke(true);
+                    }
+                    else
+                    {
+                        ValidatePeripherals();
+                    }
                 }
                 else
                 {
@@ -169,6 +174,11 @@ namespace WPFEmpresaEPM.Classes
         {
             try
             {
+                if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+                {
+                    return true;
+                }
+
                 var response = await api.CallApi("InitPaypad");
                 if (response != null)
                 {
@@ -491,7 +501,8 @@ namespace WPFEmpresaEPM.Classes
                             STATE_NOTIFICATION = 0,
                             STATE = 0,
                             DESCRIPTION = desc,
-                            TRANSACTION_REFERENCE = reference
+                            TRANSACTION_REFERENCE = reference,
+                            PAYMENT_TYPE_ID = (int)transaction.PaymentType
                         };
 
                         data.TRANSACTION_DESCRIPTION.Add(new TRANSACTION_DESCRIPTION

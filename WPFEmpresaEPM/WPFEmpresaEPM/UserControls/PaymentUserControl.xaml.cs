@@ -42,6 +42,11 @@ namespace WPFEmpresaEPM.UserControls
         #endregion
 
         #region "Eventos"
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            OrganizeValues();
+        }
+
         private void BtnCancell_TouchDown(object sender, System.Windows.Input.TouchEventArgs e)
         {
             CancellPay();
@@ -380,10 +385,5 @@ namespace WPFEmpresaEPM.UserControls
             }
         }
         #endregion
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
-        {
-            OrganizeValues();
-        }
     }
 }

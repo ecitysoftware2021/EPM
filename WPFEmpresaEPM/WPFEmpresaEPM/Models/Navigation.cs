@@ -75,6 +75,9 @@ namespace WPFEmpresaEPM.Models
                     case UserControlView.Pay:
                         View = new PaymentUserControl((Transaction)data);
                         break;
+                    case UserControlView.Card:
+                        View = new DatafonoUserControl((Transaction)data);
+                        break;
                     case UserControlView.ReturnMony:
                         View = new ReturnMonyUserControl((Transaction)data);
                         break;

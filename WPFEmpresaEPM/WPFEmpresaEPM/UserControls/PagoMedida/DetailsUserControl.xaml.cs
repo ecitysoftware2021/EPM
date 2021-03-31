@@ -60,17 +60,60 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             Utilities.navigator.Navigate(UserControlView.Main);
         }
 
-        private void BtnPagar_TouchDown(object sender, TouchEventArgs e)
+        private void btnPay_TouchDown(object sender, TouchEventArgs e)
         {
             if (Validar())
             {
-                SaveTransaction();
+                SaveTransaction(int.Parse((sender as Image).Tag.ToString()));
+            }
+        }
+
+        private void txtvalorminimomedida_TouchDown(object sender, TouchEventArgs e)
+        {
+            Utilities.OpenKeyboard(true, sender as TextBox, this);
+        }
+
+        private void txtvalorminimomedida_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                txtErrorValor.Visibility = Visibility.Hidden;
+
+                if (txtvalorminimomedida.Text.Length > 8)
+                {
+                    txtvalorminimomedida.Text = txtvalorminimomedida.Text.Remove(8, 1);
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Utilities.GetConfiguration("DatafonoIsEnable") == "0")
+                {
+                    btnTarjeta.Visibility = System.Windows.Visibility.Hidden;
+                }
+
+                if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+                {
+                    btnEfectivo.Visibility = System.Windows.Visibility.Hidden;
+                }
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
             }
         }
         #endregion
 
         #region "Métodos"
-        private void SaveTransaction()
+        private void SaveTransaction(int type)
         {
             try
             {
@@ -81,6 +124,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     transaction.Type = ETransactionType.Payment;
                     transaction.State = ETransactionState.Initial;
                     transaction.payer = null;
+                    transaction.PaymentType = type == 1 ? EPaymentType.Cash : EPaymentType.Card;
 
                     await AdminPayPlus.SaveTransaction(this.transaction);
 
@@ -94,7 +138,14 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
                     }
                     else
                     {
-                        Utilities.navigator.Navigate(UserControlView.Pay, transaction);
+                        if (type == 1)
+                        {
+                            Utilities.navigator.Navigate(UserControlView.Pay, transaction);
+                        }
+                        else
+                        {
+                            Utilities.navigator.Navigate(UserControlView.Card, transaction);
+                        }
                     }
                 });
 
@@ -173,28 +224,5 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
             GC.Collect();
         }
         #endregion
-
-        private void txtvalorminimomedida_TouchDown(object sender, TouchEventArgs e)
-        {
-            Utilities.OpenKeyboard(true, sender as TextBox, this);
-        }
-
-        private void txtvalorminimomedida_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-                txtErrorValor.Visibility = Visibility.Hidden;
-
-                if (txtvalorminimomedida.Text.Length > 8)
-                {
-                    txtvalorminimomedida.Text = txtvalorminimomedida.Text.Remove(8, 1);
-                    return;
-                }
-            }
-            catch (Exception ex)
-            {
-                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
-            }
-        }
     }
 }

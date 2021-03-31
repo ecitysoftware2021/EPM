@@ -20,6 +20,7 @@ namespace WPFEmpresaEPM.Models
         public ETypeTransaction typeTransaction { get; set; }
 
         public ETypeSearch typeSearch { get; set; }
+        public EPaymentType PaymentType { get; set; }
 
         public DetailsPagoFactura detailsPagoFactura { get; set; }
         public ResponseConsultMedida detailsPagoMedida { get; set; }

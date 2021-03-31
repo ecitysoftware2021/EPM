@@ -91,6 +91,7 @@ namespace WPFEmpresaEPM.Classes
         ConsultPagoPrepago,
         DetailsPagoPrepago,
         InvoiceListPagoFactura,
+        Card,
     }
 
     public enum ETransactionState
@@ -130,5 +131,11 @@ namespace WPFEmpresaEPM.Classes
         Error = 300,
         NotFound = 404,
         OK = 200
+    }
+
+    public enum EPaymentType
+    {
+        Cash = 1,
+        Card = 2
     }
 }

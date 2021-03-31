@@ -504,6 +504,25 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
+        public static void CloseKeyboard(object thisView)
+        {
+            try
+            {
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    WPKeyboard.Keyboard.CloseKeyboard
+                    (
+                        user: thisView is UserControl ? thisView as UserControl : null,
+                        window: thisView is Window ? thisView as Window : null
+                    );
+                });
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex, ex.ToString());
+            }
+        }
+
         public static string[] ErrorVector = new string[]
         {
             "STACKER_OPEN",

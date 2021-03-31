@@ -70,6 +70,11 @@ namespace WPFEmpresaEPM.UserControls.Administrator
         {
             try
             {
+                if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+                {
+                    Finish(true);
+                }
+                else
                 if (AdminPayPlus.DataPayPlus.StateUpdate)
                 {
                     Utilities.ShowModal(MessageResource.UpdateAplication, EModalType.Error);
@@ -114,7 +119,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
 
                 Task.Run(() =>
                 {
-                    Thread.Sleep(10000);
+                    Thread.Sleep(5000);
 
                     if (state)
                     {
