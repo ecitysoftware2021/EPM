@@ -33,8 +33,8 @@ namespace WPFEmpresaEPM.Windows
 
                 string a = Utilities.EncryptorData("usrapli",true, "WPFEmpresaEPM");
                 string b = Utilities.EncryptorData("1Cero12019$/*", true,"WPFEmpresaEPM");
-                string c = Utilities.EncryptorData("Pay+ EPM Punto Facil La Ceja", true,"WPFEmpresaEPM");
-                string d = Utilities.EncryptorData("EmpresaPublicadeMedellin2021$", true,"WPFEmpresaEPM");
+                string c = Utilities.EncryptorData("Pay+ EPM Punto Facil Sabaneta", true,"WPFEmpresaEPM");
+                string d = Utilities.EncryptorData("EmpresaPublicadeMedellin2021=", true,"WPFEmpresaEPM");
 
                 WPKeyboard.Keyboard.ConsttrucKeyyboard(WPKeyboard.Keyboard.EStyle.style_2);
 
