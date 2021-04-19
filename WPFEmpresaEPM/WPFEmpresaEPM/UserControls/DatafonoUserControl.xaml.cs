@@ -1,4 +1,5 @@
 ﻿using DLL_Conexion_Caja_Redebam;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,13 +35,13 @@ namespace WPFEmpresaEPM.UserControls
         private PaymentViewModel paymentViewModel;
         private int Intentos = 1;
         private ModalLoadWindow loading;
-        public string Operacion { get; } = "0";
-        public string Monto { get; } = "100";
-        public string IVA { get; } = "0";
-        public string factura { get; } = "1234";
-        public string base_dev { get; } = "0";
-        public string imp_consu { get; } = "0";
-        public string cod_cajero { get; } = "58";
+        public string Operacion;
+        public string Monto;
+        public string IVA;
+        public string factura;
+        public string base_dev;
+        public string imp_consu;
+        public string cod_cajero;
         #endregion
 
         #region "Constructor"
@@ -70,8 +71,17 @@ namespace WPFEmpresaEPM.UserControls
                     ValorIngresado = transaction.Amount,
                     viewList = new CollectionViewSource(),
                     Denominations = new List<DenominationMoney>(),
-                    ValorDispensado = 0
+                    ValorDispensado = 0,
+                    StatePay = false
                 };
+
+                Operacion = "0";
+                Monto = transaction.Amount.ToString();
+                IVA = "0";
+                factura = transaction.IdTransactionAPi.ToString();
+                base_dev = "0";
+                imp_consu = "0";
+                cod_cajero = AdminPayPlus.DataConfiguration.ID_PAYPAD.ToString();
 
                 transaction.Payment = paymentViewModel;
 
@@ -87,19 +97,31 @@ namespace WPFEmpresaEPM.UserControls
         {
             try
             {
-                var result = BoxConnection.InitPay(new RequestRedebam
+                RequestRedebam data = new RequestRedebam
                 {
                     base_dev = base_dev,
-                    CajaPath = @"C:\Redebam\Cajas5.2.3.exe",
+                    CajaPath = string.Concat(Utilities.GetConfiguration("PathRedeban"), "Cajas5.2.3.exe"),
                     cod_cajero = cod_cajero,
                     factura = factura,
                     imp_consu = imp_consu,
-                    InFilePath = @"C:\Redebam\IN.txt",
+                    InFilePath = string.Concat(Utilities.GetConfiguration("PathRedeban"), "IN.txt"),
                     IVA = IVA,
                     Monto = Monto,
                     Operacion = Operacion,
-                    OutFilePath = @"C:\Redebam\OUT.txt"
-                });
+                    OutFilePath = string.Concat(Utilities.GetConfiguration("PathRedeban"), "OUT.txt"),
+                };
+
+                string json = JsonConvert.SerializeObject(data);
+
+                AdminPayPlus.SaveLog(new RequestLog
+                {
+                    Reference = "",
+                    Description = string.Concat("Petición al datáfono: ", json),
+                    State = 1,
+                    Date = DateTime.Now
+                }, ELogType.General);
+
+                var result = BoxConnection.InitPay(data);
 
                 if (result._Status)
                 {
@@ -108,7 +130,7 @@ namespace WPFEmpresaEPM.UserControls
                     AdminPayPlus.SaveLog(new RequestLog
                     {
                         Reference = "",
-                        Description = string.Concat("Respuesta exitosa del tafáfono: ", ms),
+                        Description = string.Concat("Respuesta exitosa del datáfono: ", ms),
                         State = 1,
                         Date = DateTime.Now
                     }, ELogType.General);
@@ -120,12 +142,12 @@ namespace WPFEmpresaEPM.UserControls
                     AdminPayPlus.SaveLog(new RequestLog
                     {
                         Reference = "",
-                        Description = string.Concat("Respuesta mala del tafáfono: ", result._Message),
+                        Description = string.Concat("Respuesta mala del datáfono: ", result._Message),
                         State = 1,
                         Date = DateTime.Now
                     }, ELogType.General);
 
-                    Cancelled(string.Concat("Transacción cancelada, por favor intenta de nuevo.", Environment.NewLine, result._Message));
+                    Cancelled(string.Concat("Transacción cancelada por el datáfono, por favor intenta de nuevo.", Environment.NewLine, result._Message));
                 }
             }
             catch (Exception ex)
@@ -220,7 +242,8 @@ namespace WPFEmpresaEPM.UserControls
                         }
                         else
                         {
-                            //CancelTransaction();
+                            string sm = string.Concat("Transacción cancelada", Environment.NewLine, "Error en los servicios de EPM", Environment.NewLine, "Por favor comunícate con un administrador");
+                            Cancelled(sm);
                         }
                     });
 

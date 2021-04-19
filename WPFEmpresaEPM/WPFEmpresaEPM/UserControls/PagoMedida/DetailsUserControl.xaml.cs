@@ -163,13 +163,18 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
         {
             try
             {
-                if (transaction.detailsPagoMedida.ValorMinimoPago % 100 != 0)
+
+                if (transaction.PaymentType == EPaymentType.Cash)
                 {
-                    txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
-                    Environment.NewLine, "Ejemplo: $100, $1.000, $10.000... etc.");
-                    txtErrorValor.Visibility = Visibility.Visible;
-                    return false;
+                    if (transaction.detailsPagoMedida.ValorMinimoPago % 100 != 0)
+                    {
+                        txtErrorValor.Text = string.Concat("Esta máquina sólo recibe multiplos de 100",
+                        Environment.NewLine, "Ejemplo: $100, $1.000, $10.000... etc.");
+                        txtErrorValor.Visibility = Visibility.Visible;
+                        return false;
+                    }
                 }
+                
 
                 if (transaction.detailsPagoMedida.ValorMinimoPago < ValorMin || transaction.detailsPagoMedida.ValorMinimoPago > ValorMax)
                 {
