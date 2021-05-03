@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -39,6 +40,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
 
                 txtMs.DataContext = init;
 
+                ExtraData();
                 Initial();
             }
             catch (Exception ex)
@@ -155,6 +157,58 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                         }
                     }
                 });
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
+            }
+        }
+
+        private void ExtraData()
+        {
+            try
+            {
+                string a = "usrapli 1Cero12019$/* ";
+
+                string b = "Pay+ EPM Ed. Inteligente 1                          EmpresasPublicasdeMedellin2020/" +
+                           "Pay+ EPM Punto Facil Bello                          EmpresaPublicadeMedellin2020!" +
+                           "Pay+ EPM Punto Miguel de Aguinaga 1                 EmpresaPublicadeMedellin2020*" +
+                           "Pay+ EPM Punto Facil Belen 1                        EmpresaPublicadeMedellin2021%" +
+                           "Pay+ EPM Punto Facil Envigado 1                     EmpresaPublicadeMedellin2021!" +
+                           "Pay+ EPM Punto Terminal del Norte                   EmpresaPublicadeMedellin2021!" +
+                           "Pay+ EPM Punto fácil Hospital Pablo Tobón Uribe     EmpresaPublicadeMedellin2021*" +
+                           "Pay+ EPM Punto fácil oficina San Antonio de Prado   EmpresaPublicadeMedellin2021=" +
+                           "Pay+ EPM Punto Facil Rionegro                       EmpresaPublicadeMedellin2021%" +
+                           "Pay+ EPM Punto Facil La Ceja                        EmpresaPublicadeMedellin2021$" +
+                           "Pay+ EPM Punto Facil Sabaneta                       EmpresaPublicadeMedellin2021=" ;
+                          
+                ExtraData data = new ExtraData();
+
+                data.dataIntegration = new DataIntegration
+                {
+                    basseAddresEPM = "http://apiepm.e-citypay.co/{0}",
+                    ConsultarFactura = "PagoFactura/ConsultarFactura",
+                    ValidarPagoMedida = "PagaTuMedida/ValidarPagoMedida",
+                    ValidarCompra = "PagoPrepago/ValidarCompra",
+                    RegistrarPagoFactura = "PagoFactura/RegistrarPago",
+                    RegistrarPagoMedida = "PagaTuMedida/PagarMedida",
+                    RegistarCompraEnergia = "PagoPrepago/ComprarEnergia"
+                };
+
+                data.dataComplementary = new DataComplementary
+                {
+                    DurationAlert = "10000",
+                    NAME_PAYPAD = "Pay+ EPM",
+                    LAST_NAME_PAYPAD = "EPM",
+                    NAME_APLICATION = "WPFEmpresaEPM.exe",
+                    PathRedeban = @"C:\Redebam\",
+                    ValorMinPrepago = "10000",
+                    ValorMaxPrepago = "100000",
+                    NumbersPhone = "(034)5606111 op 7",
+                    NumbersSerial = "1111",
+                };
+
+                string json = JsonConvert.SerializeObject(data);
             }
             catch (Exception ex)
             {

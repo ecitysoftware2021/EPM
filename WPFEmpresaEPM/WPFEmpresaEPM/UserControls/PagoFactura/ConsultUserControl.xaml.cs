@@ -115,9 +115,9 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             {
                 txtError.Visibility = Visibility.Hidden;
 
-                if (TxtIdentification.Text.Length > int.Parse(Utilities.GetConfiguration("MaxLengthReference")))
+                if (TxtIdentification.Text.Length > 12)
                 {
-                    TxtIdentification.Text = TxtIdentification.Text.Remove(int.Parse(Utilities.GetConfiguration("MaxLengthReference")), 1);
+                    TxtIdentification.Text = TxtIdentification.Text.Remove(12, 1);
                     return;
                 }
             }
@@ -173,7 +173,8 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
                 Task.Run(async () =>
                 {
                     Thread.Sleep(500);
-                    if (transaction.Document.Length > int.Parse(Utilities.GetConfiguration("MaxLength")))
+
+                    if (transaction.Document.Length > 7)
                     {
                         transaction.typeSearch = ETypeSearch.ReferenteDePago;
                     }

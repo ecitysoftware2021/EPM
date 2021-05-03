@@ -91,7 +91,7 @@ namespace WPFEmpresaEPM.Classes.Scanner
         {
             try
             {
-                string referente = response.Substring(int.Parse(Utilities.GetConfiguration("InitialPositionSubstringReference")), int.Parse(Utilities.GetConfiguration("LastPositionSubstringReference")));
+                string referente = response.Substring(20, 12);
                 ulong trueResult;
                 if (ulong.TryParse(referente, out trueResult))
                 {

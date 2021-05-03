@@ -31,11 +31,6 @@ namespace WPFEmpresaEPM.Windows
                     Utilities.navigator = new Navigation();
                 }
 
-                string a = Utilities.EncryptorData("usrapli",true, "WPFEmpresaEPM");
-                string b = Utilities.EncryptorData("1Cero12019$/*", true,"WPFEmpresaEPM");
-                string c = Utilities.EncryptorData("Pay+ EPM Punto Facil La Ceja", true,"WPFEmpresaEPM");
-                string d = Utilities.EncryptorData("EmpresaPublicadeMedellin2021$", true,"WPFEmpresaEPM");
-
                 WPKeyboard.Keyboard.ConsttrucKeyyboard(WPKeyboard.Keyboard.EStyle.style_2);
 
                 Utilities.navigator.Navigate(UserControlView.Config);
