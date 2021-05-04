@@ -18,7 +18,6 @@ namespace WPFEmpresaEPM.UserControls.Administrator
     {
         #region "Referencias"
         private AdminPayPlus init;
-        private ApiIntegration cootregua;
         #endregion
 
         #region "Constructor"
@@ -31,11 +30,6 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                 if (init == null)
                 {
                     init = new AdminPayPlus();
-                }
-
-                if (cootregua == null)
-                {
-                    cootregua = new ApiIntegration();
                 }
 
                 txtMs.DataContext = init;
@@ -72,25 +66,34 @@ namespace WPFEmpresaEPM.UserControls.Administrator
         {
             try
             {
-                if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+                if (AdminPayPlus.DataPayPlus == null)
                 {
-                    Finish(true);
+                    Finish(result);
                 }
-                else
                 if (AdminPayPlus.DataPayPlus.StateUpdate)
                 {
-                    Utilities.ShowModal(MessageResource.UpdateAplication, EModalType.Error);
+                    Utilities.ShowModal(MessageResource.UpdateAplication, EModalType.Error, true);
                     Utilities.UpdateApp();
                 }
                 else if (AdminPayPlus.DataPayPlus.StateBalanece)
                 {
-                    Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, null, MessageResource.ModoAdministrativo);
-                    //Utilities.navigator.Navigate(UserControlView.Login, false, ETypeAdministrator.Balancing);
+                    AdminPayPlus.SaveLog(new RequestLog
+                    {
+                        Reference = "",
+                        Description = string.Concat(MessageResource.NoGoInitial, " ", MessageResource.ModoAdministrativo),
+                        State = 2,
+                        Date = DateTime.Now
+                    }, ELogType.General);
                 }
                 else if (AdminPayPlus.DataPayPlus.StateUpload)
                 {
-                    Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, null, MessageResource.ModoAdministrativo);
-                    //Utilities.navigator.Navigate(UserControlView.Login, false, ETypeAdministrator.Upload);
+                    AdminPayPlus.SaveLog(new RequestLog
+                    {
+                        Reference = "",
+                        Description = string.Concat(MessageResource.NoGoInitial, " ", MessageResource.ModoAdministrativo),
+                        State = 2,
+                        Date = DateTime.Now
+                    }, ELogType.General);
                 }
                 else
                 {
@@ -99,8 +102,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
             }
             catch (Exception ex)
             {
-                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, this.GetType().Name, ex, ex.ToString());
-                Utilities.ShowModal(MessageResource.NoService, EModalType.Error);
+                Utilities.ShowModal(string.Concat(init.DescriptionStatusPayPlus, " ", MessageResource.NoService), EModalType.Error, false);
                 Initial();
             }
         }
@@ -121,7 +123,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
 
                 Task.Run(() =>
                 {
-                    Thread.Sleep(5000);
+                    Thread.Sleep(3000);
 
                     if (state)
                     {
@@ -170,7 +172,8 @@ namespace WPFEmpresaEPM.UserControls.Administrator
             {
                 string a = "usrapli 1Cero12019$/* ";
 
-                string b = "Pay+ EPM Ed. Inteligente 1                          EmpresasPublicasdeMedellin2020/" +
+                string b = "Ecity.Software                                      Ecitysoftware2019#" +
+                           "Pay+ EPM Ed. Inteligente 1                          EmpresasPublicasdeMedellin2020/" +
                            "Pay+ EPM Punto Facil Bello                          EmpresaPublicadeMedellin2020!" +
                            "Pay+ EPM Punto Miguel de Aguinaga 1                 EmpresaPublicadeMedellin2020*" +
                            "Pay+ EPM Punto Facil Belen 1                        EmpresaPublicadeMedellin2021%" +

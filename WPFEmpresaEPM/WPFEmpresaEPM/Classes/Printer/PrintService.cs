@@ -30,7 +30,7 @@ namespace WPFEmpresaEPM.Classes.Printer
         {
             if (properties == null)
             {
-                properties = new PrintProperties(Utilities.GetConfiguration("PortPrinter"), Utilities.GetConfiguration("PrintBandrate"));
+                properties = new PrintProperties(AdminPayPlus.DataPayPlus.PayPadConfiguration.printeR_PORT, 9600);
             }
 
             if (printController == null)

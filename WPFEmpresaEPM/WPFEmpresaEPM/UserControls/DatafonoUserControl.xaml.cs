@@ -42,6 +42,7 @@ namespace WPFEmpresaEPM.UserControls
         public string base_dev;
         public string imp_consu;
         public string cod_cajero;
+        public string PathRedeban;
         #endregion
 
         #region "Constructor"
@@ -82,6 +83,7 @@ namespace WPFEmpresaEPM.UserControls
                 base_dev = "0";
                 imp_consu = "0";
                 cod_cajero = AdminPayPlus.DataConfiguration.ID_PAYPAD.ToString();
+                PathRedeban = AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataComplementary.PathRedeban;
 
                 transaction.Payment = paymentViewModel;
 
@@ -100,15 +102,15 @@ namespace WPFEmpresaEPM.UserControls
                 RequestRedebam data = new RequestRedebam
                 {
                     base_dev = base_dev,
-                    CajaPath = string.Concat(Utilities.GetConfiguration("PathRedeban"), "Cajas5.2.3.exe"),
+                    CajaPath = string.Concat(PathRedeban, "Cajas5.2.3.exe"),
                     cod_cajero = cod_cajero,
                     factura = factura,
                     imp_consu = imp_consu,
-                    InFilePath = string.Concat(Utilities.GetConfiguration("PathRedeban"), "IN.txt"),
+                    InFilePath = string.Concat(PathRedeban, "IN.txt"),
                     IVA = IVA,
                     Monto = Monto,
                     Operacion = Operacion,
-                    OutFilePath = string.Concat(Utilities.GetConfiguration("PathRedeban"), "OUT.txt"),
+                    OutFilePath = string.Concat(PathRedeban, "OUT.txt"),
                 };
 
                 string json = JsonConvert.SerializeObject(data);

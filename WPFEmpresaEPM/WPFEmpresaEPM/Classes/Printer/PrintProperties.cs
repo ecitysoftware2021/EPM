@@ -87,7 +87,7 @@ namespace WPFEmpresaEPM.Classes.Printer
         int m_iStatus = -1;
         int m_lcLanguage = 0;
 
-        public PrintProperties(string portName, string baudrate)
+        public PrintProperties(string portName, int baudrate)
         {
             ConfigurationPrinter(portName, baudrate);
         }
@@ -151,14 +151,14 @@ namespace WPFEmpresaEPM.Classes.Printer
             }
         }
 
-        private bool ConfigurationPrinter(string portName, string baudrate)
+        private bool ConfigurationPrinter(string portName, int baudrate)
         {
             try
             {
                 int countIntent = 0;
                 m_lcLanguage = GetSystemDefaultLCID();
                 StringBuilder sPort = new StringBuilder(portName, portName.Length);
-                int iBaudrate = int.Parse(baudrate);
+                int iBaudrate = baudrate;
                 SetPrintport(sPort, iBaudrate);
                 while (countIntent < 3)
                 {

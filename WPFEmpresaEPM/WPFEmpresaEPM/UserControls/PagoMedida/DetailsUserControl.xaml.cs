@@ -95,12 +95,12 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
         {
             try
             {
-                if (Utilities.GetConfiguration("DatafonoIsEnable") == "0")
+                if (AdminPayPlus.DataPayPlus.PayPadConfiguration.enablE_CARD)
                 {
                     btnTarjeta.Visibility = System.Windows.Visibility.Hidden;
                 }
 
-                if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+                if (AdminPayPlus.DataPayPlus.PayPadConfiguration.enablE_VALIDATE_PERIPHERALS)
                 {
                     btnEfectivo.Visibility = System.Windows.Visibility.Hidden;
                 }
@@ -202,7 +202,7 @@ namespace WPFEmpresaEPM.UserControls.PagoMedida
         {
             Dispatcher.BeginInvoke((Action)delegate
             {
-                tbTimer.Text = Utilities.GetConfiguration("TimerGenerico");
+                tbTimer.Text = AdminPayPlus.DataPayPlus.PayPadConfiguration.generiC_TIMER;
                 timer = new TimerGeneric(tbTimer.Text);
                 timer.CallBackClose = response =>
                 {

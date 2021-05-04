@@ -476,7 +476,7 @@ namespace WPFEmpresaEPM.Classes.DB
 
         private static IDbConnection LoadConnectionString(string id = "ConnectionString")
         {
-            return new SQLiteConnection(@"" + Utilities.GetConfiguration(id, false).ToString());
+            return new SQLiteConnection("Data Source=" + AdminPayPlus.DataPayPlus.PayPadConfiguration.localdB_PATH);
         }
 
         public static List<T> Select<T>(string query)

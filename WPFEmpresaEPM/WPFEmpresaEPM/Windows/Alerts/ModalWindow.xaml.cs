@@ -132,7 +132,7 @@ namespace WPFEmpresaEPM.Windows
                 {
                     Dispatcher.BeginInvoke((Action)delegate
                     {
-                        timer = new TimerGeneric(Utilities.GetConfiguration("TimerModal"));
+                        timer = new TimerGeneric(AdminPayPlus.DataPayPlus.PayPadConfiguration.modaL_TIMER);
                         timer.CallBackClose = response =>
                         {
                             Dispatcher.BeginInvoke((Action)delegate

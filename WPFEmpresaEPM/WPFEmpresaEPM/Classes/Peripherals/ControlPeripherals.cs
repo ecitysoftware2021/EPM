@@ -170,6 +170,14 @@ namespace WPFEmpresaEPM.Classes
             }
             catch (Exception ex)
             {
+                AdminPayPlus.SaveLog(new RequestLog
+                {
+                    Reference = "",
+                    Description = "El puerto de los perisfericos esta ocupado. " + portName + " " + ex.ToString(),
+                    State = 1,
+                    Date = DateTime.Now
+                }, ELogType.General);
+
                 throw ex;
             }
         }
@@ -188,16 +196,16 @@ namespace WPFEmpresaEPM.Classes
             {
                 if (_serialPort.IsOpen)
                 {
-                    Thread.Sleep(2000);
-                    _serialPort.Write(message);
-
                     AdminPayPlus.SaveLog(new RequestLog
                     {
                         Reference = "",
-                        Description = "Mensaje al billetero " + message,
+                        Description = "Mensaje a los perisfericos: " + message,
                         State = 1,
                         Date = DateTime.Now
                     }, ELogType.General);
+
+                    Thread.Sleep(2000);
+                    _serialPort.Write(message);
 
                     return true;
                 }
@@ -206,10 +214,12 @@ namespace WPFEmpresaEPM.Classes
                     AdminPayPlus.SaveLog(new RequestLog
                     {
                         Reference = "",
-                        Description = "El puerto esta cerrado. Mensaje al billetero: "+message,
+                        Description = "El puerto de los perisfericos esta cerrado. " + message,
                         State = 1,
                         Date = DateTime.Now
                     }, ELogType.General);
+
+                    return false;
                 }
             }
             catch (Exception ex)
@@ -232,7 +242,13 @@ namespace WPFEmpresaEPM.Classes
             {
                 string response = _serialPort.ReadLine();
 
-                ValidateData(response);
+                AdminPayPlus.SaveLog(new RequestLog
+                {
+                    Reference = "",
+                    Description = "Respuesta del billetero " + response,
+                    State = 1,
+                    Date = DateTime.Now
+                }, ELogType.General);
 
                 if (!string.IsNullOrEmpty(response))
                 {
@@ -244,35 +260,6 @@ namespace WPFEmpresaEPM.Classes
                 callbackError?.Invoke(Tuple.Create("AP", "Error (_serialPortBillsDataReceived), ha ocurrido una exepcion " + ex));
             }
         }
-
-        private void ValidateData(string data)
-        {
-            try
-            {
-                var errorDiveces = Utilities.ErrorDevice();
-
-                if (errorDiveces != null)
-                {
-                    foreach (var item in errorDiveces)
-                    {
-                        if (data.ToLower().Contains(item.ToLower()))
-                        {
-                            AdminPayPlus.SaveLog(new RequestLog
-                            {
-                                Reference = "",
-                                Description = "Respuesta del billetero " + data,
-                                State = 1,
-                                Date = DateTime.Now
-                            }, ELogType.General);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-        }
-
         #endregion
 
         #region ProcessResponse
@@ -667,7 +654,7 @@ namespace WPFEmpresaEPM.Classes
         {
             try
             {
-                string timerInactividad = Utilities.GetConfiguration("TimerInactividad");
+                string timerInactividad = AdminPayPlus.DataPayPlus.PayPadConfiguration.inactivitY_TIMER;
                 timer = new TimerGeneric(timerInactividad);
                 timer.CallBackClose = response =>
                 {

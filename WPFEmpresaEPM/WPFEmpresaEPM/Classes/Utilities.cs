@@ -19,6 +19,7 @@ using WPFEmpresaEPM.Resources;
 using WPFEmpresaEPM.Windows;
 using Zen.Barcode;
 using Encryptor.Ecity.Dll;
+using System.Net.NetworkInformation;
 
 namespace WPFEmpresaEPM.Classes
 {
@@ -129,7 +130,7 @@ namespace WPFEmpresaEPM.Classes
                     Process pc = new Process();
                     Process pn = new Process();
                     ProcessStartInfo si = new ProcessStartInfo();
-                    si.FileName = Path.Combine(Directory.GetCurrentDirectory(), GetConfiguration("NAME_APLICATION"));
+                    si.FileName = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataComplementary.NAME_APLICATION);
                     pn.StartInfo = si;
                     pn.Start();
                     pc = Process.GetCurrentProcess();
@@ -165,29 +166,6 @@ namespace WPFEmpresaEPM.Classes
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex);
                 return string.Empty;
-            }
-        }
-
-        public static void UpdateApp()
-        {
-            try
-            {
-                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
-                {
-                    Process pc = new Process();
-                    Process pn = new Process();
-                    ProcessStartInfo si = new ProcessStartInfo();
-                    si.FileName = GetConfiguration("APLICATION_UPDATE");
-                    pn.StartInfo = si;
-                    pn.Start();
-                    pc = Process.GetCurrentProcess();
-                    pc.Kill();
-                }));
-                GC.Collect();
-            }
-            catch (Exception ex)
-            {
-                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex, ex.ToString());
             }
         }
 
@@ -292,11 +270,15 @@ namespace WPFEmpresaEPM.Classes
                     int sum = 25;
                     int x = 150;
                     int xKey = 15;
+
                     string TOKEN = EncryptorData(string.Concat("Token: ", AdminPayPlus.DataConfiguration.TOKEN_API, "|", "Transaccion: ", transaction.TransactionId, "|", "Valor: ", transaction.Amount));
+                    
+                    string Boucher = AdminPayPlus.DataPayPlus.PayPadConfiguration.imageS_PATH;
+                    string im1 = Path.Combine(Boucher, "Others", "logoEPM1.png");
 
                     var data = new List<DataPrinter>()
                     {
-                        new DataPrinter{ image = GetConfiguration("ImageBoucher"),  x = 50, y = 0 },
+                        new DataPrinter{ image = im1,  x = 50, y = 0 },
 
                         new DataPrinter{ brush = color, font = fontKey,   value = "NIT:", x = xKey, y = y+=sum+10 },
                         new DataPrinter{ brush = color, font = fontValue, value = "890 904 996-1" ?? string.Empty, x = x, y = y },
@@ -340,6 +322,29 @@ namespace WPFEmpresaEPM.Classes
             catch (Exception ex)
             {
                 Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "PrintVoucher", ex, ex.ToString());
+            }
+        }
+
+        public static void UpdateApp()
+        {
+            try
+            {
+                Application.Current.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new Action(() =>
+                {
+                    Process pc = new Process();
+                    Process pn = new Process();
+                    ProcessStartInfo si = new ProcessStartInfo();
+                    si.FileName = AdminPayPlus.DataPayPlus.PayPadConfiguration.keyS_PATH;
+                    pn.StartInfo = si;
+                    pn.Start();
+                    pc = Process.GetCurrentProcess();
+                    pc.Kill();
+                }));
+                GC.Collect();
+            }
+            catch (Exception ex)
+            {
+                Error.SaveLogError(MethodBase.GetCurrentMethod().Name, "Utilities", ex, ex.ToString());
             }
         }
 
@@ -523,16 +528,24 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
-        public static string[] ErrorVector = new string[]
+        public static bool IsConnectedToInternet()
         {
-            "STACKER_OPEN",
-            "JAM_IN_ACCEPTOR",
-            "PAUSE",
-            "ER:MD",
-            "thickness",
-            "Scan",
-            "FATAL",
-            "Printer"
-        };
+            try
+            {
+                string host = "8.8.8.8";
+
+                Ping p = new Ping();
+
+                PingReply reply = p.Send(host, 3000);
+
+                if (reply.Status == IPStatus.Success)
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            { }
+            return false;
+        }
     }
 }

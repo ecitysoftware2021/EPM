@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.IO;
 using System.Reflection;
 using Zen.Barcode;
 
@@ -13,6 +14,7 @@ namespace WPFEmpresaEPM.Classes.Printer
         private Font fTitles;
         private Font fGIBTitles;
         private Font fContent;
+        private string im1;
 
         public CLSPrint()
         {
@@ -21,6 +23,9 @@ namespace WPFEmpresaEPM.Classes.Printer
             fTitles = new Font("Arial", 8, FontStyle.Bold);
             fGIBTitles = new Font("Arial", 12, FontStyle.Bold);
             fContent = new Font("Arial", 8, FontStyle.Regular);
+
+            string Boucher = AdminPayPlus.DataPayPlus.PayPadConfiguration.imageS_PATH;
+            im1 = Path.Combine(Boucher, "Others", "logoEPM1.png");
         }
 
         #region "Referencias"
@@ -111,8 +116,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                 int sum = 30;
                 int x = 150;
 
-                string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
-                g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
+                g.DrawImage(Image.FromFile(im1), y += sum + 20, 0);
 
                 g.DrawString("COMPROBANTE DE VENTA", fGIBTitles, sb, 25, y += sum);
                 g.DrawString("Nit 890.904.996-1", fContent, sb, 95, y += sum);
@@ -159,8 +163,7 @@ namespace WPFEmpresaEPM.Classes.Printer
 
                 Rectangle rect = new Rectangle(0, y += sum - 10, 280, 20);
 
-                string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
-                g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
+                g.DrawImage(Image.FromFile(im1), y += sum + 20, 0);
 
                 rect = new Rectangle(0, y += sum - 10, 270, 20);
                 g.DrawString("COMPROBANTE DE PAGO", fGIBTitles, sb, rect, sf);
@@ -227,8 +230,7 @@ namespace WPFEmpresaEPM.Classes.Printer
                 int sum = 30;
                 int x = 150;
 
-                string RutaIMG = Utilities.GetConfiguration("ImageBoucher");
-                g.DrawImage(Image.FromFile(RutaIMG), y += sum + 20, 0);
+                g.DrawImage(Image.FromFile(im1), y += sum + 20, 0);
 
                 g.DrawString("COMPROBANTE DE VENTA", fGIBTitles, sb, 25, y += sum);
                 g.DrawString("Nit 890.904.996-1", fTitles, sb, 95, y += sum);

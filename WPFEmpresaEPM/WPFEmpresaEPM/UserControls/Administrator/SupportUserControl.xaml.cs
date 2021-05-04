@@ -14,11 +14,11 @@ namespace WPFEmpresaEPM.UserControls.Administrator
 
             try
             {
-                txtNumberPhone.Text = Utilities.GetConfiguration("NumbersPhone");
+                txtNumberPhone.Text = AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataComplementary.NumbersPhone;
 
                 if (AdminPayPlus.DataConfiguration == null)
                 {
-                    txtNumberMachine.Text = Utilities.GetConfiguration("NumbersSerial");
+                    txtNumberMachine.Text = AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataComplementary.NumbersSerial;
                 }
                 else
                 {

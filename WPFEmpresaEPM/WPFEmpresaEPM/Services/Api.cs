@@ -37,7 +37,7 @@ namespace WPFEmpresaEPM.Services
                     requestApi = new RequestApi();
                 }
 
-                basseAddress = Utilities.GetConfiguration("basseAddress", true);
+                basseAddress = Utilities.GetConfiguration("basseAddress");
             }
             catch (Exception ex)
             {

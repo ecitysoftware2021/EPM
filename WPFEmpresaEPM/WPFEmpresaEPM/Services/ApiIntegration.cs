@@ -37,17 +37,18 @@ namespace WPFEmpresaEPM.Services
                     typeSearch = (int)eTypeSearch
 
                 };
+
                 AdminPayPlus.SaveErrorControl($"Request Consulta Factura: tipo_busqueda: {(int)eTypeSearch} reference: {reference}", "", EError.Aplication, ELevelError.Mild);
 
                 DateTime dateCall = DateTime.Now;
-                string keydecrypt = string.Concat(Utilities.GetConfiguration("ConsultarFactura"), "|", dateCall.ToString("dd?MM?yyyy"));
+                string keydecrypt = string.Concat(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.ConsultarFactura, "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
                     Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request), true, keydecrypt),
                     CallDate = dateCall
                 };
 
-                var response = CallApiEpm(requestGlobal, Utilities.GetConfiguration("ConsultarFactura"));
+                var response = CallApiEpm(requestGlobal, AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.ConsultarFactura);
                 if (string.IsNullOrEmpty(response))
                 {
                     AdminPayPlus.SaveErrorControl("ERROR Consulta Factura: Data Null o Vacía", "", EError.Api, ELevelError.Mild);
@@ -91,14 +92,14 @@ namespace WPFEmpresaEPM.Services
                 };
                 AdminPayPlus.SaveErrorControl($"Request Consulta Pago Medida: contract: {contract}, document: {document}", "", EError.Aplication, ELevelError.Mild);
                 DateTime dateCall = DateTime.Now;
-                string keydecrypt = string.Concat(Utilities.GetConfiguration("ValidarPagoMedida"), "|", dateCall.ToString("dd?MM?yyyy"));
+                string keydecrypt = string.Concat(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.ValidarPagoMedida, "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
                     Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request),true, keydecrypt),
                     CallDate = dateCall
                 };
 
-                var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("ValidarPagoMedida"));
+                var result = CallApiEpm(requestGlobal, AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.ValidarPagoMedida);
                 if (string.IsNullOrEmpty(result))
                 {
                     AdminPayPlus.SaveErrorControl("ERROR Consulta Pago Medida: Data Null o Vacía", "", EError.Api, ELevelError.Mild);
@@ -156,13 +157,13 @@ namespace WPFEmpresaEPM.Services
                 AdminPayPlus.SaveErrorControl($"Request Consulta Factura Prepago: payValue: {payValue}, medidor: {medidor}", "", EError.Aplication, ELevelError.Mild);
 
                 DateTime dateCall = DateTime.Now;
-                string keydecrypt = string.Concat(Utilities.GetConfiguration("ValidarCompra"), "|", dateCall.ToString("dd?MM?yyyy"));
+                string keydecrypt = string.Concat(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.ValidarCompra, "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
                     Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request), true,keydecrypt),
                     CallDate = dateCall
                 };
-                var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("ValidarCompra"));
+                var result = CallApiEpm(requestGlobal, AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.ValidarCompra);
                 if (string.IsNullOrEmpty(result))
                 {
                     AdminPayPlus.SaveErrorControl("ERROR Consulta Factura Prepago: Data Null o Vacía", "", EError.Api, ELevelError.Mild);
@@ -239,13 +240,13 @@ namespace WPFEmpresaEPM.Services
 
                 AdminPayPlus.SaveErrorControl($"Request Notificar Pago Factura: {JsonConvert.SerializeObject(request)}", "", EError.Aplication, ELevelError.Mild);
                 DateTime dateCall = DateTime.Now;
-                string keydecrypt = string.Concat(Utilities.GetConfiguration("RegistrarPagoFactura"), "|", dateCall.ToString("dd?MM?yyyy"));
+                string keydecrypt = string.Concat(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.RegistrarPagoFactura, "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
                     Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request),true, keydecrypt),
                     CallDate = dateCall
                 };
-                var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("RegistrarPagoFactura"));
+                var result = CallApiEpm(requestGlobal, AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.RegistrarPagoFactura);
                 if (string.IsNullOrEmpty(result))
                 {
                     AdminPayPlus.SaveErrorControl("ERROR Notificar Pago Factura: Data Null o Vacía", "", EError.Api, ELevelError.Mild);
@@ -280,13 +281,13 @@ namespace WPFEmpresaEPM.Services
             {
                 AdminPayPlus.SaveErrorControl($"Request Notificar Pago a tu Medida: {JsonConvert.SerializeObject(request)}", "", EError.Aplication, ELevelError.Mild);
                 DateTime dateCall = DateTime.Now;
-                string keydecrypt = string.Concat(Utilities.GetConfiguration("RegistrarPagoMedida"), "|", dateCall.ToString("dd?MM?yyyy"));
+                string keydecrypt = string.Concat(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.RegistrarPagoMedida, "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
                     Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request), true,keydecrypt),
                     CallDate = dateCall
                 };
-                var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("RegistrarPagoMedida"));
+                var result = CallApiEpm(requestGlobal, AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.RegistrarPagoMedida);
                 if (string.IsNullOrEmpty(result))
                 {
                     AdminPayPlus.SaveErrorControl("ERROR Notificar Pago a tu Medida: Data Null o Vacía", "", EError.Api, ELevelError.Mild);
@@ -345,13 +346,13 @@ namespace WPFEmpresaEPM.Services
             {
                 AdminPayPlus.SaveErrorControl($"Request Notificar Factura Prepago: {JsonConvert.SerializeObject(request)}", "", EError.Aplication, ELevelError.Mild);
                 DateTime dateCall = DateTime.Now;
-                string keydecrypt = string.Concat(Utilities.GetConfiguration("RegistarCompraEnergia"), "|", dateCall.ToString("dd?MM?yyyy"));
+                string keydecrypt = string.Concat(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.RegistarCompraEnergia, "|", dateCall.ToString("dd?MM?yyyy"));
                 RequestGlobal requestGlobal = new RequestGlobal
                 {
                     Data = Utilities.EncryptorData(JsonConvert.SerializeObject(request), true,keydecrypt),
                     CallDate = dateCall
                 };
-                var result = CallApiEpm(requestGlobal, Utilities.GetConfiguration("RegistarCompraEnergia"));
+                var result = CallApiEpm(requestGlobal, AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.RegistarCompraEnergia);
                 if (string.IsNullOrEmpty(result))
                 {
                     AdminPayPlus.SaveErrorControl("ERROR Notificar Factura Prepago: Data Null o Vacía", "", EError.Api, ELevelError.Mild);
@@ -413,7 +414,7 @@ namespace WPFEmpresaEPM.Services
         {
             try
             {
-                var client = new RestClient(string.Format(Utilities.GetConfiguration("basseAddresEPM"), url));
+                var client = new RestClient(string.Format(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataIntegration.basseAddresEPM, url));
                 var request = new RestRequest(Method.POST);
                 request.AddHeader("Content-Type", "application/json");
                 string rq = JsonConvert.SerializeObject(data);

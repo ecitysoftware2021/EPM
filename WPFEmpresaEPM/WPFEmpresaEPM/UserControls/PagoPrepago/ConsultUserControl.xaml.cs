@@ -35,13 +35,16 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
             {
                 transaction = ts;
                 grvSupport.Content = Utilities.UCSupport;
+
                 valueModel = new ValueModel
                 {
                     Val = 0
                 };
+
                 this.DataContext = valueModel;
-                ValorMax = Convert.ToDecimal(Utilities.GetConfiguration("ValorMaxPrepago"));
-                ValorMin = Convert.ToDecimal(Utilities.GetConfiguration("ValorMinPrepago"));
+
+                ValorMax = Convert.ToDecimal(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataComplementary.ValorMaxPrepago);
+                ValorMin = Convert.ToDecimal(AdminPayPlus.DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataComplementary.ValorMinPrepago);
                 ActivateTimer();
             }
             catch (Exception ex)
@@ -209,7 +212,7 @@ namespace WPFEmpresaEPM.UserControls.PagoPrepago
         {
             Dispatcher.BeginInvoke((Action)delegate
             {
-                tbTimer.Text = Utilities.GetConfiguration("TimerGenerico");
+                tbTimer.Text = AdminPayPlus.DataPayPlus.PayPadConfiguration.generiC_TIMER;
                 timer = new TimerGeneric(tbTimer.Text);
                 timer.CallBackClose = response =>
                 {

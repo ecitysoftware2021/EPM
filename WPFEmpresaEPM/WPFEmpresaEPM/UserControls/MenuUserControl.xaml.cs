@@ -70,7 +70,7 @@ namespace WPFEmpresaEPM.UserControls
         {
             Dispatcher.BeginInvoke((Action)delegate
             {
-                tbTimer.Text = Utilities.GetConfiguration("TimerGenerico");
+                tbTimer.Text = AdminPayPlus.DataPayPlus.PayPadConfiguration.generiC_TIMER;
                 timer = new TimerGeneric(tbTimer.Text);
                 timer.CallBackClose = response =>
                 {

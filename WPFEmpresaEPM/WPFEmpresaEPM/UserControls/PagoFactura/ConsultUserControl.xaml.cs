@@ -236,7 +236,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         {
             Dispatcher.BeginInvoke((Action)delegate
             {
-                tbTimer.Text = Utilities.GetConfiguration("TimerGenerico");
+                tbTimer.Text = AdminPayPlus.DataPayPlus.PayPadConfiguration.generiC_TIMER;
                 timer = new TimerGeneric(tbTimer.Text);
                 timer.CallBackClose = response =>
                 {
@@ -296,8 +296,7 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
             };
 
             AdminPayPlus.ControlScanner.flagScanner = 0;
-            AdminPayPlus.ControlScanner.InitializePortScanner(Utilities.GetConfiguration("PortScanner"),
-                int.Parse(Utilities.GetConfiguration("BaudRateScanner")));
+            AdminPayPlus.ControlScanner.Start();
         }
     }
 }

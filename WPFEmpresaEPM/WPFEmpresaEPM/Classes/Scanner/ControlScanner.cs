@@ -31,17 +31,32 @@ namespace WPFEmpresaEPM.Classes.Scanner
         }
 
         #region Methods
+        public void Start()
+        {
+            try
+            {
+                if (_BarcodeReader != null)
+                {
+                    InitializePortBarcode(AdminPayPlus.DataPayPlus.PayPadConfiguration.scanneR_PORT, 9600);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         /// <summary>
         ///  Método para inciar el puerto del scanner
         /// </summary>
-        public void InitializePortScanner(string portName, int baudrate)
+        public void InitializePortBarcode(string portName, int barcodeBaudRate)
         {
             try
             {
                 if (!_BarcodeReader.IsOpen)
                 {
                     _BarcodeReader.PortName = portName;
-                    _BarcodeReader.BaudRate = baudrate;
+                    _BarcodeReader.BaudRate = barcodeBaudRate;
                     _BarcodeReader.Open();
                     _BarcodeReader.ReadTimeout = 200;
                     //_BarcodeReader.DtrEnable = true;

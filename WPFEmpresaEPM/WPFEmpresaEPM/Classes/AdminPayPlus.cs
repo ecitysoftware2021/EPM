@@ -13,6 +13,8 @@ using WPFEmpresaEPM.Services;
 using WPFEmpresaEPM.Services.Object;
 using System.Collections.Generic;
 using WPFEmpresaEPM.Classes.Scanner;
+using System.IO;
+using System.Windows;
 
 namespace WPFEmpresaEPM.Classes
 {
@@ -68,6 +70,13 @@ namespace WPFEmpresaEPM.Classes
             }
         }
 
+        private static ApiIntegration _apiIntegration;
+
+        public static ApiIntegration ApiIntegration
+        {
+            get { return _apiIntegration; }
+        }
+
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
         #endregion
@@ -82,55 +91,74 @@ namespace WPFEmpresaEPM.Classes
                 api = new Api();
             }
 
-            if (_printService == null)
-            {
-                _printService = new PrintService();
-            }
-
             if (_dataPayPlus == null)
             {
                 _dataPayPlus = new DataPayPlus();
             }
 
-            if (ControlScanner == null)
-            {
-                ControlScanner = new ControlScanner();
-            }
-
         }
         #endregion
+        private static void InitNext()
+        {
+            //if (_printService == null)
+            //{
+            _printService = new PrintService();
+            //}
+
+            //if (_readerBarCode == null)
+            //{
+            _apiIntegration = new ApiIntegration();
+            //}
+
+            //if (_cootregua == null)
+            //{
+            ControlScanner = new ControlScanner();
+            //}
+
+            //if (_cootregua == null)
+            //{
+            //}
+        }
 
         public async void Start()
         {
             DescriptionStatusPayPlus = MessageResource.ComunicationServer;
 
-            if (await LoginPaypad())
+            if (Utilities.IsConnectedToInternet())
             {
-                DescriptionStatusPayPlus = MessageResource.StatePayPlus;
-
-                if (await ValidatePaypad())
+                if (await LoginPaypad())
                 {
+                    DescriptionStatusPayPlus = MessageResource.StatePayPlus;
 
-                    DescriptionStatusPayPlus = MessageResource.ValidatePeripherals;
-
-                    if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+                    if (await ValidatePaypad())
                     {
-                        callbackResult?.Invoke(true);
+
+                        DescriptionStatusPayPlus = MessageResource.ValidatePeripherals;
+
+                        if (_dataPayPlus.PayPadConfiguration.enablE_VALIDATE_PERIPHERALS)
+                        {
+                            ValidatePeripherals();
+                        }
+                        else
+                        {
+                            callbackResult?.Invoke(true);
+                        }
                     }
                     else
                     {
-                        ValidatePeripherals();
+                        DescriptionStatusPayPlus = MessageResource.StatePayPlusFail;
+                        callbackResult?.Invoke(false);
                     }
                 }
                 else
                 {
-                    DescriptionStatusPayPlus = MessageResource.StatePayPlusFail;
+                    DescriptionStatusPayPlus = MessageResource.ComunicationServerFail;
                     callbackResult?.Invoke(false);
                 }
             }
             else
             {
-                DescriptionStatusPayPlus = MessageResource.ComunicationServerFail;
+                DescriptionStatusPayPlus = "Se ha perdido la conexión a internet.";
                 callbackResult?.Invoke(false);
             }
         }
@@ -151,15 +179,19 @@ namespace WPFEmpresaEPM.Classes
                         config.ID_SESSION = Convert.ToInt32(result.Session);
                         config.TOKEN_API = result.Token;
 
-                        if (SqliteDataAccess.UpdateConfiguration(config))
-                        {
-                            _dataConfiguration = config;
-                            return true;
-                        }
+                        _dataConfiguration = config;
+
+                        return true;
                     }
                     else
                     {
-                        SaveErrorControl(MessageResource.ErrorServiceLogin, MessageResource.NoGoInitial, EError.Api, ELevelError.Strong);
+                        SaveLog(new RequestLog
+                        {
+                            Reference = "",
+                            Description = "No se logro obtener el token",
+                            State = 2,
+                            Date = DateTime.Now
+                        }, ELogType.General);
                     }
                 }
             }
@@ -184,7 +216,18 @@ namespace WPFEmpresaEPM.Classes
                 {
                     _dataPayPlus = JsonConvert.DeserializeObject<DataPayPlus>(response.ToString());
 
-                    //Utilities.ImagesSlider = JsonConvert.DeserializeObject<List<string>>(data.ListImages.ToString());
+                    if (_dataPayPlus != null && _dataPayPlus.PayPadConfiguration != null)
+                    {
+                        _dataPayPlus.PayPadConfiguration.DeserializarExtraData();
+                       
+                        Application.Current.Dispatcher.Invoke(delegate
+                        {
+                            InitNext();
+                        });
+
+                        SqliteDataAccess.UpdateConfiguration(_dataConfiguration);
+                    }
+
                     if (_dataPayPlus.StateBalanece || _dataPayPlus.StateUpload)
                     {
                         SaveLog(new RequestLog
@@ -194,8 +237,6 @@ namespace WPFEmpresaEPM.Classes
                             State = 4,
                             Date = DateTime.Now
                         }, ELogType.General);
-
-                        return true;
                     }
                     if (_dataPayPlus.State && _dataPayPlus.StateAceptance && _dataPayPlus.StateDispenser)
                     {
@@ -226,8 +267,8 @@ namespace WPFEmpresaEPM.Classes
             {
                 if (_controlPeripherals == null)
                 {
-                    _controlPeripherals = new ControlPeripherals(Utilities.GetConfiguration("Port"),
-                        Utilities.GetConfiguration("ValuesDispenser"));
+                    _controlPeripherals = new ControlPeripherals(_dataPayPlus.PayPadConfiguration.unifieD_PORT,
+                        _dataPayPlus.PayPadConfiguration.dispenseR_CONFIGURATION);
                 }
 
                 _controlPeripherals.callbackError = error =>
@@ -284,7 +325,7 @@ namespace WPFEmpresaEPM.Classes
         {
             try
             {
-                string[] keys = Utilities.ReadFile(@"" + ConstantsResource.PathKeys);
+                string[] keys = File.ReadAllLines(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), ConstantsResource.PathKeys));
 
                 if (keys.Length > 0)
                 {
@@ -293,10 +334,10 @@ namespace WPFEmpresaEPM.Classes
 
                     return new CONFIGURATION_PAYDAD
                     {
-                        USER_API = Utilities.EncryptorData(server[0].Split(':')[1],false),
-                        PASSWORD_API = Utilities.EncryptorData(server[1].Split(':')[1],false),
-                        USER = Utilities.EncryptorData(payplus[0].Split(':')[1],false),
-                        PASSWORD = Utilities.EncryptorData(payplus[1].Split(':')[1],false),
+                        USER_API = server[0].Split(':')[1],
+                        PASSWORD_API = server[1].Split(':')[1],
+                        USER = payplus[0].Split(':')[1],
+                        PASSWORD = payplus[1].Split(':')[1],
                         TYPE = Convert.ToInt32(payplus[2].Split(':')[1])
                     };
                 }
@@ -314,10 +355,14 @@ namespace WPFEmpresaEPM.Classes
             {
                 Task.Run(async () =>
                 {
-                    var saveResult = SqliteDataAccess.SaveLog(log, type);
+                    if (DataPayPlus != null && DataPayPlus.PayPadConfiguration != null)
+                    {
+                        var saveResult = SqliteDataAccess.SaveLog(log, type);
+                    }
+
                     object result = "false";
 
-                    if (log != null && saveResult != null)
+                    if (log != null)
                     {
                         if (type == ELogType.General)
                         {
@@ -452,8 +497,8 @@ namespace WPFEmpresaEPM.Classes
                         transaction.payer = new PAYER
                         {
                             IDENTIFICATION = _dataConfiguration.ID_PAYPAD.ToString(),
-                            NAME = Utilities.GetConfiguration("NAME_PAYPAD"),
-                            LAST_NAME = Utilities.GetConfiguration("LAST_NAME_PAYPAD")
+                            NAME = DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataComplementary.NAME_PAYPAD,
+                            LAST_NAME = DataPayPlus.PayPadConfiguration.ExtrA_DATA.dataComplementary.LAST_NAME_PAYPAD,
                         };
                     }
 
@@ -766,11 +811,13 @@ namespace WPFEmpresaEPM.Classes
                 Task.Run(async () =>
                 {
                     var transactions = SqliteDataAccess.GetTransactionNotific();
+
                     if (transactions.Count > 0)
                     {
                         foreach (var transaction in transactions)
                         {
                             var responseTransaction = await api.CallApi("UpdateTransaction", transaction);
+
                             if (responseTransaction != null)
                             {
                                 transaction.STATE = 1;
@@ -780,6 +827,7 @@ namespace WPFEmpresaEPM.Classes
                     }
 
                     var detailTeansactions2 = SqliteDataAccess.GetDetailsTransaction();
+
                     foreach (var detail in detailTeansactions2)
                     {
                         var response = await api.CallApi("SaveTransactionDetail", new RequestTransactionDetails
