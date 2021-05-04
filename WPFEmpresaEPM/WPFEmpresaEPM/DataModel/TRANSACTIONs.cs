@@ -36,6 +36,7 @@ namespace WPFEmpresaEPM.DataModel
     public partial class ITRANSACTION
     {
         public int ID { get; set; }
+        public int PAYMENT_TYPE_ID { get; set; }
         public Nullable<int> TRANSACTION_ID { get; set; }
         public int PAYPAD_ID { get; set; }
         public int TYPE_TRANSACTION_ID { get; set; }

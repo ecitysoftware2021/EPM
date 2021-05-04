@@ -38,7 +38,8 @@ namespace WPFEmpresaEPM.Classes.DB
                     STATE = transaction.STATE,
                     DESCRIPTION = transaction.DESCRIPTION,
                     TRANSACTION_REFERENCE = transaction.TRANSACTION_REFERENCE,
-                    ID = transaction.ID
+                    ID = transaction.ID,
+                    PAYMENT_TYPE_ID = transaction.PAYMENT_TYPE_ID
                 };
             }
             catch (Exception ex)
