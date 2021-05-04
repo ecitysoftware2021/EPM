@@ -45,12 +45,12 @@ namespace WPFEmpresaEPM.UserControls.PagoFactura
         {
             try
             {
-                if (AdminPayPlus.DataPayPlus.PayPadConfiguration.enablE_CARD)
+                if (!AdminPayPlus.DataPayPlus.PayPadConfiguration.enablE_CARD)
                 {
                     btnTarjeta.Visibility = System.Windows.Visibility.Hidden;
                 }
 
-                if (AdminPayPlus.DataPayPlus.PayPadConfiguration.enablE_VALIDATE_PERIPHERALS)
+                if (!AdminPayPlus.DataPayPlus.PayPadConfiguration.enablE_VALIDATE_PERIPHERALS)
                 {
                     btnEfectivo.Visibility = System.Windows.Visibility.Hidden;
                 }

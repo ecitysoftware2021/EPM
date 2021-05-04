@@ -206,11 +206,6 @@ namespace WPFEmpresaEPM.Classes
         {
             try
             {
-                if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
-                {
-                    return true;
-                }
-
                 var response = await api.CallApi("InitPaypad");
                 if (response != null)
                 {
