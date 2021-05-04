@@ -30,11 +30,11 @@
                 Width="800"
                 Grid.Row="1"
                 FontFamily="Arial" 
-                Text="Configuración del dispositivo"
+                Text="Configuración del dispositivo VS Pruebas"
                 FontWeight="Bold" />
 
             <TextBlock 
-                Text="Espere mientras se configura el dispositivo para iniciar"
+                Text="Espere mientras se configura el dispositivo para iniciar."
                 FontFamily="Arial"
                 FontSize="50"
                 VerticalAlignment="Top"

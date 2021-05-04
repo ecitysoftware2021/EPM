@@ -200,13 +200,13 @@ namespace WPFEmpresaEPM.UserControls
         #region "Eventos"
         private void Grid_TouchDown(object sender, TouchEventArgs e)
         {
-            if (Utilities.GetConfiguration("EfectivoIsEnable") == "0")
+            if (AdminPayPlus.DataPayPlus.PayPadConfiguration.enablE_VALIDATE_PERIPHERALS)
             {
-                Redirect(true);
+                ValidateStatus();
             }
             else
             {
-                ValidateStatus();
+                Redirect(true);
             }
         }
         #endregion

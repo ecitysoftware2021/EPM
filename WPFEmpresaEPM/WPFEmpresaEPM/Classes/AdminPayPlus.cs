@@ -404,10 +404,7 @@ namespace WPFEmpresaEPM.Classes
                     if (_dataConfiguration != null)
                     {
                         var idPaypad = _dataConfiguration.ID_PAYPAD;
-                        if (idPaypad == null)
-                        {
-                            idPaypad = int.Parse(Utilities.GetConfiguration("idPaypad"));
-                        }
+                        
 
                         if (desciption.Contains("FATAL"))
                         {
