@@ -57,9 +57,7 @@ namespace WPFEmpresaEPM.UserControls
         private void OrganizeValues()
         {
             try
-            {   //TODO:aqui
-                this.transaction.Amount = 200;
-
+            {  
                 this.paymentViewModel = new PaymentViewModel
                 {
                     PayValue = this.transaction.Amount,
@@ -251,47 +249,47 @@ namespace WPFEmpresaEPM.UserControls
                         Thread.Sleep(1000);
 
                         object dataTransaction = null;
-                        //TODO:aqui
-                        //switch (transaction.typeTransaction)
-                        //{
-                        //    case ETypeTransaction.PagoFactura:
-                        //        dataTransaction = new InvoicePayRequest
-                        //        {
-                        //            payValue = transaction.RealAmount,
-                        //            reference = transaction.detailsPagoFactura.Referencia
-                        //        };
-                        //        break;
-                        //    case ETypeTransaction.FacturaPrepago:
-                        //        dataTransaction = new PrepaidPayRequest
-                        //        {
-                        //            payValue = transaction.Amount,
-                        //            reference = transaction.NumeroMedidor,
-                        //            transactionID = transaction.ConsecutivoId
-                        //        };
-                        //        break;
-                        //    case ETypeTransaction.PagoMedida:
-                        //        dataTransaction = new PayRequest
-                        //        {
-                        //            contract = transaction.NumeroContrato,
-                        //            document = transaction.Document,
-                        //            transactionID = transaction.ConsecutivoId,
-                        //            payValue = transaction.Amount
-                        //        };
-                        //        break;
-                        //}
+                        
+                        switch (transaction.typeTransaction)
+                        {
+                            case ETypeTransaction.PagoFactura:
+                                dataTransaction = new InvoicePayRequest
+                                {
+                                    payValue = transaction.RealAmount,
+                                    reference = transaction.detailsPagoFactura.Referencia
+                                };
+                                break;
+                            case ETypeTransaction.FacturaPrepago:
+                                dataTransaction = new PrepaidPayRequest
+                                {
+                                    payValue = transaction.Amount,
+                                    reference = transaction.NumeroMedidor,
+                                    transactionID = transaction.ConsecutivoId
+                                };
+                                break;
+                            case ETypeTransaction.PagoMedida:
+                                dataTransaction = new PayRequest
+                                {
+                                    contract = transaction.NumeroContrato,
+                                    document = transaction.Document,
+                                    transactionID = transaction.ConsecutivoId,
+                                    payValue = transaction.Amount
+                                };
+                                break;
+                        }
 
-                        //bool response = await ApiIntegration.ReportPay(transaction, dataTransaction);
+                        bool response = await ApiIntegration.ReportPay(transaction, dataTransaction);
 
-                        //Thread.Sleep(1000);
+                        Thread.Sleep(1000);
 
-                        //if (!response && Intentos < 5)
-                        //{
-                        //    Intentos++;
-                        //    AdminPayPlus.CreateConsecutivoDashboard(transaction);
-                        //    this.paymentViewModel.StatePay = false;
-                        //    SavePay();
-                        //    return;
-                        //}
+                        if (!response && Intentos < 5)
+                        {
+                            Intentos++;
+                            AdminPayPlus.CreateConsecutivoDashboard(transaction);
+                            this.paymentViewModel.StatePay = false;
+                            SavePay();
+                            return;
+                        }
 
                         Dispatcher.BeginInvoke((Action)delegate
                         {
@@ -300,16 +298,16 @@ namespace WPFEmpresaEPM.UserControls
                         });
                         GC.Collect();
 
-                        //if (response)
-                        //{
+                        if (response)
+                        {
                             this.transaction.statePaySuccess = true;
                             transaction.State = ETransactionState.Success;
                             Utilities.navigator.Navigate(UserControlView.PaySuccess, transaction);
-                        //}
-                        //else
-                        //{
-                        //    CancelTransaction();
-                        //}
+                        }
+                        else
+                        {
+                            CancelTransaction();
+                        }
                     });
 
                     Dispatcher.BeginInvoke((Action)delegate

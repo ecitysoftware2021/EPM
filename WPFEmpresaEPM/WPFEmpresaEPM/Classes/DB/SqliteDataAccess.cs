@@ -106,6 +106,7 @@ namespace WPFEmpresaEPM.Classes.DB
                            "TRANSACTION_ID, " +
                            "PAYPAD_ID," +
                            "TYPE_TRANSACTION_ID, " +
+                           "PAYMENT_TYPE_ID, " +
                            "DATE_BEGIN, " +
                            "DATE_END, " +
                            "TOTAL_AMOUNT, " +
@@ -120,6 +121,7 @@ namespace WPFEmpresaEPM.Classes.DB
                            "@TRANSACTION_ID, " +
                            "@PAYPAD_ID, " +
                            "@TYPE_TRANSACTION_ID, " +
+                           "@PAYMENT_TYPE_ID, " +
                            "@DATE_BEGIN, " +
                            "@DATE_END, " +
                            "@TOTAL_AMOUNT, " +
@@ -136,6 +138,7 @@ namespace WPFEmpresaEPM.Classes.DB
                                TYPE_TRANSACTION_ID = transaction.TYPE_TRANSACTION_ID,
                                PAYER_ID = transaction.PAYER_ID,
                                STATE_TRANSACTION_ID = transaction.STATE_TRANSACTION_ID,
+                               PAYMENT_TYPE_ID = transaction.PAYMENT_TYPE_ID,
                                TOTAL_AMOUNT = transaction.TOTAL_AMOUNT,
                                DATE_END = transaction.DATE_END.ToString(),
                                TRANSACTION_ID = transaction.TRANSACTION_ID,

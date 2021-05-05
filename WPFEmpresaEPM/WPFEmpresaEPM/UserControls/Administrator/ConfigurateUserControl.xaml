@@ -30,7 +30,7 @@
                 Width="800"
                 Grid.Row="1"
                 FontFamily="Arial" 
-                Text="Configuración del dispositivo VS Pruebas"
+                Text="Configuración del dispositivo."
                 FontWeight="Bold" />
 
             <TextBlock 

@@ -49,8 +49,7 @@ namespace WPFEmpresaEPM.UserControls
 
                     transaction.StatePay = "Aprobado";
 
-                    //TODO:aqui
-                    //Utilities.PrintVoucherSuccess(this.transaction);
+                    Utilities.PrintVoucherSuccess(this.transaction);
 
                     Thread.Sleep(3000);
 
