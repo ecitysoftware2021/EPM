@@ -70,6 +70,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                 {
                     Finish(result);
                 }
+                else
                 if (AdminPayPlus.DataPayPlus.StateUpdate)
                 {
                     Utilities.ShowModal(MessageResource.UpdateAplication, EModalType.Error, true);
