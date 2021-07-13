@@ -180,8 +180,14 @@
     <Compile Include="Services\Object\Response.cs" />
     <Compile Include="Services\Object\ResponseApi.cs" />
     <Compile Include="Services\Object\Request.cs" />
+    <Compile Include="UserControls\Administrator\AdministratorUserControl.xaml.cs">
+      <DependentUpon>AdministratorUserControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Administrator\ConfigurateUserControl.xaml.cs">
       <DependentUpon>ConfigurateUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Administrator\LoginAdministratorUserControl.xaml.cs">
+      <DependentUpon>LoginAdministratorUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Administrator\SupportUserControl.xaml.cs">
       <DependentUpon>SupportUserControl.xaml</DependentUpon>
@@ -320,7 +326,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="UserControls\Administrator\AdministratorUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserControls\Administrator\ConfigurateUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\Administrator\LoginAdministratorUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

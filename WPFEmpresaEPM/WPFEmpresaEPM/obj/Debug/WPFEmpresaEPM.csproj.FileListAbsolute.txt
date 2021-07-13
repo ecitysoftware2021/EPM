@@ -574,3 +574,7 @@ C:\Users\H81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\Windows\
 C:\Users\H81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\SupportUserControl.baml
 C:\Users\H81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\DatafonoUserControl.baml
 C:\Users\H81\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\Windows\Alerts\ModalLoadWindow.baml
+C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\AdministratorUserControl.g.cs
+C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\LoginAdministratorUserControl.g.cs
+C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\AdministratorUserControl.baml
+C:\Users\Jhon.Zapata.LJHPCECITY\Documents\GitHub\EPM\WPFEmpresaEPM\WPFEmpresaEPM\obj\Debug\UserControls\Administrator\LoginAdministratorUserControl.baml

@@ -114,10 +114,18 @@ namespace WPFEmpresaEPM.Classes
 
     public enum ETypeAdministrator
     {
-        Balancing = 1,
-        Upload = 2,
-        Finished = 3,
-        ReUploat = 4
+        Balancing = 3,
+        Upload = 1,
+        Diminish = 2,
+        ReUploat = 4,
+    }
+
+    public enum ETypeDevice
+    {
+        AP = 2,
+        DP = 3,
+        MD = 8,
+        MA = 4
     }
 
     public enum ETypeOption

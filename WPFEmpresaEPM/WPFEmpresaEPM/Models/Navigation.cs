@@ -81,6 +81,12 @@ namespace WPFEmpresaEPM.Models
                     case UserControlView.ReturnMony:
                         View = new ReturnMonyUserControl((Transaction)data);
                         break;
+                    case UserControlView.Login:
+                        View = new LoginAdministratorUserControl((ETypeAdministrator)data);
+                        break;
+                    case UserControlView.Admin:
+                        View = new AdministratorUserControl((PaypadOperationControl)data, (ETypeAdministrator)complement);
+                        break;
                 }
             }
             catch (Exception ex)
