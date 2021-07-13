@@ -86,7 +86,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                         Date = DateTime.Now
                     }, ELogType.General);
 
-                    Utilities.navigator.Navigate(UserControlView.Login, false, ETypeAdministrator.Balancing);
+                    Utilities.navigator.Navigate(UserControlView.Login, ETypeAdministrator.Balancing);
                 }
                 else if (AdminPayPlus.DataPayPlus.StateUpload)
                 {
@@ -98,7 +98,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
                         Date = DateTime.Now
                     }, ELogType.General);
 
-                    Utilities.navigator.Navigate(UserControlView.Login, false, ETypeAdministrator.Upload);
+                    Utilities.navigator.Navigate(UserControlView.Login, ETypeAdministrator.Upload);
                 }
                 else
                 {

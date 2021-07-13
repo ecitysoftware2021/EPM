@@ -42,6 +42,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
         public LoginAdministratorUserControl(ETypeAdministrator typeOperation)
         {
             InitializeComponent();
+
             _typeOperation = typeOperation;
         }
 

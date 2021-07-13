@@ -65,7 +65,7 @@ namespace WPFEmpresaEPM.UserControls.Administrator
 
                         Utilities.ShowModal(MessageResource.TransactionFinish, EModalType.Error, false);
 
-                        Utilities.RestartApp();
+                        //Utilities.RestartApp();
                     }
 
                     Utilities.CloseModal();
